@@ -66,6 +66,25 @@ async function shotDialog(page: Page, name: string) {
 	});
 }
 
+/**
+ * Clicks a button that opens a dialog. On a fresh dev server the page reloads once when Vite
+ * optimizes new dependencies, which closes the dialog again, so click until it stays open.
+ */
+async function openDialog(page: Page, button: ReturnType<Page["getByRole"]>) {
+	await page.waitForLoadState("networkidle");
+	for (let attempt = 1; ; attempt++) {
+		await button.click();
+		try {
+			await page.locator(".modal-box:visible").first().waitFor({ timeout: 5_000 });
+			await sleep(1500);
+			if (await page.locator(".modal-box:visible").first().isVisible()) return;
+		} catch (e) {
+			if (attempt === 5) throw e;
+		}
+		await page.waitForLoadState("networkidle");
+	}
+}
+
 const reviewUrl = () => {
 	const s = ids();
 	return `${BASE}/projects/${s.harbor}/timelines/${s.trailer}/exports/${s.trailerV3}`;
@@ -148,17 +167,66 @@ const steps: Record<string, () => Promise<void>> = {
 		const page = await newPage("alex@example.com");
 		const s = ids();
 		await page.goto(`${BASE}/projects/${s.harbor}`);
-		await page.getByRole("button", { name: /Share/ }).first().click();
+		await openDialog(page, page.getByRole("button", { name: /Share/ }).first());
 		await shotDialog(page, "share-project");
 		await page.close();
+	},
+
+	async shareLinks() {
+		const page = await newPage("alex@example.com");
+		await page.goto(reviewUrl());
+		await page.locator("video").first().waitFor();
+		await openDialog(page, page.getByRole("button", { name: /^Share/ }).first());
+		// without links the form for a new one opens on its own (not on a retry, the link exists then)
+		const note = page.getByPlaceholder("Note: shown in the player and added to the e-mail");
+		await page.getByText("Share links").first().waitFor();
+		await sleep(1000);
+		if (!(await note.isVisible())) await page.getByRole("button", { name: "New link" }).click();
+		await page
+			.getByPlaceholder("Note: shown in the player and added to the e-mail")
+			.fill("Hi Sam, here is the new cut of the trailer.\nPlease mark anything that stands out, especially in the last third.");
+		await shotDialog(page, "share-link-new");
+		await page.getByRole("button", { name: "Create link" }).click();
+		await page.getByRole("button", { name: "QR code" }).first().waitFor();
+		// the QR dialog shows the link's URL under the code
+		await page.getByRole("button", { name: "QR code" }).first().click();
+		// the QR dialog is nested in the share dialog; Escape closes only the top one
+		const qr = page.getByAltText("QR code for the share link");
+		await qr.waitFor();
+		const url = (await page.locator("p.break-all:visible").last().textContent())!.trim();
+		await page.keyboard.press("Escape");
+		await qr.waitFor({ state: "hidden" });
+		await page.getByRole("button", { name: "Details" }).first().click();
+		await shotDialog(page, "share-links");
+		await page.close();
+
+		// the guest's side, in a browser without a PostPin login
+		const guest = await newPage();
+		await guest.goto(url);
+		await guest.getByPlaceholder("Your name").fill("Sam Lee");
+		await shot(guest, "share-join");
+		await guest.getByRole("button", { name: "Continue" }).click();
+		await guest.locator("video").first().waitFor();
+		await sleep(3000); // HLS
+		await guest.keyboard.press("m");
+		await guest.getByPlaceholder("Title").first().fill("Logo comes in too early");
+		await sleep(800);
+		await shot(guest, "share-view");
+		await guest.close();
 	},
 
 	async organization() {
 		const page = await newPage("alex@example.com");
 		await page.goto(`${BASE}/organizations/northlight-studio/members`);
-		// a pending invitation and an enabled invite link, so the page doesn't look empty
-		await page.getByPlaceholder("name@example.com").fill("client@example.com");
-		await page.getByRole("button", { name: "Invite", exact: true }).click();
+		// a pending invitation and an enabled invite link, so the page doesn't look empty.
+		// Settle first: a reload of the fresh dev server would clear the field. On a retry the
+		// invitation is there already.
+		await page.waitForLoadState("networkidle");
+		await sleep(2000);
+		if (!(await page.getByText("client@example.com").isVisible())) {
+			await page.getByPlaceholder("name@example.com").fill("client@example.com");
+			await page.getByRole("button", { name: "Invite", exact: true }).click();
+		}
 		await page.getByText("client@example.com").waitFor();
 		await page.locator("tr", { hasText: "Reviewer" }).locator("input.toggle").last().check();
 		await sleep(1000);

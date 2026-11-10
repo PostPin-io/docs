@@ -46,8 +46,9 @@ the edit pane opens so you can type a title right away.
 In the edit pane you set the **Title**, the **Description** and the category. Changes save as you
 type. <kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>Enter</kbd> closes the pane.
 
-Each marker in the list shows its title, description, author, date and timecode. To move a marker,
-click its timecode and type a new one.
+Each marker in the list shows its title, description, author, date and timecode. Markers from
+guests of a [share link](./sharing.md#share-links) show the guest's name and a "Gast" badge. To
+move a marker, click its timecode and type a new one.
 
 The marker list has a **Search** field, and its **⋯** menu has:
 

@@ -1,4 +1,5 @@
-// Screenshots of the plugin window for DaVinci Resolve and PostPin Desktop (Pro Tools).
+// Screenshots of the plugin window for DaVinci Resolve, PostPin Desktop (Pro Tools) and Premiere Pro.
+// Premiere's panel is the same plugin-core UI, so it runs in the Resolve build too, in a narrow window.
 // Runs the real plugin UI and host bridge from the source checkout in Electron, with a fake NLE
 // (plugin/harness.ts), and logs in through the real device flow against the seeded instance.
 //
@@ -44,8 +45,8 @@ await web.getByLabel("Password").fill(PASSWORD);
 await web.getByRole("button", { name: "Log in" }).click();
 await web.waitForURL(/\/dashboard/);
 
-for (const host of ["Resolve", "Pro Tools"]) {
-	const slug = host === "Resolve" ? "resolve" : "desktop";
+const SLUGS: Record<string, string> = { Resolve: "resolve", "Pro Tools": "desktop", "Premiere Pro": "premiere" };
+for (const [host, slug] of Object.entries(SLUGS)) {
 	console.log(`plugin: ${slug}`);
 	const userData = fs.mkdtempSync(path.join(WORK, `userdata-${slug}-`));
 	const app = await _electron.launch({
@@ -89,7 +90,7 @@ for (const host of ["Resolve", "Pro Tools"]) {
 	};
 
 	await win.getByRole("button", { name: "Login" }).waitFor();
-	await shot("login");
+	if (slug !== "premiere") await shot("login");
 	if (slug === "resolve") {
 		await win.locator("input.toggle").uncheck();
 		await win.getByPlaceholder("PostPin Server URL").fill("https://postpin.example.com");
@@ -100,7 +101,7 @@ for (const host of ["Resolve", "Pro Tools"]) {
 
 	await win.getByRole("button", { name: "Login" }).click();
 	await win.getByText("Continue in your browser").waitFor();
-	await shot("login-code");
+	if (slug !== "premiere") await shot("login-code");
 	while (!openedUrl) await sleep(100);
 
 	await web.goto(openedUrl);
@@ -116,6 +117,12 @@ for (const host of ["Resolve", "Pro Tools"]) {
 	await win.getByText("Render & Upload").waitFor({ timeout: 30_000 });
 	await win.getByText("Trailer v3").first().waitFor({ timeout: 15_000 }).catch(() => {});
 	await shot("main");
+	if (slug === "premiere") {
+		// the login, choose and render screens look the same as in the other plugins
+		await app.close();
+		fs.rmSync(userData, { recursive: true, force: true });
+		continue;
+	}
 
 	await win.getByRole("button", { name: "Choose export" }).first().click();
 	await win.getByRole("button", { name: "Select" }).waitFor();

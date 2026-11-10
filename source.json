@@ -1,7 +1,7 @@
 {
 	"repository": "https://github.com/PostPin-io/postpin",
 	"branch": "main",
-	"commit": "d70eb84bae63cdfece62141a64bf061263dad243",
-	"commitSubject": "fix(plugins): only store a self-hosted server URL",
+	"commit": "b595c5eaecfb4eac5f6979fafc89d1a3993c4f6d",
+	"commitSubject": "Merge branch 'feat/plugin-premiere'",
 	"syncedAt": "2026-11-10"
 }

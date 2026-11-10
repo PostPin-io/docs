@@ -9,7 +9,7 @@ lives in `source.json`. Never document features that only exist on feature branc
 ## Layout
 
 - `docs/guide/`: web app user guide
-- `docs/plugins/`: DaVinci Resolve plugin and PostPin Desktop (Pro Tools)
+- `docs/plugins/`: DaVinci Resolve plugin, Premiere Pro plugin and PostPin Desktop (Pro Tools)
 - `docs/self-hosting/`: self-hosting guide. It used to be `docs/self-hosting.md` in the main
   repo; this site is now its home.
 - `docs/api/index.md`: hand-written API intro. `docs/api/reference/` is generated from
@@ -60,13 +60,9 @@ lives in `source.json`. Never document features that only exist on feature branc
   asset name pattern; the page asks the GitHub API for the releases and links the newest match
   (stable before pre-release). Downloads no release has yet stay hidden, so new platforms
   (e.g. Windows ARM64, already listed) can be added before they ship. When the release workflow
-  adds or renames assets, or a new plugin like Premiere Pro appears, update `products.ts`
-  (host icons are in `icons.tsx`).
-- **Install guides are ahead of `source.json`:** the install sections of `docs/plugins/resolve.md`,
-  `docs/plugins/desktop.md` and the platform table in `docs/plugins/index.md` describe the
-  installers as of `v0.2.0-rc.3` (88405b1: signed `.pkg` and unsigned NSIS `.exe` for Resolve,
-  DMG and unsigned NSIS for Desktop, auto-update via electron-updater). `feat/desktop-installer`
-  is merged into `main` (19e692d), so the next sync to a commit at or after it covers them; check
-  them against the diff then and drop this note.
+  adds or renames assets, or a new plugin appears, update `products.ts`. Host apps get their
+  colour app icon from `static/img/hosts/` (copies of `packages/plugin-core/src/ui/logos/` in the
+  main repo), platforms a monochrome icon from `icons.tsx`. The Premiere `.ccx` has no release yet,
+  so its download stays hidden until one ships.
 - **Main repo cleanup:** `docs/self-hosting.md` still exists in the main repo. Once this site is
   live, delete it there and point the README at https://docs.postpin.io/self-hosting.

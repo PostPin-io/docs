@@ -1,8 +1,8 @@
 // Electron main process for plugin screenshots: the real PostPin plugin window, UI, preload and
 // host bridge (login, API, settings) from the source checkout, with a fake NLE behind it so no
-// DaVinci Resolve or Pro Tools is needed. Bundled by screenshots/plugin.ts with esbuild.
+// DaVinci Resolve, Pro Tools or Premiere Pro is needed. Bundled by screenshots/plugin.ts with esbuild.
 //
-// Env: HARNESS_HOST ("Resolve" | "Pro Tools"), HARNESS_DIST (built plugin-resolve dist),
+// Env: HARNESS_HOST ("Resolve" | "Pro Tools" | "Premiere Pro"), HARNESS_DIST (built plugin-resolve dist),
 // HARNESS_USERDATA (fresh dir), HARNESS_SERVER (PostPin URL), HARNESS_THUMB (jpeg data URL file),
 // HARNESS_VIDEO (file "rendered" by the fake NLE).
 import { app, shell } from "electron";
@@ -27,11 +27,25 @@ Object.defineProperty(shell, "openExternal", {
 });
 
 const resolve = host === "Resolve";
+const premiere = host === "Premiere Pro";
 const palette = resolve
 	? ["Blue", "Cyan", "Green", "Yellow", "Red", "Pink", "Purple", "Fuchsia", "Rose", "Lavender", "Sky", "Mint", "Lemon", "Sand", "Cocoa", "Cream"].map(
 			(id) => ({ id, hex: "#888888" }),
 		)
-	: Array.from({ length: 16 }, (_, i) => ({ id: String(i + 1), hex: "#888888", name: `Color ${i + 1}` }));
+	: premiere
+		? ["Green", "Red", "Purple", "Orange", "Yellow", "White", "Blue", "Cyan"].map((name, i) => ({ id: String(i), hex: "#888888", name }))
+		: Array.from({ length: 16 }, (_, i) => ({ id: String(i + 1), hex: "#888888", name: `Color ${i + 1}` }));
+
+// Per host: window title, device client id (must be in the server's DEVICE_CLIENTS) and what the
+// NLE shows. Pro Tools names the timeline after the session and the project after its folder;
+// Premiere shows no thumbnail and runs as a docked panel, so its window is narrow.
+const HOSTS: Record<string, { title: string; clientId: string; timeline: string; project: string; thumbnail: boolean; width?: number; height?: number }> = {
+	Resolve: { title: "PostPin for DaVinci Resolve", clientId: "io.postpin.plugin.resolve", timeline: "Trailer", project: "Harbor Lights", thumbnail: true },
+	"Pro Tools": { title: "PostPin Desktop", clientId: "io.postpin.desktop", timeline: "Trailer_Mix_v3", project: "Harbor Lights", thumbnail: false },
+	"Premiere Pro": { title: "PostPin", clientId: "io.postpin.plugin.premiere", timeline: "Trailer", project: "Harbor Lights", thumbnail: false, width: 400, height: 1000 },
+};
+const info = HOSTS[host];
+if (!info) throw new Error(`unknown HARNESS_HOST ${host}`);
 
 let markers: NleMarker[] = [
 	{ nleId: "1", title: "Jump cut", description: "#Edit\nTrim the head of HL_020.", frame: 86400 + 5 * 24 + 2, color: palette[0].id, customData: null },
@@ -46,16 +60,16 @@ const bridge: NleBridge = {
 		palette,
 		renderPresets: resolve,
 		renderToDisk: resolve,
-		snapshotClips: resolve,
+		snapshotClips: resolve || premiere,
 		customMarkerData: resolve,
 	}),
 	getProjectId: async () => "nle-project-harbor",
 	getTimelineInfo: async () => ({
-		name: resolve ? "Trailer" : "Trailer_Mix_v3",
+		name: info.timeline,
 		id: "resolve-Trailer",
 		projectId: "nle-project-harbor",
-		projectName: resolve ? "Harbor Lights" : "Trailer_Mix_v3",
-		thumbnailDataUrl: resolve ? fs.readFileSync(env("HARNESS_THUMB"), "utf8") : undefined,
+		projectName: info.project,
+		thumbnailDataUrl: info.thumbnail ? fs.readFileSync(env("HARNESS_THUMB"), "utf8") : undefined,
 	}),
 	getMarkers: async () => markers,
 	setMarkers: async (list) => {
@@ -89,13 +103,15 @@ const bridge: NleBridge = {
 
 app.whenReady().then(() => {
 	const win = createWindow({
-		title: resolve ? "PostPin for DaVinci Resolve" : "PostPin Desktop",
+		title: info.title,
 		preloadPath: path.join(dist, "preload.js"),
 		devServerUrl: "",
 		url: path.join(dist, "ui/index.html"),
+		width: info.width,
+		height: info.height,
 	});
 	exposeHostBridge(win, {
-		clientId: resolve ? "io.postpin.plugin-resolve" : "io.postpin.desktop",
+		clientId: info.clientId,
 		defaultServerUrl: env("HARNESS_SERVER"),
 	});
 	exposeNleBridge(win, bridge);

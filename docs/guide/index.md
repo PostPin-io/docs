@@ -15,9 +15,9 @@ those notes back into your timeline as markers.
 
 ## How it works
 
-1. **Upload from your editor.** The [DaVinci Resolve plugin](../plugins/resolve.md) and
-   [PostPin Desktop](../plugins/desktop.md) (for Pro Tools) render the current timeline and upload
-   it to PostPin in one click. Each upload becomes a new [export](./concepts.md#exports) of that
+1. **Upload from your editor.** The [DaVinci Resolve plugin](../plugins/resolve.md), the
+   [Premiere Pro plugin](../plugins/premiere.md) and [PostPin Desktop](../plugins/desktop.md) (for
+   Pro Tools) render the current timeline and upload it to PostPin in one click. Each upload becomes a new [export](./concepts.md#exports) of that
    timeline.
 2. **Review in the browser.** Reviewers open the export, play it, and press <kbd>M</kbd> to drop a
    marker on the current frame. Markers have a title, a description, a category and a reply thread.

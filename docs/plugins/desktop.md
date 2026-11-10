@@ -7,7 +7,9 @@ sidebar_position: 3
 # PostPin Desktop for Pro Tools
 
 PostPin Desktop is a standalone app that talks to Pro Tools through its scripting interface (PTSL).
-It has the same window as the [Resolve plugin](./resolve.md).
+It has the same window as the [Resolve plugin](./resolve.md), plus a **Program** menu on the host
+card for the program the app works with. Pro Tools is the only one so far. The app remembers the
+choice, and you can't switch while it renders or syncs markers.
 
 ![PostPin Desktop connected to Pro Tools](/img/screenshots/plugins/desktop-main.png)
 
@@ -16,8 +18,9 @@ It has the same window as the [Resolve plugin](./resolve.md).
 - Pro Tools 2025.10 or newer, running on the same computer.
 - macOS (Apple silicon or Intel) or Windows (x64).
 
-If Pro Tools isn't running, or its scripting interface is turned off, the app shows "Pro Tools is
-not running, or its scripting interface is disabled".
+If Pro Tools isn't running, or its scripting interface is turned off, the host card shows
+**Not connected** with "Pro Tools is not running, or its scripting interface is disabled". The app
+tries again every few seconds, so you can start Pro Tools afterwards.
 
 ## Install
 
@@ -67,14 +70,17 @@ electron-builder.
 ## Differences to the Resolve plugin
 
 - **A session is the timeline.** PostPin links the Pro Tools session itself, not a playlist or a
-  selection. The link survives **Save As**.
-- **Render & Upload bounces the edit selection.** Select the range to review in the timeline first,
-  otherwise the app shows "Select the range to render in the Pro Tools timeline first". The bounce
-  is an offline bounce of the first output to a MOV file with the session's video and 24-bit PCM
-  audio.
+  selection. The link survives **Save As**. The host card shows the session's name as the
+  timeline and its folder's name as the project, because the folder keeps its name when you save
+  the session under a new one.
+- **Render & Upload bounces the edit selection.** Select the range to review in the timeline
+  first. Without an edit selection, the app selects everything from the first to the last clip on
+  the audio and video tracks, so you see in Pro Tools what gets bounced. The bounce is an offline
+  bounce of the first output to a MOV file with the session's video and 24-bit PCM audio.
 - **No clips in the timeline view.** PostPin shows the session's tracks on the review screen, but
   without clips.
 - **Markers are memory locations.** Pull and push work with memory locations of type Marker.
   Markers without a `#Category` line go into a category named after their colour, for example
-  "Pro Tools Color 3".
+  "Pro Tools Color 3". Pulled markers that already exist stay on their marker ruler. New ones go on
+  the ruler most of the session's markers are on, or on the default "Markers" ruler.
 - There are no render presets and no render to disk settings.

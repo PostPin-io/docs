@@ -64,7 +64,12 @@ function detectPlatform(): Platform {
   return {os, cpu};
 }
 
-const isMine = (d: Download, p: Platform) => !d.label && d.os === p.os && (!d.cpu || !p.cpu || d.cpu === p.cpu);
+const osesOf = (d: Download): Os[] => (Array.isArray(d.os) ? d.os : [d.os]);
+const isMine = (d: Download, p: Platform) =>
+  !d.label && !!p.os && osesOf(d).includes(p.os) && (!d.cpu || !p.cpu || d.cpu === p.cpu);
+/** "macOS · Universal", or "macOS & Windows" for a file that works on both */
+const buttonLabel = (d: Download) =>
+  d.label ?? [osesOf(d).map((os) => OS_LABEL[os]).join(' & '), d.arch].filter(Boolean).join(' · ');
 const megabytes = (bytes: number) => (bytes < 1e6 ? `${Math.max(1, Math.round(bytes / 1e3))} KB` : `${Math.round(bytes / 1e6)} MB`);
 
 function ProductIcon({product}: {product: Product}) {
@@ -107,9 +112,11 @@ function ProductRow({product, releases, platform}: {product: Product; releases: 
             key={d.pattern.source}
             href={found.asset.browser_download_url}
             className={clsx(styles.button, isMine(d, platform) && styles.mine)}>
-            <Icon name={OS_ICON[d.os]} className={styles.osIcon} />
+            {osesOf(d).map((os) => (
+              <Icon key={os} name={OS_ICON[os]} className={styles.osIcon} />
+            ))}
             <span className={styles.buttonText}>
-              <span className={styles.buttonLabel}>{d.label ?? `${OS_LABEL[d.os]} · ${d.arch}`}</span>
+              <span className={styles.buttonLabel}>{buttonLabel(d)}</span>
               <span className={styles.buttonMeta}>{megabytes(found.asset.size)}</span>
             </span>
           </a>

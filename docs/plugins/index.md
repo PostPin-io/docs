@@ -13,9 +13,10 @@ as a new export, and sync markers in both directions.
 | ---------------------- | ------------------------------- | -------- |
 | DaVinci Resolve Studio | [Resolve plugin](./resolve.md)  | macOS, Windows |
 | Avid Pro Tools         | [PostPin Desktop](./desktop.md) | macOS, Windows |
+| Adobe Premiere Pro     | [Premiere plugin](./premiere.md) | macOS, Windows |
 
-Get them from the [Downloads](../downloads.md) page. Both share the same window and work the same
-way. The sections below apply to both.
+Get them from the [Downloads](../downloads.md) page. All of them share the same window and work
+the same way. The sections below apply to all of them.
 
 ## Logging in
 
@@ -50,14 +51,21 @@ the browser. Switching to a different server logs you out.
 
 ![The plugin window](/img/screenshots/plugins/resolve-main.png)
 
-The window shows how your timeline and PostPin are connected:
+The window shows how your timeline and PostPin are connected. In a wide window your editor is on
+the left, PostPin on the right and the buttons in between. In a narrow window, like a docked
+Premiere panel, PostPin is on top and your editor at the bottom. The arrows on the buttons always
+point in the direction the data goes, towards PostPin or back into your editor.
 
-- **The host card** on the left shows the timeline and project that are open in your editor.
+- **The host card** shows the timeline and project that are open in your editor.
 - **Upload to** is the PostPin project and timeline that **Render & Upload →** uploads to.
 - **Markers with** is the export that **Push markers →** and **← Pull comments** sync with. By
   default it's the latest export of the linked timeline.
 
 The globe buttons open the corresponding page in your browser.
+
+If the plugin can't reach your editor, for example because it isn't running yet, the host card
+says **Not connected** with the reason and tries again every few seconds. **Retry now** tries
+right away. The buttons stay disabled until the editor answers.
 
 ### Linking a timeline
 
