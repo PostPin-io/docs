@@ -73,13 +73,12 @@ function ProductIcon({product}: {product: Product}) {
   return <Icon name={product.icon.name} className={clsx(styles.productIcon, styles.mono)} />;
 }
 
-function ProductRow({product, releases, platform}: {product: Product; releases: Release[] | null; platform: Platform}) {
+function ProductRow({product, releases, platform}: {product: Product; releases: Release[]; platform: Platform}) {
   const downloads = product.downloads
-    .map((d) => ({d, found: releases ? find(releases, d.pattern) : null}))
-    // until the releases are loaded, show every platform so the layout doesn't jump much
-    .filter(({found}) => !releases || found);
+    .map((d) => ({d, found: find(releases, d.pattern)}))
+    .filter((x): x is {d: Download; found: Found} => !!x.found);
   // all downloads of a product normally come from the same release
-  const release = downloads.find((x) => x.found)?.found?.release;
+  const release = downloads[0]?.found.release;
 
   return (
     <div className={styles.product}>
@@ -94,10 +93,8 @@ function ProductRow({product, releases, platform}: {product: Product; releases: 
                 <a href={release.html_url}>{release.tag_name}</a>
                 {release.prerelease && <span className={styles.badge}>Pre-release</span>}
               </>
-            ) : releases ? (
-              'Not released yet'
             ) : (
-              ' '
+              'Not released yet'
             )}
             {' · '}
             <Link to={product.guide}>Install guide</Link>
@@ -108,12 +105,12 @@ function ProductRow({product, releases, platform}: {product: Product; releases: 
         {downloads.map(({d, found}) => (
           <a
             key={d.pattern.source}
-            href={found?.asset.browser_download_url ?? RELEASES}
-            className={clsx(styles.button, isMine(d, platform) && styles.mine, !found && styles.loading)}>
+            href={found.asset.browser_download_url}
+            className={clsx(styles.button, isMine(d, platform) && styles.mine)}>
             <Icon name={OS_ICON[d.os]} className={styles.osIcon} />
             <span className={styles.buttonText}>
               <span className={styles.buttonLabel}>{d.label ?? `${OS_LABEL[d.os]} · ${d.arch}`}</span>
-              <span className={styles.buttonMeta}>{found ? megabytes(found.asset.size) : ' '}</span>
+              <span className={styles.buttonMeta}>{megabytes(found.asset.size)}</span>
             </span>
           </a>
         ))}
@@ -154,8 +151,18 @@ export default function Downloads(): ReactNode {
     );
   }
 
+  // Everything appears at once when the releases are in, so buttons don't shift while loading.
+  // The placeholder has about the list's height, so the text below doesn't jump either.
+  if (!releases) {
+    return (
+      <div className={clsx(styles.downloads, styles.placeholder)} aria-busy="true">
+        Loading downloads…
+      </div>
+    );
+  }
+
   return (
-    <div className={styles.downloads}>
+    <div className={clsx(styles.downloads, styles.appear)}>
       {GROUPS.map((group) => (
         <section key={group.title}>
           <h2 className={styles.groupTitle}>{group.title}</h2>

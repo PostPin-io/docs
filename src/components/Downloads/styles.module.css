@@ -114,8 +114,38 @@
   color: #14121f;
 }
 
-.loading {
-  opacity: 0.5;
+.placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* about the height of the list, which depends on how the buttons wrap */
+  min-height: 512px;
+  border: 1px solid var(--ifm-color-emphasis-200);
+  border-radius: 10px;
+  color: var(--ifm-color-emphasis-600);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 600px) {
+  .placeholder {
+    min-height: 750px;
+  }
+}
+
+.appear {
+  animation: appear 150ms ease-out;
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .appear {
+    animation: none;
+  }
 }
 
 .osIcon {
