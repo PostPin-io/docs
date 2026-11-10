@@ -7,7 +7,7 @@ sidebar_position: 8
 
 Open **Profile** from the account menu at the top right.
 
-![The profile page](/img/screenshots/web/profile.png)
+<Screenshot name="profile" alt="The profile page" />
 
 ## Name
 

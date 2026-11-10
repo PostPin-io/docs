@@ -10,7 +10,7 @@ sidebar_position: 4
 The dashboard lists the projects of your active organization. Each card shows a thumbnail of the
 latest export, and when the project was created and last updated.
 
-![The dashboard with three projects](/img/screenshots/web/dashboard.png)
+<Screenshot name="dashboard" alt="The dashboard with three projects" />
 
 - **+** creates a new project. Projects also appear on their own when you upload from a
   plugin into a new project.
@@ -30,7 +30,7 @@ Admins and owners see all projects of the organization.
 Open a project to see its timelines. **Open latest** on a timeline card opens its newest export
 for review. Timelines without uploads show "No exports yet".
 
-![The timelines of a project](/img/screenshots/web/project.png)
+<Screenshot name="project" alt="The timelines of a project" />
 
 The **⋯** menu of a timeline has **View latest export**, **All exports**, **Rename timeline** and
 **Delete timeline**.
@@ -39,7 +39,7 @@ The **⋯** menu of a timeline has **View latest export**, **All exports**, **Re
 
 **All exports** lists every upload of a timeline, newest first.
 
-![The exports of a timeline, newest first](/img/screenshots/web/exports.png)
+<Screenshot name="exports" alt="The exports of a timeline, newest first" />
 
 The **⋯** menu of an export has:
 

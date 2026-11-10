@@ -29,7 +29,7 @@ organization always keeps at least one owner.
 Open the project or timeline and click the **Share** button in the header. The dialog shows who has
 access and lets you add more people.
 
-![The share dialog of a project](/img/screenshots/web/share-project.png)
+<Screenshot name="share-project" alt="The share dialog of a project" />
 
 - **Has access** lists everyone with access. Access to a project includes all its timelines,
   shown as "via project". Admins and owners always have access and aren't listed.

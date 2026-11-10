@@ -9,7 +9,7 @@ sidebar_position: 7
 
 **Members** in the header lists everyone in the organization with their role.
 
-![The members page of an organization](/img/screenshots/web/members.png)
+<Screenshot name="members" alt="The members page of an organization" />
 
 - Change a member's role with the role selector, if your own role allows it.
 - **Access** shows which projects and timelines a member or reviewer can see, and removes access.
@@ -26,7 +26,7 @@ projects or timelines from the [share dialog](./sharing.md#share-a-project-or-ti
 
 Admins and owners see **Settings** in the header.
 
-![The organization settings](/img/screenshots/web/organization-settings.png)
+<Screenshot name="organization-settings" alt="The organization settings" />
 
 Owners can rename the organization here. The **Danger zone** has **Delete organization**: type the
 organization's name to confirm, then click **Delete forever**. This deletes all projects,

@@ -14,7 +14,7 @@ Open your PostPin server in the browser and click **Create an account** on the l
 your first and last name, your email address and a password, then click **Sign Up**. You are signed
 in right away.
 
-![The sign-up page](/img/screenshots/web/signup.png)
+<Screenshot name="signup" alt="The sign-up page" />
 
 If someone invited you, use the link in the invitation email instead. It takes you to the
 organization you were invited to, and you sign up or log in from there. See
@@ -33,7 +33,7 @@ a verified address.
 Right after signing up, the dashboard asks you to set up an organization. Click
 **Create organization**, enter a name and click **Create**. You become the organization's owner.
 
-![The dashboard of a new account without an organization](/img/screenshots/web/dashboard-no-organization.png)
+<Screenshot name="dashboard-no-organization" alt="The dashboard of a new account without an organization" />
 
 You can be a member of several organizations. Switch between them in the account menu at the top
 right, under **Organizations**.

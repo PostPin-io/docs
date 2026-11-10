@@ -36,7 +36,7 @@ The first time you open the plugin, it asks you to log in.
 3. In the browser, log in to PostPin if you aren't already. The page shows the plugin, your
    computer's name and the code. Check that the code matches and click **Allow access**.
 
-   ![Approving the plugin in the browser](/img/screenshots/web/device-approve.png)
+   <Screenshot name="device-approve" alt="Approving the plugin in the browser" />
 
    If the browser didn't open, go to `<your server>/auth/device` and enter the code yourself.
 

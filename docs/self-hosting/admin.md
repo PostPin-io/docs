@@ -7,7 +7,7 @@ sidebar_position: 9
 
 The **System** page at `/admin` shows the state of your PostPin server and its background jobs.
 
-![The system admin page](/img/screenshots/web/admin.png)
+<Screenshot name="admin" alt="The system admin page" />
 
 ## Access
 

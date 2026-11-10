@@ -11,7 +11,7 @@ PostPin is a review tool for video and audio post-production. You render a cut s
 editing software, your team and clients leave time-coded notes on it in the browser, and you pull
 those notes back into your timeline as markers.
 
-![The PostPin review screen with the player, the rebuilt timeline and the marker list](/img/screenshots/web/review.png)
+<Screenshot name="review" alt="The PostPin review screen with the player, the rebuilt timeline and the marker list" />
 
 ## How it works
 

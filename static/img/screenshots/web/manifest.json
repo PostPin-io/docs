@@ -1,0 +1,70 @@
+{
+	"admin": {
+		"url": "/admin",
+		"page": true
+	},
+	"categories": {
+		"url": "/projects/cmwama5ns0019ix9wu1gitgdv/timelines/cmwama5o8001cix9wlm0bwfii/exports/cmwamadcp001oix9wrh17cp8u",
+		"page": false
+	},
+	"dashboard": {
+		"url": "/dashboard",
+		"page": true
+	},
+	"dashboard-no-organization": {
+		"url": "/dashboard",
+		"page": true
+	},
+	"device-approve": {
+		"url": "/auth/device?user_code=DHH7NA5J",
+		"page": true
+	},
+	"exports": {
+		"url": "/projects/cmwama5ns0019ix9wu1gitgdv/timelines/cmwama5o8001cix9wlm0bwfii/exports",
+		"page": true
+	},
+	"login": {
+		"url": "/auth/login",
+		"page": true
+	},
+	"members": {
+		"url": "/organizations/northlight-studio/members",
+		"page": true
+	},
+	"new-organization": {
+		"url": "/dashboard",
+		"page": false
+	},
+	"organization-settings": {
+		"url": "/organizations/northlight-studio/settings",
+		"page": true
+	},
+	"profile": {
+		"url": "/profile",
+		"page": true
+	},
+	"project": {
+		"url": "/projects/cmwama5ns0019ix9wu1gitgdv",
+		"page": true
+	},
+	"review": {
+		"url": "/projects/cmwama5ns0019ix9wu1gitgdv/timelines/cmwama5o8001cix9wlm0bwfii/exports/cmwamadcp001oix9wrh17cp8u",
+		"page": true
+	},
+	"review-marker": {
+		"url": "/projects/cmwama5ns0019ix9wu1gitgdv/timelines/cmwama5o8001cix9wlm0bwfii/exports/cmwamadcp001oix9wrh17cp8u",
+		"page": true
+	},
+	"review-responses": {
+		"url": "/projects/cmwama5ns0019ix9wu1gitgdv/timelines/cmwama5o8001cix9wlm0bwfii/exports/cmwamadcp001oix9wrh17cp8u",
+		"page": true
+	},
+	"share-project": {
+		"url": "/projects/cmwama5ns0019ix9wu1gitgdv",
+		"page": false
+	},
+	"signup": {
+		"url": "/auth/signup",
+		"page": true
+	}
+}

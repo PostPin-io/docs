@@ -5,6 +5,7 @@ import { chromium, type Page } from "playwright";
 import fs from "node:fs";
 import path from "node:path";
 import { BASE, OUT, PASSWORD, WORK, api, sleep } from "./lib.ts";
+import { webShot } from "./webshot.ts";
 
 const dir = path.join(OUT, "web");
 fs.mkdirSync(dir, { recursive: true });
@@ -49,22 +50,20 @@ async function newPage(email?: string) {
 	return page;
 }
 
-async function shot(page: Page, name: string, opts: { fullPage?: boolean; clip?: { x: number; y: number; width: number; height: number } } = {}) {
-	await page.waitForLoadState("networkidle");
-	// thumbnails and fonts settle a moment after network idle
-	await sleep(500);
-	await page.screenshot({ path: path.join(dir, `${name}.png`), animations: "disabled", ...opts });
-	console.log(`  web/${name}.png`);
-}
+const shot = webShot;
 
 /** Screenshot of a dialog (daisyUI modal) plus some padding. */
 async function shotDialog(page: Page, name: string) {
 	const box = page.locator(".modal-box:visible").first();
 	await box.waitFor();
 	await sleep(300);
-	const b = (await box.boundingBox())!;
 	const pad = 24;
-	await shot(page, name, { clip: { x: b.x - pad, y: b.y - pad, width: b.width + 2 * pad, height: b.height + 2 * pad } });
+	await shot(page, name, {
+		clip: async () => {
+			const b = (await box.boundingBox())!;
+			return { x: b.x - pad, y: b.y - pad, width: b.width + 2 * pad, height: b.height + 2 * pad };
+		},
+	});
 }
 
 const reviewUrl = () => {

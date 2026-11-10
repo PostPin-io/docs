@@ -9,6 +9,7 @@ import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { BASE, DOCS_ROOT, OUT, PASSWORD, WORK, sleep } from "./lib.ts";
+import { webShot } from "./webshot.ts";
 
 const src = path.resolve(process.argv[2] ?? "");
 const pluginDir = path.join(src, "packages/plugin-resolve");
@@ -35,7 +36,7 @@ const electronBin = path.join(pluginDir, "node_modules/electron/dist/Electron.ap
 
 // browser session of the user approving the device login
 const browser = await chromium.launch();
-const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 }, deviceScaleFactor: 2 });
+const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2 });
 const web = await ctx.newPage();
 await web.goto(`${BASE}/auth/login`);
 await web.getByLabel("Email").fill("jordan@example.com");
@@ -106,8 +107,7 @@ for (const host of ["Resolve", "Pro Tools"]) {
 	await web.getByRole("button", { name: "Allow access" }).waitFor();
 	if (slug === "resolve") {
 		await sleep(500);
-		await web.screenshot({ path: path.join(webDir, "device-approve.png") });
-		console.log("  web/device-approve.png");
+		await webShot(web, "device-approve");
 	}
 	await web.getByRole("button", { name: "Allow access" }).click();
 	await web.getByText("You can close this tab").waitFor();

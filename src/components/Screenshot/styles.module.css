@@ -1,0 +1,87 @@
+.window,
+.cutout {
+  margin: 1.5rem 0;
+}
+
+.window {
+  --frame-bg: #e9e9ee;
+  --frame-border: #d4d4dc;
+  --address-bg: #ffffff;
+  --address-fg: #5c5c66;
+  border: 1px solid var(--frame-border);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--frame-bg);
+  box-shadow: 0 8px 28px rgba(15, 15, 30, 0.12);
+}
+
+[data-theme='dark'] .window {
+  --frame-bg: #2b2b31;
+  --frame-border: #3c3c44;
+  --address-bg: #1c1c21;
+  --address-fg: #a3a3ad;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+}
+
+.dots {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.dots i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #ff5f57;
+}
+
+.dots i:nth-child(2) {
+  background: #febc2e;
+}
+
+.dots i:nth-child(3) {
+  background: #28c840;
+}
+
+.address {
+  flex: 1;
+  min-width: 0;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 3px 12px;
+  border-radius: 6px;
+  background: var(--address-bg);
+  color: var(--address-fg);
+  font-size: 12px;
+  font-family: var(--ifm-font-family-monospace);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+}
+
+.host {
+  color: var(--ifm-font-color-base);
+}
+
+/* The window draws the frame, so the image itself gets none (see custom.css) */
+.window .image {
+  display: block;
+  width: 100%;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.cutout .image {
+  display: block;
+  max-width: min(100%, 560px);
+}

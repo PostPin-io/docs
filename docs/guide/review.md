@@ -8,7 +8,7 @@ sidebar_position: 5
 The review screen has the player and the timeline on the left and the markers on the right. Drag
 the divider between them to resize the panes. PostPin remembers the layout in your browser.
 
-![The review screen](/img/screenshots/web/review.png)
+<Screenshot name="review" alt="The review screen" />
 
 ## Player
 
@@ -41,7 +41,7 @@ Markers appear on the ruler in their category colour. Drag a marker to move it t
 Press <kbd>M</kbd> to add a marker at the current frame. It gets the category you used last, and
 the edit pane opens so you can type a title right away.
 
-![Editing a marker](/img/screenshots/web/review-marker.png)
+<Screenshot name="review-marker" alt="Editing a marker" />
 
 In the edit pane you set the **Title**, the **Description** and the category. Changes save as you
 type. <kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>Enter</kbd> closes the pane.
@@ -74,7 +74,7 @@ works between exports, for example to carry open notes over to the next version.
 Click **Respond** on a marker to open its thread. Type your reply and send it with the button or
 <kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>Enter</kbd>. The marker card shows the number of replies.
 
-![The replies of a marker](/img/screenshots/web/review-responses.png)
+<Screenshot name="review-responses" alt="The replies of a marker" />
 
 Replies can't be edited or deleted. They stay in PostPin and are not pulled into your editor.
 
@@ -86,7 +86,7 @@ marker.
 
 To manage categories, open a marker and click **New category** next to the category selector.
 
-![The categories of a project](/img/screenshots/web/categories.png)
+<Screenshot name="categories" alt="The categories of a project" />
 
 Here you can add categories, rename them, change their colour and delete them. If markers still use
 a category you delete, PostPin asks which category to move them to.
