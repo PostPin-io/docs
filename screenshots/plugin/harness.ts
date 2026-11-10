@@ -34,8 +34,8 @@ const palette = resolve
 	: Array.from({ length: 16 }, (_, i) => ({ id: String(i + 1), hex: "#888888", name: `Color ${i + 1}` }));
 
 let markers: NleMarker[] = [
-	{ nleId: "1", title: "Jump cut", description: "#Edit\nTrim the head of HL_020.", frame: 86400 + 8 * 24 + 2, color: palette[0].id, customData: null },
-	{ nleId: "2", title: "Music dips", description: "#Sound\nGap between two music edits.", frame: 86400 + 31 * 24 + 15, color: palette[2].id, customData: null },
+	{ nleId: "1", title: "Jump cut", description: "#Edit\nTrim the head of HL_020.", frame: 86400 + 5 * 24 + 2, color: palette[0].id, customData: null },
+	{ nleId: "2", title: "Music dips", description: "#Sound\nGap between two music edits.", frame: 86400 + 17 * 24 + 15, color: palette[2].id, customData: null },
 ];
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -82,7 +82,7 @@ const bridge: NleBridge = {
 		mediaItems: [],
 		frameRate: { fpsNumerator: 24, fpsDenominator: 1, dropFrame: false },
 		startFrameIndex: 86400,
-		durationFrameCount: 48 * 24,
+		durationFrameCount: 30 * 24,
 		metadata: {},
 	}),
 } as NleBridge;

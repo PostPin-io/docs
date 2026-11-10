@@ -1,0 +1,12 @@
+{
+	"comment": "Pixabay videos (Pixabay Content License) for the demo render, one shot each, in timeline order. Downloaded into a local cache by demo-video.ts and never committed: the license doesn't allow redistributing the files on their own.",
+	"shotSeconds": 5,
+	"clips": [
+		{ "id": 289855, "start": 3, "name": "Sea of clouds at sunrise", "user": "Kanenori" },
+		{ "id": 34608, "start": 2, "name": "Foggy mountain forest", "user": "bellergy" },
+		{ "id": 216058, "start": 6, "name": "River through the rainforest", "user": "Drone_Aventura" },
+		{ "id": 246856, "start": 4, "name": "Waterfall with rainbow", "user": "McPix22" },
+		{ "id": 19368, "start": 8, "name": "Rocky coast", "user": "bellergy" },
+		{ "id": 233867, "start": 3, "name": "Golden sea at sunset", "user": "Mario_Krimer" }
+	]
+}

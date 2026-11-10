@@ -6,11 +6,12 @@ import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { api, q, signUp, sleep, sql, WORK, type Session } from "./lib.ts";
+import { DEMO_VIDEO, SHOT_COUNT, SHOT_SECONDS } from "./demo-video.ts";
 
 const FPS = 24;
 const START = 86400; // 01:00:00:00 at 24 fps
-const SHOT = 8 * FPS;
-const VIDEO = path.join(WORK, "demo.mp4");
+const SHOT = SHOT_SECONDS * FPS;
+const VIDEO = DEMO_VIDEO;
 
 const tc = (h: number, m: number, s: number, f = 0) => ((h * 60 + m) * 60 + s) * FPS + f;
 
@@ -34,10 +35,10 @@ function snapshot(name: string) {
 		id: `resolve-${name}`,
 		name,
 		tracks: [
-			{ id: "V2", type: "video", name: "V2 · Titles", clips: [span("v2-0", "Main Title", 2 * SHOT, 4 * FPS), span("v2-1", "End Card", 5 * SHOT + 3 * FPS, 5 * FPS)] },
+			{ id: "V2", type: "video", name: "V2 · Titles", clips: [span("v2-0", "Main Title", 2 * SHOT, 3 * FPS), span("v2-1", "End Card", 5 * SHOT + FPS, SHOT - FPS)] },
 			{ id: "V1", type: "video", name: "V1 · Picture", clips },
 			{ id: "A1", type: "audio", name: "A1 · Dialogue", clips: clips.map((c, i) => ({ ...c, id: `a1-${i}` })) },
-			{ id: "A2", type: "audio", name: "A2 · Music", clips: [span("a2-0", "Score_Harbor_v3.wav", 0, 6 * SHOT)] },
+			{ id: "A2", type: "audio", name: "A2 · Music", clips: [span("a2-0", "Score_Harbor_v3.wav", 0, SHOT_COUNT * SHOT)] },
 		],
 		mediaItems: shots.map((clip, i) => ({
 			id: `m-${i}`, name: `${clip}.mov`, type: "video", filePath: `/Volumes/Media/HarborLights/${clip}.mov`,
@@ -45,7 +46,7 @@ function snapshot(name: string) {
 		})),
 		frameRate: { fpsNumerator: FPS, fpsDenominator: 1, dropFrame: false },
 		startFrameIndex: START,
-		durationFrameCount: 6 * SHOT,
+		durationFrameCount: SHOT_COUNT * SHOT,
 		metadata: {},
 	};
 }
@@ -58,7 +59,7 @@ function demoVideo(shift: number) {
 	if (shift === 0) return VIDEO;
 	const out = path.join(WORK, `demo-${shift}.mp4`);
 	if (!fs.existsSync(out)) {
-		const t = shift * 8;
+		const t = shift * SHOT_SECONDS;
 		execFileSync("ffmpeg", ["-v", "error", "-y", "-i", VIDEO, "-filter_complex",
 			`[0:v]trim=start=${t},setpts=PTS-STARTPTS[a];[0:v]trim=end=${t},setpts=PTS-STARTPTS[b];[a][b]concat=n=2:v=1:a=0[v]`,
 			"-map", "[v]", "-map", "0:a", "-c:v", "libx264", "-preset", "veryfast", "-crf", "23", "-c:a", "copy", "-movflags", "+faststart", out]);
@@ -74,9 +75,18 @@ async function uploadExport(s: Session, projectId: string, timelineId: string, t
 	const parts = [];
 	for (const part of init.parts) {
 		const chunk = file.subarray((part.partNumber - 1) * init.partSize, part.partNumber * init.partSize);
-		const res = await fetch(part.url, { method: "PUT", body: chunk });
-		if (!res.ok) throw new Error(`part ${part.partNumber}: ${res.status} ${await res.text()}`);
-		parts.push({ partNumber: part.partNumber, etag: res.headers.get("etag")! });
+		// rustfs occasionally resets the connection on a part, so try each part a few times
+		for (let attempt = 1; ; attempt++) {
+			try {
+				const res = await fetch(part.url, { method: "PUT", body: chunk });
+				if (!res.ok) throw new Error(`part ${part.partNumber}: ${res.status} ${await res.text()}`);
+				parts.push({ partNumber: part.partNumber, etag: res.headers.get("etag")! });
+				break;
+			} catch (e) {
+				if (attempt === 3) throw e;
+				await sleep(1000);
+			}
+		}
 	}
 	await api("POST", `${base}/${exp.id}/complete-upload`, { uploadId: init.uploadId, parts, timelineSnapshot: snapshot(timelineName) }, s.token);
 	// one at a time: several workers reading originals from rustfs at once made ffprobe fail
@@ -149,21 +159,22 @@ export async function seed() {
 		api("PUT", `/api/v1/projects/${harbor}/timelines/${trailer}/exports/${exp}/markers`,
 			list.map(([name, description, frame, cat]) => ({ name, description, frame: START + frame, categoryId: cats[cat] })), s.token);
 
+	// timecodes fit the six 5-second shots of the demo render (see clips.json)
 	await markers(sam, trailerV3, [
-		["Hold on the title a beat longer", "The main title disappears before the music hit. Can we hold it until the downbeat?", tc(0, 0, 18, 6), "Client"],
-		["Logo too small", "On phones the logo at the end is hard to read. Maybe 20% bigger?", tc(0, 0, 44, 12), "Client"],
+		["Hold on the title a beat longer", "The main title disappears before the music hit. Can we hold it until the downbeat?", tc(0, 0, 11, 6), "Client"],
+		["Logo too small", "On phones the logo at the end is hard to read. Maybe 20% bigger?", tc(0, 0, 27, 12), "Client"],
 	]);
 	await markers(jordan, trailerV3, [
-		["Jump cut", "Two frames of the previous take flash before the cut. Trim the head of HL_020.", tc(0, 0, 8, 2), "Edit"],
-		["Grade doesn't match", "This shot is noticeably warmer than the one before. Match to HL_020.", tc(0, 0, 24, 0), "Color"],
-		["Music dips", "Score drops out for ~10 frames, looks like a gap between two music edits.", tc(0, 0, 31, 15), "Sound"],
-		["Sky replacement edge", "Visible halo around the rooftops on the left.", tc(0, 0, 36, 20), "VFX"],
+		["Jump cut", "Two frames of the previous take flash before the cut. Trim the head of HL_020.", tc(0, 0, 5, 2), "Edit"],
+		["Grade doesn't match", "The river shot is noticeably cooler than the forest before it. Match to HL_020.", tc(0, 0, 13, 0), "Color"],
+		["Music dips", "Score drops out for ~10 frames, looks like a gap between two music edits.", tc(0, 0, 17, 15), "Sound"],
+		["Rainbow flickers", "The rainbow in the waterfall shot flickers after the stabilization. Check the VFX pass.", tc(0, 0, 18, 20), "VFX"],
 	]);
 	await markers(alex, trailerV3, [
-		["Room tone", "Add room tone under the cut, it goes completely silent here.", tc(0, 0, 40, 4), "Sound"],
+		["Room tone", "Add room tone under the cut, it goes completely silent here.", tc(0, 0, 24, 4), "Sound"],
 	]);
 	// a few markers on the older version, so the version history looks used
-	await markers(sam, trailerV2, [["Pacing in the middle", "The middle section drags, can we lose a shot?", tc(0, 0, 26, 0), "Client"]]);
+	await markers(sam, trailerV2, [["Pacing in the middle", "The middle section drags, can we lose a shot?", tc(0, 0, 15, 0), "Client"]]);
 
 	// replies (no REST endpoint for responses)
 	const reply = (markerName: string, s: Session, content: string, minutesAgo: number) =>

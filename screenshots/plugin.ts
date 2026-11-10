@@ -28,7 +28,7 @@ execFileSync(
 
 // Timeline thumbnail the fake Resolve shows on its host card
 const thumbFile = path.join(WORK, "thumb.txt");
-const jpg = execFileSync("ffmpeg", ["-v", "error", "-ss", "20", "-i", path.join(WORK, "demo.mp4"), "-frames:v", "1", "-vf", "scale=480:-1", "-f", "image2", "-c:v", "mjpeg", "-"]);
+const jpg = execFileSync("ffmpeg", ["-v", "error", "-ss", "12", "-i", path.join(WORK, "demo.mp4"), "-frames:v", "1", "-vf", "scale=480:-1", "-f", "image2", "-c:v", "mjpeg", "-"]);
 fs.writeFileSync(thumbFile, `data:image/jpeg;base64,${jpg.toString("base64")}`);
 
 const electronBin = path.join(pluginDir, "node_modules/electron/dist/Electron.app/Contents/MacOS/Electron");

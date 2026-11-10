@@ -35,7 +35,9 @@ lives in `source.json`. Never document features that only exist on feature branc
    - `.github/workflows/release.yml`: release assets and download links
 3. Update every page affected by the diff. Check UI labels against the source; the docs quote them.
 4. Create a detached worktree of the main repo at `$NEW` and run
-   `pnpm screenshots <path-to-worktree>`. It needs Docker. Afterwards, look at every changed PNG
+   `pnpm screenshots <path-to-worktree>`. It needs Docker, and `PIXABAY_API_KEY` if the clips in
+   `screenshots/clips.json` aren't cached yet (ask the user for the key, never commit it). If the
+   diff changes the worker's ffmpeg calls, check that `screenshots/bin/ffmpeg` still applies. Afterwards, look at every changed PNG
    (`git status static/img/screenshots`) to check that it still shows what the text says.
 5. `node scripts/sync-openapi.mjs <worktree>`. The screenshot run has already generated the spec.
 6. `pnpm build` must pass (broken links throw).

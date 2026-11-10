@@ -8,13 +8,15 @@
 // 5. web screenshots (web.ts), plugin screenshots (plugin.ts)
 // 6. stops everything it started, unless --keep
 //
-// Needs Docker, pnpm, ffmpeg/ffprobe. The checkout should be a detached worktree at the commit
+// Needs Docker, pnpm, ffmpeg/ffprobe. Set PIXABAY_API_KEY for the nature clips in clips.json (only
+// needed until they are cached, see demo-video.ts). The checkout should be a detached worktree at the commit
 // in source.json; its .env is overwritten.
 import { execFileSync, spawn, type ChildProcess } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { BASE, COMPOSE, DOCS_ROOT, WORK, resetDatabase, sleep } from "./lib.ts";
 import { seed } from "./seed.ts";
+import { buildDemoVideo } from "./demo-video.ts";
 
 const args = process.argv.slice(2);
 const src = path.resolve(args.find((a) => !a.startsWith("--")) ?? "");
@@ -48,7 +50,13 @@ if (!(await up())) {
 	const log = (name: string) => fs.openSync(path.join(WORK, `${name}.log`), "w");
 	started.push(
 		spawn("npx", ["vite", "dev", "--port", "5199", "--strictPort"], { cwd: path.join(src, "packages/postpin"), stdio: ["ignore", log("app"), log("app")], detached: true }),
-		spawn("pnpm", ["dev"], { cwd: path.join(src, "packages/worker"), stdio: ["ignore", log("worker"), log("worker")], detached: true }),
+		spawn("pnpm", ["dev"], {
+			cwd: path.join(src, "packages/worker"),
+			stdio: ["ignore", log("worker"), log("worker")],
+			detached: true,
+			// bin/ffmpeg encodes with x264's fastest preset, see there
+			env: { ...process.env, PATH: `${path.join(DOCS_ROOT, "screenshots/bin")}:${process.env.PATH}` },
+		}),
 	);
 	for (let i = 0; !(await up()); i++) {
 		if (i > 90) throw new Error("app did not come up, see screenshots/.work/app.log");
@@ -59,7 +67,7 @@ if (!(await up())) {
 try {
 	console.log("== seed");
 	resetDatabase(src);
-	run("sh", [path.join(DOCS_ROOT, "screenshots/make-demo-video.sh"), path.join(WORK, "demo.mp4")], DOCS_ROOT);
+	await buildDemoVideo();
 	await seed();
 
 	console.log("== screenshots");

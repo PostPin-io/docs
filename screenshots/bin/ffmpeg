@@ -1,0 +1,14 @@
+#!/bin/sh
+# ffmpeg for the screenshot run's worker: the same command, but x264's "ultrafast" preset instead
+# of whatever the worker asks for. The HLS renditions look a bit worse and come out ~5x faster;
+# everything else (renditions, segments, sprites, thumbnails) stays exactly what the worker makes.
+# run.ts puts this directory first in the worker's PATH.
+here=$(cd "$(dirname "$0")" && pwd)
+real=$(PATH=$(printf '%s' "$PATH" | tr ':' '\n' | grep -vx "$here" | paste -sd: -) command -v ffmpeg)
+for arg do
+	shift
+	if [ "$prev" = "-preset" ]; then arg=ultrafast; fi
+	set -- "$@" "$arg"
+	prev=$arg
+done
+exec "$real" "$@"
