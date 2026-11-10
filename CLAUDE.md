@@ -53,10 +53,12 @@ lives in `source.json`. Never document features that only exist on feature branc
 
 ## Open TODOs
 
-- **Download patterns:** the download page (`src/components/Downloads`) asks the GitHub API for
-  the newest release per product and matches the assets by name pattern
-  (`PostPin-Desktop-<v>-universal.dmg`, `PostPin-Desktop-<v>-x64.exe`, `PostPin-Resolve-<v>.pkg`).
-  If the release workflow renames assets, update the patterns there.
+- **Downloads:** `src/components/Downloads/products.ts` lists every product and platform with an
+  asset name pattern; the page asks the GitHub API for the releases and links the newest match
+  (stable before pre-release). Downloads no release has yet stay hidden, so new platforms
+  (e.g. Windows ARM64, already listed) can be added before they ship. When the release workflow
+  adds or renames assets, or a new plugin like Premiere Pro appears, update `products.ts`
+  (host icons are in `icons.tsx`).
 - **Install guides are ahead of `source.json`:** the user asked to document the installers right
   away. The install sections of `docs/plugins/resolve.md`, `docs/plugins/desktop.md` and the
   platform table in `docs/plugins/index.md` describe `feat/desktop-installer` @ 440df86 (signed

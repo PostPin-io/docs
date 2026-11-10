@@ -10,15 +10,11 @@ import Downloads from '@site/src/components/Downloads';
 
 <Downloads />
 
-The buttons link the newest release that has the download. If only a pre-release has it so far,
-the button says so. All releases are on the
-[GitHub Releases page](https://github.com/PostPin-io/postpin/releases).
+Each download comes from the newest release that has it. Pre-releases are marked. Older versions
+and release notes are on the [GitHub Releases page](https://github.com/PostPin-io/postpin/releases).
 
-## Self-hosting
-
-Every release also has `compose.yml` and `env.example` for
-[running your own server](./self-hosting/installation.md). The installation guide downloads them
-from the latest release:
+To set up a server, the [installation guide](./self-hosting/installation.md) downloads
+`compose.yml` and `env.example` straight from the latest release:
 
 ```sh
 curl -fsSLO https://github.com/PostPin-io/postpin/releases/latest/download/compose.yml

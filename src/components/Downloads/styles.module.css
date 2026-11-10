@@ -1,45 +1,141 @@
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 1rem;
-  margin: 1.5rem 0;
+.downloads {
+  margin: 1.5rem 0 2rem;
 }
 
-.card {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.5rem;
-  padding: 1rem 1.25rem;
-  border: 1px solid var(--ifm-color-emphasis-300);
-  border-radius: var(--ifm-card-border-radius, 8px);
-  background: var(--ifm-card-background-color);
-}
-
-.title {
-  font-weight: 700;
-}
-
-.detail,
-.meta {
-  font-size: 0.875rem;
+.groupTitle {
+  margin: 2rem 0 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--ifm-color-emphasis-700);
 }
 
-/* takes the free space, so the buttons line up across cards */
-.detail {
+.list {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--ifm-card-background-color);
+}
+
+.product {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem 1.5rem;
+  padding: 1rem 1.25rem;
+}
+
+.product + .product {
+  border-top: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.info {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-start;
+  min-width: 260px;
   flex: 1;
-  margin-bottom: 0.5rem;
 }
 
-.pre {
-  color: var(--ifm-color-warning-darker);
+.productIcon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 9px;
 }
 
-[data-theme='dark'] .pre {
-  color: var(--ifm-color-warning);
+.mono {
+  padding: 7px;
+  background: var(--ifm-color-emphasis-200);
+  color: var(--ifm-color-emphasis-900);
 }
 
-.guide {
-  font-size: 0.875rem;
+.name {
+  font-weight: 700;
+}
+
+.description,
+.version {
+  font-size: 0.85rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+.badge {
+  margin-left: 0.4rem;
+  padding: 0 0.4rem;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background: var(--ifm-color-warning-contrast-background);
+  color: var(--ifm-color-warning-contrast-foreground);
+}
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 150px;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  color: var(--ifm-font-color-base);
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.button:hover {
+  border-color: var(--ifm-color-primary);
+  color: var(--ifm-font-color-base);
+  text-decoration: none;
+}
+
+/* the visitor's platform */
+.mine {
+  border-color: var(--ifm-color-primary);
+  background: var(--ifm-color-primary);
+  color: #fff;
+}
+
+.mine:hover {
+  background: var(--ifm-color-primary-dark);
+  color: #fff;
+}
+
+/* the light dark-mode primary needs dark text for contrast */
+[data-theme='dark'] .mine,
+[data-theme='dark'] .mine:hover {
+  color: #14121f;
+}
+
+.loading {
+  opacity: 0.5;
+}
+
+.osIcon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.buttonText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.buttonLabel {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.buttonMeta {
+  font-size: 0.75rem;
+  opacity: 0.75;
 }
