@@ -14,16 +14,35 @@ It has the same window as the [Resolve plugin](./resolve.md).
 ## Requirements
 
 - Pro Tools 2025.10 or newer, running on the same computer.
-- macOS.
+- macOS (Apple silicon or Intel) or Windows (x64).
 
 If Pro Tools isn't running, or its scripting interface is turned off, the app shows "Pro Tools is
 not running, or its scripting interface is disabled".
 
 ## Install
 
-Download PostPin Desktop from the [Downloads](../downloads.md) page and move it to your
-Applications folder. Start Pro Tools and open your session, then start PostPin Desktop and
+Download PostPin Desktop for your system from the [Downloads](../downloads.md) page.
+
+**macOS:** open `PostPin-Desktop-<version>-universal.dmg` and drag PostPin Desktop into your
+Applications folder. The app is signed and notarized.
+
+**Windows:** run `PostPin-Desktop-<version>-x64.exe`. It installs PostPin Desktop for your user
+right away, without further questions, and starts it.
+
+:::note
+
+The Windows installer isn't code-signed yet. On first start Windows SmartScreen shows
+"Windows protected your PC". Click **More info**, then **Run anyway**.
+
+:::
+
+Then start Pro Tools, open your session, start PostPin Desktop and
 [log in](./index.md#logging-in).
+
+### Updates
+
+PostPin Desktop checks for a new version every time it starts. It downloads the update in the
+background, shows a notification, and installs it the next time you quit the app.
 
 <details>
 <summary>Building the app from source</summary>
@@ -39,6 +58,9 @@ pnpm --filter @postpin-io/desktop setup   # generates the PTSL client from the p
 pnpm --filter @postpin-io/desktop build
 npx electron packages/desktop
 ```
+
+`pnpm --filter @postpin-io/desktop dist` builds the installer for the current system with
+electron-builder.
 
 </details>
 

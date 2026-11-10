@@ -12,7 +12,7 @@ as a new export, and sync markers in both directions.
 | Editing software       | Plugin                          | Platform |
 | ---------------------- | ------------------------------- | -------- |
 | DaVinci Resolve Studio | [Resolve plugin](./resolve.md)  | macOS    |
-| Avid Pro Tools         | [PostPin Desktop](./desktop.md) | macOS    |
+| Avid Pro Tools         | [PostPin Desktop](./desktop.md) | macOS, Windows |
 
 Get them from the [Downloads](../downloads.md) page. Both share the same window and work the same
 way. The sections below apply to both.

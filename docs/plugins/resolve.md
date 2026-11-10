@@ -17,19 +17,23 @@ Resolve.
 
 ## Install
 
-1. Download the Resolve plugin from the [Downloads](../downloads.md) page.
-2. Copy the `com.postpin.resolve` folder to
+1. Download **PostPin for DaVinci Resolve** from the [Downloads](../downloads.md) page. It's a
+   signed installer package, `PostPin-Resolve-<version>.pkg`.
+2. Open it and follow the installer. macOS asks for an administrator password, because the plugin
+   goes into the system library:
 
    ```text
-   /Library/Application Support/Blackmagic Design/DaVinci Resolve/Workflow Integration Plugins/
+   /Library/Application Support/Blackmagic Design/DaVinci Resolve/Workflow Integration Plugins/io.postpin.plugin.resolve
    ```
 
-   so that the plugin ends up in `…/Workflow Integration Plugins/com.postpin.resolve/manifest.xml`.
-   macOS asks for an administrator password because the folder is in the system library.
 3. Restart Resolve.
 4. Open the plugin from **Workspace › Workflow Integrations › PostPin**.
 
-To update, replace the folder with the new version and restart Resolve.
+To update, install the newer package the same way. It removes the previous version first, including
+development installs in the old `com.postpin.resolve` folder. For pre-releases Resolve shows only
+the version number, for example 0.2.0 for 0.2.0-rc.2.
+
+To uninstall, delete the `io.postpin.plugin.resolve` folder above and restart Resolve.
 
 <details>
 <summary>Building the plugin from source</summary>
@@ -42,6 +46,8 @@ cd packages/plugin-resolve
 pnpm setup:mac     # once: creates the plugin folder and makes it yours (asks for sudo)
 pnpm install:mac   # builds the plugin and copies it into the plugin folder
 ```
+
+`pnpm dist` builds the installer package. It needs a Developer ID Installer certificate to sign it.
 
 </details>
 

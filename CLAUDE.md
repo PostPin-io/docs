@@ -53,13 +53,15 @@ lives in `source.json`. Never document features that only exist on feature branc
 
 ## Open TODOs
 
-- **Plugin install guides:** the download page (`src/components/Downloads`) asks the GitHub API
-  for the newest release per product and matches the assets by name pattern
+- **Download patterns:** the download page (`src/components/Downloads`) asks the GitHub API for
+  the newest release per product and matches the assets by name pattern
   (`PostPin-Desktop-<v>-universal.dmg`, `PostPin-Desktop-<v>-x64.exe`, `PostPin-Resolve-<v>.pkg`).
-  If the release workflow renames assets, update the patterns there. The first release with these
-  assets (v0.2.0-rc.2) was built from `feat/desktop-installer`, not `main`: once that is merged,
-  rewrite the install steps in `docs/plugins/resolve.md` (signed `.pkg` that installs to
-  `…/Workflow Integration Plugins/io.postpin.plugin.resolve`) and `docs/plugins/desktop.md`
-  (DMG for macOS, Windows installer, auto-update via electron-updater).
+  If the release workflow renames assets, update the patterns there.
+- **Install guides are ahead of `source.json`:** the user asked to document the installers right
+  away. The install sections of `docs/plugins/resolve.md`, `docs/plugins/desktop.md` and the
+  platform table in `docs/plugins/index.md` describe `feat/desktop-installer` @ 440df86 (signed
+  `.pkg` for Resolve into `io.postpin.plugin.resolve`, DMG and unsigned one-click NSIS installer
+  for Desktop, auto-update via electron-updater), not `main`. When that branch is merged, check
+  these sections against the merged diff and drop this note. If it's abandoned, revert them.
 - **Main repo cleanup:** `docs/self-hosting.md` still exists in the main repo. Once this site is
   live, delete it there and point the README at https://docs.postpin.io/self-hosting.
