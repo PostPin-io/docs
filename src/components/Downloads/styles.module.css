@@ -1,0 +1,45 @@
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.5rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: var(--ifm-card-border-radius, 8px);
+  background: var(--ifm-card-background-color);
+}
+
+.title {
+  font-weight: 700;
+}
+
+.detail,
+.meta {
+  font-size: 0.875rem;
+  color: var(--ifm-color-emphasis-700);
+}
+
+/* takes the free space, so the buttons line up across cards */
+.detail {
+  flex: 1;
+  margin-bottom: 0.5rem;
+}
+
+.pre {
+  color: var(--ifm-color-warning-darker);
+}
+
+[data-theme='dark'] .pre {
+  color: var(--ifm-color-warning);
+}
+
+.guide {
+  font-size: 0.875rem;
+}

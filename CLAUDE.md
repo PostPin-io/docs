@@ -53,10 +53,13 @@ lives in `source.json`. Never document features that only exist on feature branc
 
 ## Open TODOs
 
-- **Plugin downloads:** the release workflow does not attach plugin builds yet (only `compose.yml`
-  and `env.example`). Once it does, replace the GitHub Releases link in `docs/downloads.md` and the
-  plugin install pages with direct links of the form
-  `https://github.com/PostPin-io/postpin/releases/latest/download/<asset-name>`. Use stable
-  asset names without the version so the links never need updating.
+- **Plugin install guides:** the download page (`src/components/Downloads`) asks the GitHub API
+  for the newest release per product and matches the assets by name pattern
+  (`PostPin-Desktop-<v>-universal.dmg`, `PostPin-Desktop-<v>-x64.exe`, `PostPin-Resolve-<v>.pkg`).
+  If the release workflow renames assets, update the patterns there. The first release with these
+  assets (v0.2.0-rc.2) was built from `feat/desktop-installer`, not `main`: once that is merged,
+  rewrite the install steps in `docs/plugins/resolve.md` (signed `.pkg` that installs to
+  `…/Workflow Integration Plugins/io.postpin.plugin.resolve`) and `docs/plugins/desktop.md`
+  (DMG for macOS, Windows installer, auto-update via electron-updater).
 - **Main repo cleanup:** `docs/self-hosting.md` still exists in the main repo. Once this site is
   live, delete it there and point the README at https://docs.postpin.io/self-hosting.
