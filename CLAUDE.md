@@ -59,11 +59,11 @@ lives in `source.json`. Never document features that only exist on feature branc
   (e.g. Windows ARM64, already listed) can be added before they ship. When the release workflow
   adds or renames assets, or a new plugin like Premiere Pro appears, update `products.ts`
   (host icons are in `icons.tsx`).
-- **Install guides are ahead of `source.json`:** the user asked to document the installers right
-  away. The install sections of `docs/plugins/resolve.md`, `docs/plugins/desktop.md` and the
-  platform table in `docs/plugins/index.md` describe `feat/desktop-installer` @ 440df86 (signed
-  `.pkg` for Resolve into `io.postpin.plugin.resolve`, DMG and unsigned one-click NSIS installer
-  for Desktop, auto-update via electron-updater), not `main`. When that branch is merged, check
-  these sections against the merged diff and drop this note. If it's abandoned, revert them.
+- **Install guides are ahead of `source.json`:** the install sections of `docs/plugins/resolve.md`,
+  `docs/plugins/desktop.md` and the platform table in `docs/plugins/index.md` describe the
+  installers as of `v0.2.0-rc.3` (88405b1: signed `.pkg` and unsigned NSIS `.exe` for Resolve,
+  DMG and unsigned NSIS for Desktop, auto-update via electron-updater). `feat/desktop-installer`
+  is merged into `main` (19e692d), so the next sync to a commit at or after it covers them; check
+  them against the diff then and drop this note.
 - **Main repo cleanup:** `docs/self-hosting.md` still exists in the main repo. Once this site is
   live, delete it there and point the README at https://docs.postpin.io/self-hosting.

@@ -46,7 +46,11 @@ export const GROUPS: Group[] = [
         description: 'Workflow integration plugin for DaVinci Resolve Studio',
         icon: {src: '/img/hosts/davinci-resolve.png'},
         guide: '/plugins/resolve',
-        downloads: [{os: 'mac', arch: 'Universal', pattern: /^PostPin-Resolve-.+\.pkg$/}],
+        downloads: [
+          {os: 'mac', arch: 'Universal', pattern: /^PostPin-Resolve-.+\.pkg$/},
+          // one installer for both, it installs Resolve's native module for the machine's CPU
+          {os: 'windows', arch: 'x64 & ARM64', pattern: /^PostPin-Resolve-.+\.exe$/},
+        ],
       },
       {
         id: 'desktop',
