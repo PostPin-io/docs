@@ -25,6 +25,9 @@ lives in `source.json`. Never document features that only exist on feature branc
   (`src/components/Screenshot`, available in every doc without an import). It picks the variant
   for the docs' theme and frames whole pages in a browser window. Plugin screenshots are plain
   Markdown images (the plugins are always dark).
+- `static/img/social.png`: link preview image (og:image, 1200×630), rendered by
+  `screenshots/social.ts` from the dark review screenshot. `pnpm screenshots` regenerates it;
+  `pnpm social-image` renders only this one.
 - `screenshots/`: Playwright script, demo seed and the throwaway backing services
   (`compose.yml`, own project name and ports, nothing persisted).
 

@@ -5,7 +5,7 @@
 // 2. prepares the checkout: env, install, prisma client, API spec, Resolve plugin build
 // 3. starts app (http://localhost:5199) and worker from the checkout, unless already running
 // 4. resets the database, seeds demo data (seed.ts), waits for media processing
-// 5. web screenshots (web.ts), plugin screenshots (plugin.ts)
+// 5. web screenshots (web.ts), plugin screenshots (plugin.ts), link preview image (social.ts)
 // 6. stops everything it started, unless --keep
 //
 // Needs Docker, pnpm, ffmpeg/ffprobe. Set PIXABAY_API_KEY for the nature clips in clips.json (only
@@ -73,6 +73,7 @@ try {
 	console.log("== screenshots");
 	run("node", [path.join(DOCS_ROOT, "screenshots/web.ts")], DOCS_ROOT);
 	run("node", [path.join(DOCS_ROOT, "screenshots/plugin.ts"), src], DOCS_ROOT);
+	run("node", [path.join(DOCS_ROOT, "screenshots/social.ts")], DOCS_ROOT);
 } finally {
 	if (!keep) {
 		console.log("== teardown");

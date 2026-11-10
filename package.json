@@ -16,7 +16,8 @@
     "prebuild": "docusaurus gen-api-docs all",
     "prestart": "docusaurus gen-api-docs all",
     "sync:openapi": "node scripts/sync-openapi.mjs",
-    "screenshots": "node screenshots/run.ts"
+    "screenshots": "node screenshots/run.ts",
+    "social-image": "node screenshots/social.ts"
   },
   "dependencies": {
     "@docusaurus/core": "3.10.2",

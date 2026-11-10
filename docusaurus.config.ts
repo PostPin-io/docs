@@ -82,6 +82,12 @@ const config: Config = {
 
   themeConfig: {
     image: 'img/social.png',
+    metadata: [
+      {property: 'og:image:width', content: '1200'},
+      {property: 'og:image:height', content: '630'},
+      {property: 'og:image:alt', content: 'PostPin Docs: media review for post-production teams'},
+      {property: 'og:site_name', content: 'PostPin Docs'},
+    ],
     languageTabs: [
       {highlight: 'bash', language: 'curl', logoClass: 'curl'},
       {highlight: 'python', language: 'python', logoClass: 'python'},
