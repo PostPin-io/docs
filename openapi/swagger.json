@@ -1,0 +1,1524 @@
+{
+	"openapi": "3.0.0",
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"ProjectWithOrg": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"nleProjectId": {
+						"type": "string",
+						"nullable": true
+					},
+					"organization": {
+						"properties": {
+							"name": {
+								"type": "string"
+							},
+							"id": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"name",
+							"id"
+						],
+						"type": "object"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"createdAt",
+					"updatedAt",
+					"nleProjectId",
+					"organization"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Timeline": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"nleTimelineId": {
+						"type": "string",
+						"nullable": true
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"createdAt",
+					"updatedAt",
+					"nleTimelineId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ProjectWithTimelines": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"nleProjectId": {
+						"type": "string",
+						"nullable": true
+					},
+					"timelines": {
+						"items": {
+							"$ref": "#/components/schemas/Timeline"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"id",
+					"name",
+					"createdAt",
+					"updatedAt",
+					"nleProjectId",
+					"timelines"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"DefaultSelection__36_ResponsePayload_": {
+				"properties": {
+					"content": {
+						"type": "string"
+					},
+					"markerId": {
+						"type": "string"
+					},
+					"authorId": {
+						"type": "string",
+						"nullable": true
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"content",
+					"markerId",
+					"authorId",
+					"updatedAt",
+					"createdAt",
+					"id"
+				],
+				"type": "object"
+			},
+			"ResponseModel": {
+				"$ref": "#/components/schemas/DefaultSelection__36_ResponsePayload_",
+				"description": "Model Response"
+			},
+			"MarkerResponse": {
+				"$ref": "#/components/schemas/ResponseModel",
+				"description": "Model Response"
+			},
+			"DefaultSelection__36_MarkerPayload_": {
+				"properties": {
+					"nleId": {
+						"type": "string",
+						"nullable": true
+					},
+					"authorId": {
+						"type": "string",
+						"nullable": true
+					},
+					"categoryId": {
+						"type": "string"
+					},
+					"exportId": {
+						"type": "string"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"frame": {
+						"type": "number",
+						"format": "double"
+					},
+					"description": {
+						"type": "string",
+						"nullable": true
+					},
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"nleId",
+					"authorId",
+					"categoryId",
+					"exportId",
+					"updatedAt",
+					"createdAt",
+					"frame",
+					"description",
+					"id",
+					"name"
+				],
+				"type": "object"
+			},
+			"MarkerModel": {
+				"$ref": "#/components/schemas/DefaultSelection__36_MarkerPayload_",
+				"description": "Model Marker"
+			},
+			"MarkerWithResponses": {
+				"properties": {
+					"nleId": {
+						"type": "string",
+						"nullable": true
+					},
+					"authorId": {
+						"type": "string",
+						"nullable": true
+					},
+					"categoryId": {
+						"type": "string"
+					},
+					"exportId": {
+						"type": "string"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"frame": {
+						"type": "number",
+						"format": "double"
+					},
+					"description": {
+						"type": "string",
+						"nullable": true
+					},
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"responses": {
+						"items": {
+							"$ref": "#/components/schemas/MarkerResponse"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"nleId",
+					"authorId",
+					"categoryId",
+					"exportId",
+					"updatedAt",
+					"createdAt",
+					"frame",
+					"description",
+					"id",
+					"name",
+					"responses"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UploadMarker": {
+				"properties": {
+					"id": {
+						"type": "string",
+						"nullable": true,
+						"description": "PostPin id, for markers that were pulled from PostPin into the NLE. They are updated too."
+					},
+					"nleId": {
+						"type": "string",
+						"nullable": true,
+						"description": "id of the marker in the NLE, unique per export. Markers with a known nleId are updated."
+					},
+					"categoryId": {
+						"type": "string"
+					},
+					"frame": {
+						"type": "number",
+						"format": "double"
+					},
+					"description": {
+						"type": "string",
+						"nullable": true
+					},
+					"name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"categoryId",
+					"frame",
+					"description",
+					"name"
+				],
+				"type": "object"
+			},
+			"MultipartUploadPartUrl": {
+				"properties": {
+					"partNumber": {
+						"type": "number",
+						"format": "double"
+					},
+					"url": {
+						"type": "string",
+						"description": "Presigned S3 PUT URL for this part, valid for one day."
+					}
+				},
+				"required": [
+					"partNumber",
+					"url"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"InitUploadResponse": {
+				"properties": {
+					"uploadId": {
+						"type": "string"
+					},
+					"partSize": {
+						"type": "number",
+						"format": "double",
+						"description": "Size of every part except the last one, in bytes."
+					},
+					"parts": {
+						"items": {
+							"$ref": "#/components/schemas/MultipartUploadPartUrl"
+						},
+						"type": "array"
+					},
+					"mediaId": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"uploadId",
+					"partSize",
+					"parts",
+					"mediaId"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UploadedPart": {
+				"properties": {
+					"partNumber": {
+						"type": "number",
+						"format": "double"
+					},
+					"etag": {
+						"type": "string",
+						"description": "ETag response header of the part's PUT request"
+					}
+				},
+				"required": [
+					"partNumber",
+					"etag"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TrackType": {
+				"type": "string",
+				"enum": [
+					"video",
+					"audio"
+				]
+			},
+			"Record_string.unknown_": {
+				"properties": {},
+				"additionalProperties": {},
+				"type": "object",
+				"description": "Construct a type with a set of properties K of type T"
+			},
+			"Clip": {
+				"properties": {
+					"metadata": {
+						"$ref": "#/components/schemas/Record_string.unknown_"
+					},
+					"speed": {
+						"type": "number",
+						"format": "double",
+						"description": "Constant playback speed, 1 is normal speed. Speed ramps aren't supported."
+					},
+					"sourceStartFrameIndex": {
+						"type": "number",
+						"format": "double",
+						"nullable": true,
+						"description": "null without media"
+					},
+					"durationFrameCount": {
+						"type": "number",
+						"format": "double"
+					},
+					"startFrameIndex": {
+						"type": "number",
+						"format": "double"
+					},
+					"mediaId": {
+						"type": "string",
+						"nullable": true,
+						"description": "null for generators and titles"
+					},
+					"name": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"metadata",
+					"speed",
+					"sourceStartFrameIndex",
+					"durationFrameCount",
+					"startFrameIndex",
+					"mediaId",
+					"name",
+					"id"
+				],
+				"type": "object"
+			},
+			"Track": {
+				"properties": {
+					"clips": {
+						"items": {
+							"$ref": "#/components/schemas/Clip"
+						},
+						"type": "array",
+						"description": "Disabled clips are left out"
+					},
+					"name": {
+						"type": "string"
+					},
+					"type": {
+						"$ref": "#/components/schemas/TrackType"
+					},
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"clips",
+					"name",
+					"type",
+					"id"
+				],
+				"type": "object"
+			},
+			"FrameRate": {
+				"properties": {
+					"dropFrame": {
+						"type": "boolean"
+					},
+					"fpsDenominator": {
+						"type": "number",
+						"format": "double"
+					},
+					"fpsNumerator": {
+						"type": "number",
+						"format": "double"
+					}
+				},
+				"required": [
+					"dropFrame",
+					"fpsDenominator",
+					"fpsNumerator"
+				],
+				"type": "object"
+			},
+			"MediaItem": {
+				"properties": {
+					"metadata": {
+						"$ref": "#/components/schemas/Record_string.unknown_"
+					},
+					"startTimecode": {
+						"type": "string"
+					},
+					"frameRate": {
+						"$ref": "#/components/schemas/FrameRate",
+						"description": "Source frame indices count in this rate"
+					},
+					"filePath": {
+						"type": "string"
+					},
+					"type": {
+						"type": "string",
+						"enum": [
+							"video",
+							"audio"
+						]
+					},
+					"name": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"metadata",
+					"startTimecode",
+					"frameRate",
+					"filePath",
+					"type",
+					"name",
+					"id"
+				],
+				"type": "object"
+			},
+			"TimelineSnapshot": {
+				"properties": {
+					"metadata": {
+						"$ref": "#/components/schemas/Record_string.unknown_"
+					},
+					"durationFrameCount": {
+						"type": "number",
+						"format": "double",
+						"description": "Up to the end of the last clip"
+					},
+					"startFrameIndex": {
+						"type": "number",
+						"format": "double"
+					},
+					"frameRate": {
+						"$ref": "#/components/schemas/FrameRate"
+					},
+					"mediaItems": {
+						"items": {
+							"$ref": "#/components/schemas/MediaItem"
+						},
+						"type": "array"
+					},
+					"tracks": {
+						"items": {
+							"$ref": "#/components/schemas/Track"
+						},
+						"type": "array"
+					},
+					"name": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"metadata",
+					"durationFrameCount",
+					"startFrameIndex",
+					"frameRate",
+					"mediaItems",
+					"tracks",
+					"name",
+					"id"
+				],
+				"type": "object"
+			},
+			"DefaultSelection__36_CategoryPayload_": {
+				"properties": {
+					"createdById": {
+						"type": "string",
+						"nullable": true
+					},
+					"projectId": {
+						"type": "string"
+					},
+					"color": {
+						"type": "string"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"id": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"createdById",
+					"projectId",
+					"color",
+					"updatedAt",
+					"createdAt",
+					"id",
+					"name"
+				],
+				"type": "object"
+			},
+			"CategoryModel": {
+				"$ref": "#/components/schemas/DefaultSelection__36_CategoryPayload_",
+				"description": "Model Category"
+			},
+			"Category": {
+				"$ref": "#/components/schemas/CategoryModel",
+				"description": "Model Category"
+			},
+			"CategoryCreateParams": {
+				"properties": {
+					"color": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"color",
+					"name"
+				],
+				"type": "object"
+			}
+		},
+		"securitySchemes": {
+			"session": {
+				"type": "http",
+				"scheme": "bearer"
+			}
+		}
+	},
+	"info": {
+		"title": "PostPin REST API",
+		"version": "0.0.1",
+		"contact": {}
+	},
+	"paths": {
+		"/v1/projects/{projectId}/timelines": {
+			"post": {
+				"operationId": "CreateTimeline",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"nleTimelineId": {
+											"type": "string",
+											"nullable": true
+										},
+										"updatedAt": {
+											"type": "string",
+											"format": "date-time"
+										},
+										"createdAt": {
+											"type": "string",
+											"format": "date-time"
+										},
+										"name": {
+											"type": "string"
+										},
+										"id": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"nleTimelineId",
+										"updatedAt",
+										"createdAt",
+										"name",
+										"id"
+									],
+									"type": "object"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid name"
+					},
+					"404": {
+						"description": "Project not found"
+					}
+				},
+				"security": [
+					{
+						"session": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "projectId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"name": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"name"
+								],
+								"type": "object"
+							}
+						}
+					}
+				},
+				"tags": [
+					"Timelines"
+				],
+				"summary": "Create timeline"
+			}
+		},
+		"/v1/openapi.json": {
+			"get": {
+				"operationId": "GetOpenApiSpec",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"tags": [
+					"Meta"
+				],
+				"summary": "Get OpenAPI spec"
+			}
+		},
+		"/v1/docs": {
+			"get": {
+				"operationId": "GetDocsHtml",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"tags": [
+					"Meta"
+				],
+				"summary": "Get docs HTML"
+			}
+		},
+		"/v1/projects": {
+			"get": {
+				"operationId": "GetProjects",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/ProjectWithOrg"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [
+					{
+						"session": []
+					}
+				],
+				"parameters": [],
+				"tags": [
+					"Projects"
+				],
+				"summary": "Get projects"
+			},
+			"post": {
+				"operationId": "CreateProject",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ProjectWithOrg"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "No active organization"
+					}
+				},
+				"description": "Creates a project in the given organization, or in the active one if none is given.",
+				"security": [
+					{
+						"session": []
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"organizationId": {
+										"type": "string"
+									},
+									"name": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"name"
+								],
+								"type": "object"
+							}
+						}
+					}
+				},
+				"tags": [
+					"Projects"
+				],
+				"summary": "Create project"
+			}
+		},
+		"/v1/projects/{projectId}": {
+			"get": {
+				"operationId": "GetProject",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ProjectWithTimelines"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Project not found"
+					}
+				},
+				"security": [
+					{
+						"session": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "projectId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"tags": [
+					"Projects"
+				],
+				"summary": "Get project"
+			}
+		},
+		"/v1/projects/{projectId}/timelines/{timelineId}/exports/{exportId}/markers": {
+			"get": {
+				"operationId": "GetMarkers",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/MarkerWithResponses"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [
+					{
+						"session": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "projectId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "timelineId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "exportId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"tags": [
+					"Markers"
+				],
+				"summary": "Get markers"
+			},
+			"put": {
+				"operationId": "UploadMarkers",
+				"responses": {
+					"204": {
+						"description": "No content"
+					},
+					"404": {
+						"description": "Export not found"
+					}
+				},
+				"security": [
+					{
+						"session": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "projectId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "timelineId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "exportId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"items": {
+									"$ref": "#/components/schemas/UploadMarker"
+								},
+								"type": "array"
+							}
+						}
+					}
+				},
+				"tags": [
+					"Markers"
+				],
+				"summary": "Upload markers"
+			}
+		},
+		"/v1/projects/{projectId}/timelines/{timelineId}/exports": {
+			"get": {
+				"operationId": "GetExports",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"exports": {
+											"items": {
+												"properties": {
+													"name": {
+														"type": "string"
+													},
+													"createdAt": {
+														"type": "string",
+														"format": "date-time"
+													},
+													"id": {
+														"type": "string"
+													}
+												},
+												"required": [
+													"name",
+													"createdAt",
+													"id"
+												],
+												"type": "object"
+											},
+											"type": "array"
+										}
+									},
+									"required": [
+										"exports"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"security": [
+					{
+						"session": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "projectId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "timelineId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"tags": [
+					"Exports"
+				],
+				"summary": "Get exports"
+			},
+			"post": {
+				"operationId": "CreateExport",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"id": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"id"
+									],
+									"type": "object"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Export not found"
+					}
+				},
+				"security": [
+					{
+						"session": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "projectId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "timelineId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"nleProjectId": {
+										"type": "string",
+										"nullable": true
+									},
+									"nleTimelineId": {
+										"type": "string",
+										"nullable": true
+									}
+								},
+								"required": [
+									"nleProjectId",
+									"nleTimelineId"
+								],
+								"type": "object"
+							}
+						}
+					}
+				},
+				"tags": [
+					"Exports"
+				],
+				"summary": "Create export"
+			}
+		},
+		"/v1/projects/{projectId}/timelines/{timelineId}/exports/{exportId}/init-upload": {
+			"post": {
+				"operationId": "InitUpload",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/InitUploadResponse"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid file size"
+					},
+					"404": {
+						"description": "Export not found"
+					},
+					"409": {
+						"description": "Export media was already uploaded"
+					}
+				},
+				"description": "Starts a multipart upload of the export's original file. PUT each part's bytes to its URL,\nkeep the ETag response headers and pass them to complete-upload.",
+				"security": [
+					{
+						"session": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "projectId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "timelineId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "exportId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"fileSize": {
+										"type": "number",
+										"format": "double"
+									}
+								},
+								"required": [
+									"fileSize"
+								],
+								"type": "object"
+							}
+						}
+					}
+				},
+				"tags": [
+					"Exports"
+				],
+				"summary": "Init upload"
+			}
+		},
+		"/v1/projects/{projectId}/timelines/{timelineId}/exports/{exportId}/complete-upload": {
+			"post": {
+				"operationId": "CompleteUpload",
+				"responses": {
+					"204": {
+						"description": "No content"
+					},
+					"404": {
+						"description": "Export not found"
+					},
+					"409": {
+						"description": "Upload missing or media already processing"
+					}
+				},
+				"description": "Call after all parts were PUT: assembles the original in storage, stores the timeline\nsnapshot and queues transcoding, probing and thumbnailing.",
+				"security": [
+					{
+						"session": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "projectId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "timelineId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "exportId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"timelineSnapshot": {
+										"$ref": "#/components/schemas/TimelineSnapshot"
+									},
+									"parts": {
+										"items": {
+											"$ref": "#/components/schemas/UploadedPart"
+										},
+										"type": "array"
+									},
+									"uploadId": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"timelineSnapshot",
+									"parts",
+									"uploadId"
+								],
+								"type": "object"
+							}
+						}
+					}
+				},
+				"tags": [
+					"Exports"
+				],
+				"summary": "Complete upload"
+			}
+		},
+		"/v1/projects/{projectId}/timelines/{timelineId}/exports/{exportId}/abort-upload": {
+			"post": {
+				"operationId": "AbortUpload",
+				"responses": {
+					"204": {
+						"description": "No content"
+					},
+					"404": {
+						"description": "Export not found"
+					},
+					"409": {
+						"description": "Media already processing"
+					}
+				},
+				"description": "Discards an unfinished multipart upload, so its parts don't linger in storage.",
+				"security": [
+					{
+						"session": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "projectId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "timelineId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "exportId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"properties": {
+									"uploadId": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"uploadId"
+								],
+								"type": "object"
+							}
+						}
+					}
+				},
+				"tags": [
+					"Exports"
+				],
+				"summary": "Abort upload"
+			}
+		},
+		"/v1/projects/{projectId}/categories": {
+			"get": {
+				"operationId": "GetCategories",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Category"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [
+					{
+						"session": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "projectId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"tags": [
+					"Categories"
+				],
+				"summary": "Get categories"
+			},
+			"put": {
+				"operationId": "CreateCategory",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Category"
+								}
+							}
+						}
+					},
+					"404": {
+						"description": "Project not found"
+					},
+					"409": {
+						"description": "Category name already exists"
+					}
+				},
+				"security": [
+					{
+						"session": []
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "projectId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CategoryCreateParams"
+							}
+						}
+					}
+				},
+				"tags": [
+					"Categories"
+				],
+				"summary": "Create category"
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "https://{host}/api",
+			"description": "Your PostPin server",
+			"variables": {
+				"host": {
+					"default": "postpin.example.com"
+				}
+			}
+		}
+	],
+	"tags": [
+		{
+			"name": "Projects"
+		},
+		{
+			"name": "Timelines"
+		},
+		{
+			"name": "Exports"
+		},
+		{
+			"name": "Markers"
+		},
+		{
+			"name": "Categories"
+		},
+		{
+			"name": "Meta"
+		}
+	]
+}

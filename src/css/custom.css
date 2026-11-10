@@ -1,0 +1,30 @@
+/* Primary colour follows the PostPin web app (daisyUI default "primary"). */
+:root {
+  --ifm-color-primary: #422ad5;
+  --ifm-color-primary-dark: #3b26c0;
+  --ifm-color-primary-darker: #3823b5;
+  --ifm-color-primary-darkest: #2e1d95;
+  --ifm-color-primary-light: #553fda;
+  --ifm-color-primary-lighter: #5f4adc;
+  --ifm-color-primary-lightest: #7b6ae2;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #8f80ff;
+  --ifm-color-primary-dark: #7564ff;
+  --ifm-color-primary-darker: #6856ff;
+  --ifm-color-primary-darkest: #412cff;
+  --ifm-color-primary-light: #a99cff;
+  --ifm-color-primary-lighter: #b6aaff;
+  --ifm-color-primary-lightest: #dcd6ff;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+/* Screenshots: subtle frame so white UI doesn't melt into the page. */
+.markdown img {
+  border: 1px solid var(--ifm-color-emphasis-300);
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}

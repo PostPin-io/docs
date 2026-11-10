@@ -1,0 +1,26 @@
+# Throwaway backing services for the screenshot run. Separate project name and
+# ports so it never touches a developer's own PostPin dev stack.
+name: postpin-docs-shots
+services:
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_USER: postpin
+      POSTGRES_PASSWORD: docs
+      POSTGRES_DB: postpin
+    ports: ["55439:5432"]
+    tmpfs: [/var/lib/postgresql]
+  redis:
+    image: redis:8
+    command: redis-server --maxmemory-policy noeviction
+    ports: ["56389:6379"]
+  maildev:
+    image: maildev/maildev
+    ports: ["51080:1080", "51025:1025"]
+  rustfs:
+    image: rustfs/rustfs:latest
+    ports: ["59003:9000"]
+    tmpfs: ["/data:mode=1777"]
+    environment:
+      RUSTFS_ACCESS_KEY: docsaccess
+      RUSTFS_SECRET_KEY: docssecret
