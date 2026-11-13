@@ -137,6 +137,16 @@ const config: Config = {
             {label: 'Issues', href: 'https://github.com/PostPin-io/postpin/issues'},
           ],
         },
+        {
+          // English convenience translations; each links to the binding German version
+          title: 'Legal',
+          items: [
+            {label: 'Imprint (Impressum)', to: '/imprint'},
+            {label: 'Privacy', to: '/privacy'},
+            {label: 'Terms', to: '/terms'},
+            {label: 'Data Processing Agreement', to: '/dpa'},
+          ],
+        },
       ],
       copyright: `Copyright © ${new Date().getFullYear()} PostPin`,
     },
