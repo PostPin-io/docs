@@ -84,7 +84,7 @@ type. <kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>Enter</kbd> closes the pane.
 
 Each marker in the list shows its title, description, author, date and timecode, a range its start
 and end. Markers from guests of a [share link](./sharing.md#share-links) show the guest's name and
-a "Gast" badge. To move a marker, click its timecode and type a new one. For a range, the end
+a "Guest" badge. To move a marker, click its timecode and type a new one. For a range, the end
 timecode changes its length.
 
 The marker list has a **Search** field, and its **⋯** menu has:

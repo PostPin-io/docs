@@ -1,7 +1,7 @@
 {
 	"repository": "https://github.com/PostPin-io/postpin",
 	"branch": "main",
-	"commit": "03a523d074a60ad551136f01080adf5b3d8e7471",
-	"commitSubject": "fix(web): bundle qrcode so the runtime image can load the share modal",
+	"commit": "9b12849100caa67ed3eea828d17ef8971e5ce711",
+	"commitSubject": "fix(badge): translate guest",
 	"syncedAt": "2026-11-13"
 }

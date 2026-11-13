@@ -96,7 +96,7 @@ Then they get the review screen with the panels the link shows and the note over
   team's or other guests'.
 - Their markers go into the project's "Guest" category. They can't pick a category, reply to
   markers or copy and paste markers.
-- The team sees guest markers on the export with the guest's name and a "Gast" badge.
+- The team sees guest markers on the export with the guest's name and a "Guest" badge.
 - The browser remembers the guest, so opening the link again continues with the same name. A link
   accepts at most 500 guests.
 
