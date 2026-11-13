@@ -1,7 +1,7 @@
 {
 	"repository": "https://github.com/PostPin-io/postpin",
 	"branch": "main",
-	"commit": "b595c5eaecfb4eac5f6979fafc89d1a3993c4f6d",
-	"commitSubject": "Merge branch 'feat/plugin-premiere'",
-	"syncedAt": "2026-11-10"
+	"commit": "03a523d074a60ad551136f01080adf5b3d8e7471",
+	"commitSubject": "fix(web): bundle qrcode so the runtime image can load the share modal",
+	"syncedAt": "2026-11-13"
 }

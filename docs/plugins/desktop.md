@@ -79,8 +79,13 @@ electron-builder.
   bounce of the first output to a MOV file with the session's video and 24-bit PCM audio.
 - **No clips in the timeline view.** PostPin shows the session's tracks on the review screen, but
   without clips.
-- **Markers are memory locations.** Pull and push work with memory locations of type Marker.
-  Markers without a `#Category` line go into a category named after their colour, for example
-  "Pro Tools Color 3". Pulled markers that already exist stay on their marker ruler. New ones go on
-  the ruler most of the session's markers are on, or on the default "Markers" ruler.
+- **Markers are memory locations.** Pull and push work with memory locations of type Marker, and
+  with memory locations of type Selection on a marker ruler, which are
+  [ranges](../guide/review.md#ranges) in PostPin. Selections that belong to a track are left alone.
+  Pulling a range creates a Selection, a point marker a Marker. If a marker turns into a range or
+  back, PostPin changes the memory location's type and keeps its number.
+- Markers without a `#Category` line go into a category named after their colour, for example
+  "Pro Tools Color 3". Pulled markers that already exist stay on their marker ruler, except track
+  markers that become a range. New ones, and those, go on the ruler most of the session's markers
+  are on, or on the default "Markers" ruler.
 - There are no render presets and no render to disk settings.

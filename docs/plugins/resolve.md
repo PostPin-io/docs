@@ -80,13 +80,15 @@ sign it. `pnpm dist:win` builds the Windows installer on macOS or Linux and need
 
 **Render & Upload →** renders the whole timeline as MP4 (H.265) at the timeline's resolution and
 frame rate, with audio, and uploads it to PostPin. The plugin also sends a snapshot of the
-timeline: tracks, clips and their source media. PostPin uses it to draw the timeline on the
+timeline: tracks, clips with their clip colour, and their source media. PostPin uses it to draw the timeline on the
 [review screen](../guide/review.md#timeline).
 
 Markers sync with **Push markers →** and **← Pull comments**, see
 [Syncing markers](./index.md#syncing-markers). Pulled markers use Resolve's 16 marker colours.
 PostPin stores its marker ID in the marker's custom data, so the link survives when you edit the
-marker's name or note.
+marker's name or note. Every Resolve marker has a duration of at least one frame: a marker with a
+duration of 1 is a point marker in PostPin, longer ones are ranges. A one-frame range in PostPin
+therefore comes back from Resolve as a point marker.
 
 ### Render to disk
 

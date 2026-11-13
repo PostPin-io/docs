@@ -49,17 +49,21 @@ parts, not through the API.
    `{"nleProjectId": null, "nleTimelineId": null}`. The two IDs link the export to a project and
    timeline in an editor. Pass `null` if there is none.
 2. **Start the upload:** `POST …/exports/{exportId}/init-upload` with `{"fileSize": <bytes>}`.
-   The response has a `partSize` and one presigned URL per part.
+   Announce the exact size: PostPin checks it against `UPLOAD_MAX_FILE_SIZE` and the
+   [storage quotas](../self-hosting/storage.md#storage-limits) right away and answers with 413 if
+   it doesn't fit. The response has a `partSize` and one presigned URL per part.
 3. **Upload the parts:** `PUT` each part's bytes to its URL and keep the `ETag` header of each
    response. The URLs are valid for 24 hours.
 4. **Finish:** `POST …/exports/{exportId}/complete-upload` with the `uploadId`, the list of
-   `{partNumber, etag}` and a `timelineSnapshot`. PostPin then starts processing the file.
+   `{partNumber, etag}` and a `timelineSnapshot`. PostPin then starts processing the file. If the
+   parts add up to more than the announced size, the call fails with 413 and you have to start
+   over.
 
 :::warning
 
 The review screen needs the `timelineSnapshot` to draw the timeline and place markers. Send at
 least the frame rate, the start frame and the duration, with an empty `tracks` list if you have
-nothing else. See the `TimelineSnapshot` schema in the
+nothing else. Every clip needs a `color`, `null` if it has none. See the `TimelineSnapshot` schema in the
 [reference](./reference/complete-upload.api.mdx).
 
 :::
@@ -71,7 +75,8 @@ nothing else. See the `TimelineSnapshot` schema in the
 `GET …/exports/{exportId}/markers` returns the markers of an export with their replies.
 
 `PUT …/exports/{exportId}/markers` adds or updates up to 2000 markers at once. Each marker needs a
-`name`, a `frame` and a `categoryId`. To update existing markers, pass their PostPin `id`, or an
+`name`, a `frame` and a `categoryId`. `duration` (in frames) makes it a range. New markers without
+one are point markers (`0`), existing ones keep theirs. To update existing markers, pass their PostPin `id`, or an
 `nleId` that you chose yourself. A marker with an `nleId` that PostPin already knows is updated,
 not added again.
 
@@ -79,7 +84,8 @@ Marker frames are absolute timeline frames. At 24 fps, a timeline that starts at
 begins at frame 86400.
 
 Categories come from `GET /api/v1/projects/{projectId}/categories`. `PUT` on the same path
-creates one from `{"name", "color"}`, with the colour as `#RRGGBB`.
+creates one from `{"name", "color"}`, with the colour as `#RRGGBB`. Every project starts with a
+"Guest" category for the markers of [share link](../guide/sharing.md#share-links) guests.
 
 ## What the API can't do yet
 

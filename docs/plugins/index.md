@@ -93,7 +93,8 @@ stay as they are.
 
 **← Pull comments** writes the markers of the selected export into your timeline:
 
-- The marker lands on the same frame as in PostPin.
+- The marker lands on the same frame as in PostPin. A [range](../guide/review.md#ranges) keeps its
+  length.
 - The title and description become the marker's name and note. The category goes into the first
   line of the note as `#Category`, except for colour categories like "Resolve Blue", where the
   colour already says it.
@@ -101,7 +102,8 @@ stay as they are.
 - Pulling again updates the markers PostPin created before instead of adding them twice.
 - Replies stay in PostPin.
 
-**Push markers →** sends the markers of your timeline to the selected export. A marker whose note
+**Push markers →** sends the markers of your timeline to the selected export, ranges with their
+length. A marker whose note
 starts with `#Category` goes into that category. Markers without one go into a category named
 after their colour, for example "Resolve Blue". PostPin creates missing categories. Pushing again
 updates the markers in PostPin.

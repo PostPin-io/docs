@@ -6,6 +6,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { BASE, OUT, PASSWORD, WORK, api, sleep } from "./lib.ts";
 import { webShot } from "./webshot.ts";
+import { DEMO_VIDEO } from "./demo-video.ts";
 
 const dir = path.join(OUT, "web");
 fs.mkdirSync(dir, { recursive: true });
@@ -123,6 +124,20 @@ const steps: Record<string, () => Promise<void>> = {
 		await page.close();
 	},
 
+	async upload() {
+		// the web upload dialog with the demo render chosen; closed again before uploading
+		const page = await newPage("alex@example.com");
+		const s = ids();
+		await page.goto(`${BASE}/projects/${s.harbor}/timelines/${s.trailer}/exports`);
+		await openDialog(page, page.getByRole("button", { name: "Upload a video" }));
+		await page.getByRole("button", { name: "I want to upload manually" }).click();
+		await page.locator("input[type=file]").first().setInputFiles(DEMO_VIDEO);
+		await page.getByText("estimated").first().waitFor();
+		await page.locator(".modal-box:visible").getByLabel("Name", { exact: true }).fill("Trailer v4 – client cut");
+		await shotDialog(page, "upload");
+		await page.close();
+	},
+
 	async review() {
 		const page = await newPage("alex@example.com");
 		await page.goto(reviewUrl());
@@ -176,7 +191,7 @@ const steps: Record<string, () => Promise<void>> = {
 		const page = await newPage("alex@example.com");
 		await page.goto(reviewUrl());
 		await page.locator("video").first().waitFor();
-		await openDialog(page, page.getByRole("button", { name: /^Share/ }).first());
+		await openDialog(page, page.getByRole("button", { name: /^Share links/ }).first());
 		// without links the form for a new one opens on its own (not on a retry, the link exists then)
 		const note = page.getByPlaceholder("Note: shown in the player and added to the e-mail");
 		await page.getByText("Share links").first().waitFor();
@@ -217,7 +232,7 @@ const steps: Record<string, () => Promise<void>> = {
 
 	async organization() {
 		const page = await newPage("alex@example.com");
-		await page.goto(`${BASE}/organizations/northlight-studio/members`);
+		await page.goto(`${BASE}/organizations/northlight-studio/settings/members`);
 		// a pending invitation and an enabled invite link, so the page doesn't look empty.
 		// Settle first: a reload of the fresh dev server would clear the field. On a retry the
 		// invitation is there already.
@@ -242,6 +257,11 @@ const steps: Record<string, () => Promise<void>> = {
 		const page = await newPage("alex@example.com");
 		await page.goto(`${BASE}/admin`);
 		await shot(page, "admin", { fullPage: true });
+		await page.goto(`${BASE}/admin/storage`);
+		await page.getByText("Total allocated").waitFor();
+		await shot(page, "admin-storage", { fullPage: true });
+		await page.goto(`${BASE}/admin/users`);
+		await shot(page, "admin-users", { fullPage: true });
 		await page.close();
 	},
 };

@@ -5,9 +5,13 @@ sidebar_position: 7
 
 # Organization
 
+Open **Settings** from the account menu at the top right (on a phone, the **☰** menu). The
+organization settings have two tabs, **General** and **Members**. Members and reviewers only see
+**Members**.
+
 ## Members
 
-**Members** in the header lists everyone in the organization with their role.
+**Members** lists everyone in the organization with their role.
 
 <Screenshot name="members" alt="The members page of an organization" />
 
@@ -22,13 +26,17 @@ sidebar_position: 7
 Only admins and owners can invite to the whole organization. Members invite people to single
 projects or timelines from the [share dialog](./sharing.md#share-a-project-or-timeline).
 
-## Settings
+## General
 
-Admins and owners see **Settings** in the header.
+The **General** tab is for admins and owners.
 
 <Screenshot name="organization-settings" alt="The organization settings" />
 
-Owners can rename the organization here. The **Danger zone** has **Delete organization**: type the
+Owners can rename the organization here.
+
+**Storage** shows how much space the organization's exports take up, with their streaming versions
+and images, and how much of its limit that is, if the server sets one. The tables break it down by
+project and by who uploaded it. See [Storage limits](../self-hosting/storage.md#storage-limits). The **Danger zone** has **Delete organization**: type the
 organization's name to confirm, then click **Delete forever**. This deletes all projects,
 timelines, exports, markers and videos of the organization and can't be undone.
 

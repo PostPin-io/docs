@@ -39,11 +39,19 @@ const electronBin = path.join(pluginDir, "node_modules/electron/dist/Electron.ap
 const browser = await chromium.launch();
 const ctx = await browser.newContext({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2 });
 const web = await ctx.newPage();
-await web.goto(`${BASE}/auth/login`);
-await web.getByLabel("Email").fill("jordan@example.com");
-await web.getByLabel("Password").fill(PASSWORD);
-await web.getByRole("button", { name: "Log in" }).click();
-await web.waitForURL(/\/dashboard/);
+// a fresh dev server may reload the login page while optimizing dependencies, so retry
+for (let attempt = 1; ; attempt++) {
+	await web.goto(`${BASE}/auth/login`);
+	await web.getByLabel("Email").fill("jordan@example.com");
+	await web.getByLabel("Password").fill(PASSWORD);
+	await web.getByRole("button", { name: "Log in" }).click();
+	try {
+		await web.waitForURL(/\/dashboard/, { timeout: 10_000 });
+		break;
+	} catch (e) {
+		if (attempt === 3) throw e;
+	}
+}
 
 const SLUGS: Record<string, string> = { Resolve: "resolve", "Pro Tools": "desktop", "Premiere Pro": "premiere" };
 for (const [host, slug] of Object.entries(SLUGS)) {

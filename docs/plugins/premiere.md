@@ -56,8 +56,15 @@ shows up as **PostPin for Premiere Pro** on the approval page and in your
 - **Render & Upload** exports the whole sequence as MP4 (H.264) at the sequence's resolution, with
   audio, and uploads it to PostPin. The file goes to a `PostPin` folder in your Movies folder
   (macOS) or Videos folder (Windows). The plugin also sends a snapshot of the sequence: the enabled
-  clips on enabled tracks and their source media. PostPin uses it to draw the timeline on the
-  [review screen](../guide/review.md#timeline).
+  clips on enabled tracks with their label colour, and their source media. PostPin uses it to draw
+  the timeline on the [review screen](../guide/review.md#timeline).
+- **Label colours:** Premiere's plugin API can't read clip labels, so the plugin exports the
+  sequence as Final Cut Pro XML to a temporary file on every upload and reads the labels from
+  there. Label names and colours come from Premiere's preferences, so renamed labels and custom
+  colours carry over. Premiere writes its preferences only when you close the Preferences dialog or
+  quit, so a label you changed since then shows its old colour until you do. If the preferences
+  can't be read, for example because there are several `Profile-*` folders, the plugin uses
+  Premiere's default label colours.
 - **Media Encoder:** by default the export runs in Adobe Media Encoder, which shows the progress in
   the panel. Turn off **Render with Media Encoder** in the panel's **☰** menu to export in
   Premiere itself. The panel then shows no progress until the file is done. Without Media Encoder
@@ -66,7 +73,7 @@ shows up as **PostPin for Premiere Pro** on the approval page and in your
   time a plugin exports a frame.
 - **Markers** sync with the sequence markers, see
   [Syncing markers](./index.md#syncing-markers). Pulled markers become comment markers in one of
-  Premiere's eight marker colours. Markers without a `#Category` line go into a category named after their colour, for
+  Premiere's eight marker colours, ranges with their length. Markers without a `#Category` line go into a category named after their colour, for
   example "Premiere Pro Green". A sync shows up in Premiere's undo history as
   "PostPin: Sync markers".
 - There are no render presets and no render to disk settings.

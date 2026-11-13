@@ -25,11 +25,13 @@ function snapshot(name: string) {
 		durationFrameCount: SHOT,
 		sourceStartFrameIndex: 0,
 		speed: 1,
+		// clip colours as the Resolve plugin sends them (CLIP_PALETTE in plugin-resolve)
+		color: null as { name: string; hex: string } | null,
 		metadata: {},
 	}));
 	const span = (id: string, n: string, from: number, len: number) => ({
 		id, name: n, mediaId: null, startFrameIndex: START + from, durationFrameCount: len,
-		sourceStartFrameIndex: null, speed: 1, metadata: {},
+		sourceStartFrameIndex: null, speed: 1, color: { name: "Purple", hex: "#ab7bac" }, metadata: {},
 	});
 	return {
 		id: `resolve-${name}`,
@@ -38,7 +40,7 @@ function snapshot(name: string) {
 			{ id: "V2", type: "video", name: "V2 · Titles", clips: [span("v2-0", "Main Title", 2 * SHOT, 3 * FPS), span("v2-1", "End Card", 5 * SHOT + FPS, SHOT - FPS)] },
 			{ id: "V1", type: "video", name: "V1 · Picture", clips },
 			{ id: "A1", type: "audio", name: "A1 · Dialogue", clips: clips.map((c, i) => ({ ...c, id: `a1-${i}` })) },
-			{ id: "A2", type: "audio", name: "A2 · Music", clips: [span("a2-0", "Score_Harbor_v3.wav", 0, SHOT_COUNT * SHOT)] },
+			{ id: "A2", type: "audio", name: "A2 · Music", clips: [{ ...span("a2-0", "Score_Harbor_v3.wav", 0, SHOT_COUNT * SHOT), color: { name: "Teal", hex: "#00a7a4" } }] },
 		],
 		mediaItems: shots.map((clip, i) => ({
 			id: `m-${i}`, name: `${clip}.mov`, type: "video", filePath: `/Volumes/Media/HarborLights/${clip}.mov`,

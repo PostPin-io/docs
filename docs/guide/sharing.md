@@ -27,8 +27,9 @@ organization always keeps at least one owner.
 
 ## Share a project or timeline
 
-Open the project or timeline and click the **Share** button in the header. The dialog shows who has
-access and lets you add more people.
+Click the share icon next to the project's or timeline's name in the
+[header](./projects.md#navigation), or choose **Share project** or **Share timeline** in the
+**⋯** menu of its card. The dialog shows who has access and lets you add more people.
 
 <Screenshot name="share-project" alt="The share dialog of a project" />
 
@@ -45,8 +46,9 @@ access and lets you add more people.
 A share link lets anyone watch one export and leave markers, without an account. Members, admins
 and owners can create them.
 
-Open the export and click the **Share** button in the header. The dialog lists the export's share
-links. Click **+** (**New link**) to create one. If the export has no links yet, the form for the
+Open the export and click **Share links** (the link icon) next to its name in the
+[header](./projects.md#navigation). The export's **⋯** menu in the export list and **Share links
+of latest export** in the timeline's menu open the same dialog. It lists the export's share links. Click **+** (**New link**) to create one. If the export has no links yet, the form for the
 first one is already open.
 
 <Screenshot name="share-link-new" alt="Creating a share link" />
@@ -58,28 +60,29 @@ first one is already open.
   send the link.
 - **Expiry:** 24 hours, 7 days (the default) or 30 days. Every link expires.
 
-Click the check mark to create the link. The **Share** button in the header then shows the number
-of active links of the export.
+Click the check mark to create the link. The link icon in the header then shows the number of
+active links of the export.
 
 <Screenshot name="share-links" alt="The share links of an export" />
 
 Each link in the list shows its panels, the first line of its note and the time left. Its buttons:
 
+- **Edit** (the gear) changes the panels and the note. The expiry keeps its time left unless you
+  pick a new one, which then counts from now. Expired links stay in the list, greyed out, and
+  editing them with a new expiry makes them work again.
 - **Details** shows the visits and guests, when it was last opened, the exact expiry, who created
   it and the whole note.
 - **Copy link** copies the link, **QR code** shows it as a QR code you can download.
 - **Send by e-mail** sends the link to up to 20 addresses at once. Each recipient gets their own
   e-mail with the link, the note and the expiry date. Replies go to your address. You can send a
   link to at most 50 people a day.
-- **Edit** (the gear) changes the panels and the note. The expiry keeps its time left unless you
-  pick a new one, which then counts from now. Expired links stay in the list, greyed out, and
-  editing them with a new expiry makes them work again.
 - **Delete** (the bin) asks for a second click and ends the link at once, also for guests who
   have it open.
 
 ### What guests see
 
-A guest who opens the link enters their name first, so the team knows who left which marker.
+If the link shows the markers, a guest who opens it enters their name first, so the team knows who
+left which marker. Links that only show the video need no name.
 
 <Screenshot name="share-join" alt="A guest enters their name" />
 
@@ -88,10 +91,11 @@ Then they get the review screen with the panels the link shows and the note over
 
 <Screenshot name="share-view" alt="The review screen of a share link" />
 
-- Guests add markers with <kbd>M</kbd> like the team, and edit, move and delete their own markers.
-  They only see their own markers, not the team's or other guests'.
-- Their markers go into a category named "Gast" that PostPin creates in the project. They can't
-  pick a category, reply to markers or copy and paste markers.
+- Guests add markers with <kbd>M</kbd> or **Add marker at playhead** like the team, and edit,
+  move and delete their own markers, ranges included. They only see their own markers, not the
+  team's or other guests'.
+- Their markers go into the project's "Guest" category. They can't pick a category, reply to
+  markers or copy and paste markers.
 - The team sees guest markers on the export with the guest's name and a "Gast" badge.
 - The browser remembers the guest, so opening the link again continues with the same name. A link
   accepts at most 500 guests.
@@ -100,9 +104,8 @@ When a link has expired or was deleted, guests see "This link is no longer activ
 
 ## Invite to the whole organization
 
-Click **Share** outside a project, for example on the dashboard, to invite someone to the whole
-organization. You can also invite from the [Members](./organization.md#members) page. Only admins and
-owners can invite to the whole organization.
+Admins and owners invite people to the whole organization on the
+[Members](./organization.md#members) page.
 
 ## Accept an invitation
 

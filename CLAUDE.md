@@ -10,8 +10,8 @@ lives in `source.json`. Never document features that only exist on feature branc
 
 - `docs/guide/`: web app user guide
 - `docs/plugins/`: DaVinci Resolve plugin, Premiere Pro plugin and PostPin Desktop (Pro Tools)
-- `docs/self-hosting/`: self-hosting guide. It used to be `docs/self-hosting.md` in the main
-  repo; this site is now its home.
+- `docs/self-hosting/`: self-hosting guide. The main repo has no docs of its own any more; this
+  site is the only home of user-facing documentation.
 - `docs/api/index.md`: hand-written API intro. `docs/api/reference/` is generated from
   `openapi/swagger.json` by `docusaurus gen-api-docs all` (runs automatically before
   `start`/`build`, gitignored).
@@ -68,7 +68,4 @@ lives in `source.json`. Never document features that only exist on feature branc
   (e.g. Windows ARM64, already listed) can be added before they ship. When the release workflow
   adds or renames assets, or a new plugin appears, update `products.ts`. Host apps get their
   colour app icon from `static/img/hosts/` (copies of `packages/plugin-core/src/ui/logos/` in the
-  main repo), platforms a monochrome icon from `icons.tsx`. The Premiere `.ccx` has no release yet,
-  so its download stays hidden until one ships.
-- **Main repo cleanup:** `docs/self-hosting.md` still exists in the main repo. Once this site is
-  live, delete it there and point the README at https://docs.postpin.io/self-hosting.
+  main repo), platforms a monochrome icon from `icons.tsx`.

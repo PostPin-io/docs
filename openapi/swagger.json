@@ -193,6 +193,10 @@
 						"type": "string",
 						"format": "date-time"
 					},
+					"duration": {
+						"type": "number",
+						"format": "double"
+					},
 					"frame": {
 						"type": "number",
 						"format": "double"
@@ -216,6 +220,7 @@
 					"exportId",
 					"updatedAt",
 					"createdAt",
+					"duration",
 					"frame",
 					"description",
 					"id",
@@ -255,6 +260,10 @@
 						"type": "string",
 						"format": "date-time"
 					},
+					"duration": {
+						"type": "number",
+						"format": "double"
+					},
 					"frame": {
 						"type": "number",
 						"format": "double"
@@ -284,6 +293,7 @@
 					"exportId",
 					"updatedAt",
 					"createdAt",
+					"duration",
 					"frame",
 					"description",
 					"id",
@@ -307,6 +317,12 @@
 					},
 					"categoryId": {
 						"type": "string"
+					},
+					"duration": {
+						"type": "integer",
+						"format": "int32",
+						"description": "length in frames, 0 = point marker. Left out: new markers get 0, existing ones keep theirs.",
+						"minimum": 0
 					},
 					"frame": {
 						"type": "number",
@@ -406,8 +422,33 @@
 				"type": "object",
 				"description": "Construct a type with a set of properties K of type T"
 			},
+			"ClipColor": {
+				"properties": {
+					"hex": {
+						"type": "string",
+						"description": "sRGB hex, resolved by the plugin"
+					},
+					"name": {
+						"type": "string",
+						"description": "host name of the color, e.g. \"Teal\" (Resolve) or \"Mango\" (Premiere)"
+					}
+				},
+				"required": [
+					"hex",
+					"name"
+				],
+				"type": "object"
+			},
 			"Clip": {
 				"properties": {
+					"color": {
+						"allOf": [
+							{
+								"$ref": "#/components/schemas/ClipColor"
+							}
+						],
+						"nullable": true
+					},
 					"metadata": {
 						"$ref": "#/components/schemas/Record_string.unknown_"
 					},
@@ -443,6 +484,7 @@
 					}
 				},
 				"required": [
+					"color",
 					"metadata",
 					"speed",
 					"sourceStartFrameIndex",
@@ -1200,6 +1242,9 @@
 					},
 					"409": {
 						"description": "Export media was already uploaded"
+					},
+					"413": {
+						"description": "File too large or storage quota exceeded"
 					}
 				},
 				"description": "Starts a multipart upload of the export's original file. PUT each part's bytes to its URL,\nkeep the ETag response headers and pass them to complete-upload.",

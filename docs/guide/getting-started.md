@@ -12,7 +12,8 @@ markers) belongs to an organization.
 
 Open your PostPin server in the browser and click **Create an account** on the login page. Enter
 your first and last name, your email address and a password, then click **Sign Up**. You are signed
-in right away.
+in right away. If the server's operator has set up terms of service, a data processing agreement or
+a privacy policy, the sign-up page links them, and the footer links the imprint and privacy policy.
 
 <Screenshot name="signup" alt="The sign-up page" />
 
@@ -36,7 +37,7 @@ Right after signing up, the dashboard asks you to set up an organization. Click
 <Screenshot name="dashboard-no-organization" alt="The dashboard of a new account without an organization" />
 
 You can be a member of several organizations. Switch between them in the account menu at the top
-right, under **Organizations**.
+right, under **Organizations**. On a phone, the account menu is the **☰** button at the top left.
 
 ## Next steps
 

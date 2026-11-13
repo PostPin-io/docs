@@ -3,8 +3,16 @@
 		"url": "/admin",
 		"page": true
 	},
+	"admin-storage": {
+		"url": "/admin/storage",
+		"page": true
+	},
+	"admin-users": {
+		"url": "/admin/users",
+		"page": true
+	},
 	"categories": {
-		"url": "/projects/cmwax1v320000w39w11isf6ti/timelines/cmwax1v3s0003w39wipqc7164/exports/cmwax20dx000fw39w1spob4p5",
+		"url": "/projects/cmwf3nnc60000qb9woic5xcsg/timelines/cmwf3nnd00006qb9wi0xl0sww/exports/cmwf3nsxc000iqb9wvy82y5uk",
 		"page": false
 	},
 	"dashboard": {
@@ -16,11 +24,11 @@
 		"page": true
 	},
 	"device-approve": {
-		"url": "/auth/device?user_code=EQYGB5GR",
+		"url": "/auth/device?user_code=PQCHEMPX",
 		"page": true
 	},
 	"exports": {
-		"url": "/projects/cmwax1v320000w39w11isf6ti/timelines/cmwax1v3s0003w39wipqc7164/exports",
+		"url": "/projects/cmwf3nnc60000qb9woic5xcsg/timelines/cmwf3nnd00006qb9wi0xl0sww/exports",
 		"page": true
 	},
 	"login": {
@@ -28,7 +36,7 @@
 		"page": true
 	},
 	"members": {
-		"url": "/organizations/northlight-studio/members",
+		"url": "/organizations/northlight-studio/settings/members",
 		"page": true
 	},
 	"new-organization": {
@@ -44,43 +52,47 @@
 		"page": true
 	},
 	"project": {
-		"url": "/projects/cmwax1v320000w39w11isf6ti",
+		"url": "/projects/cmwf3nnc60000qb9woic5xcsg",
 		"page": true
 	},
 	"review": {
-		"url": "/projects/cmwax1v320000w39w11isf6ti/timelines/cmwax1v3s0003w39wipqc7164/exports/cmwax20dx000fw39w1spob4p5",
+		"url": "/projects/cmwf3nnc60000qb9woic5xcsg/timelines/cmwf3nnd00006qb9wi0xl0sww/exports/cmwf3nsxc000iqb9wvy82y5uk",
 		"page": true
 	},
 	"review-marker": {
-		"url": "/projects/cmwax1v320000w39w11isf6ti/timelines/cmwax1v3s0003w39wipqc7164/exports/cmwax20dx000fw39w1spob4p5",
+		"url": "/projects/cmwf3nnc60000qb9woic5xcsg/timelines/cmwf3nnd00006qb9wi0xl0sww/exports/cmwf3nsxc000iqb9wvy82y5uk",
 		"page": true
 	},
 	"review-responses": {
-		"url": "/projects/cmwax1v320000w39w11isf6ti/timelines/cmwax1v3s0003w39wipqc7164/exports/cmwax20dx000fw39w1spob4p5",
+		"url": "/projects/cmwf3nnc60000qb9woic5xcsg/timelines/cmwf3nnd00006qb9wi0xl0sww/exports/cmwf3nsxc000iqb9wvy82y5uk",
 		"page": true
 	},
 	"share-join": {
-		"url": "/s/5ggWVrZIphn2WlQEOZQVf1pkS4xMX6wgJlhArO9s1H4",
+		"url": "/s/kGF-9Oy_rsU7uHRa76ggZZqhJbMF5dJ8Ny2WyAxnBkI",
 		"page": true
 	},
 	"share-link-new": {
-		"url": "/projects/cmwax1v320000w39w11isf6ti/timelines/cmwax1v3s0003w39wipqc7164/exports/cmwax20dx000fw39w1spob4p5",
+		"url": "/projects/cmwf3nnc60000qb9woic5xcsg/timelines/cmwf3nnd00006qb9wi0xl0sww/exports/cmwf3nsxc000iqb9wvy82y5uk",
 		"page": false
 	},
 	"share-links": {
-		"url": "/projects/cmwax1v320000w39w11isf6ti/timelines/cmwax1v3s0003w39wipqc7164/exports/cmwax20dx000fw39w1spob4p5",
+		"url": "/projects/cmwf3nnc60000qb9woic5xcsg/timelines/cmwf3nnd00006qb9wi0xl0sww/exports/cmwf3nsxc000iqb9wvy82y5uk",
 		"page": false
 	},
 	"share-project": {
-		"url": "/projects/cmwax1v320000w39w11isf6ti",
+		"url": "/projects/cmwf3nnc60000qb9woic5xcsg",
 		"page": false
 	},
 	"share-view": {
-		"url": "/s/5ggWVrZIphn2WlQEOZQVf1pkS4xMX6wgJlhArO9s1H4",
+		"url": "/s/kGF-9Oy_rsU7uHRa76ggZZqhJbMF5dJ8Ny2WyAxnBkI",
 		"page": true
 	},
 	"signup": {
 		"url": "/auth/signup",
 		"page": true
+	},
+	"upload": {
+		"url": "/projects/cmwf3nnc60000qb9woic5xcsg/timelines/cmwf3nnd00006qb9wi0xl0sww/exports",
+		"page": false
 	}
 }

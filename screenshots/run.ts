@@ -36,6 +36,8 @@ if (!args.includes("--skip-prepare")) {
 	fs.copyFileSync(path.join(DOCS_ROOT, "screenshots/env.screenshots"), path.join(src, ".env"));
 	run("pnpm", ["install", "--frozen-lockfile"]);
 	run("pnpm", ["run", "sync-env"]);
+	// `prisma generate --sql` checks the typed queries against a migrated database
+	resetDatabase(src);
 	run("pnpm", ["--filter", "@postpin-io/shared", "run", "db:generate"]);
 	run("pnpm", ["--filter", "@postpin-io/postpin", "run", "generate:api"]);
 	run("pnpm", ["--filter", "@postpin-io/postpin", "run", "build:api-client"]);

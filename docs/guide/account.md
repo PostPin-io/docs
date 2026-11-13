@@ -5,7 +5,8 @@ sidebar_position: 8
 
 # Your account
 
-Open **Profile** from the account menu at the top right.
+Open **Profile** from the account menu at the top right (on a phone, the **☰** menu at the top
+left).
 
 <Screenshot name="profile" alt="The profile page" />
 
@@ -39,3 +40,20 @@ session, for example on a computer you no longer use.
 
 The organizations you belong to, with your role. **Leave** removes you from one.
 **Create new organization** creates another one with you as the owner.
+
+## Storage
+
+How much space the exports you uploaded take up, with their streaming versions and images, in all
+organizations together. If the server limits storage per user, the bar shows how much of your
+limit is used. The table lists each organization you're a member of with **Your uploads** and
+**You can still upload**, which can be less than your own limit because the organization has a
+limit too. See [Storage limits](../self-hosting/storage.md#storage-limits).
+
+## Delete account
+
+**Delete account…** deletes your account, your sessions and your memberships right away. Confirm
+with your password. Markers, replies and exports you created stay with their organization and show
+"Deleted User" as their author.
+
+If you are the last owner of an organization, the button is disabled. Make someone else owner, or
+delete the organization, first.
