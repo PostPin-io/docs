@@ -32,8 +32,9 @@ lives in `source.json`. Never document features that only exist on feature branc
   for the docs' theme and frames whole pages in a browser window. Plugin screenshots are plain
   Markdown images (the plugins are always dark).
 - `static/img/social.png`: link preview image (og:image, 1200×630), rendered by
-  `screenshots/social.ts` from the dark review screenshot. `pnpm screenshots` regenerates it;
-  `pnpm social-image` renders only this one.
+  `screenshots/social.ts` from the dark review screenshot. The same script renders
+  `static/img/social-app.png` for the landing page on postpin.io. `pnpm screenshots` regenerates
+  both; `pnpm social-image` renders only these two.
 - `screenshots/`: Playwright script, demo seed and the throwaway backing services
   (`compose.yml`, own project name and ports, nothing persisted).
 
