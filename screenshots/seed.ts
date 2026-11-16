@@ -165,19 +165,19 @@ export async function seed() {
 		api("PUT", `/api/v1/projects/${harbor}/timelines/${trailer}/exports/${exp}/markers`,
 			list.map(([name, description, frame, cat]) => ({ name, description, frame: START + frame, categoryId: cats[cat] })), s.token);
 
-	// timecodes fit the six 5-second shots of the demo render (see clips.json)
+	// timecodes fit the six 5-second shots of the demo render (see photos/photos.json)
 	await markers(sam, trailerV3, [
 		["Hold on the title a beat longer", "The main title disappears before the music hit. Can we hold it until the downbeat?", tc(0, 0, 11, 6), "Client"],
 		["Logo too small", "On phones the logo at the end is hard to read. Maybe 20% bigger?", tc(0, 0, 27, 12), "Client"],
 	]);
 	await markers(jordan, trailerV3, [
 		["Jump cut", "Two frames of the previous take flash before the cut. Trim the head of HL_020.", tc(0, 0, 5, 2), "Edit"],
-		["Grade doesn't match", "The river shot is noticeably cooler than the forest before it. Match to HL_020.", tc(0, 0, 13, 0), "Color"],
+		["Grade doesn't match", "The heron shot is noticeably cooler than the misty lake before it. Match to HL_020.", tc(0, 0, 13, 0), "Color"],
 		["Music dips", "Score drops out for ~10 frames, looks like a gap between two music edits.", tc(0, 0, 17, 15), "Sound"],
-		["Rainbow flickers", "The rainbow in the waterfall shot flickers after the stabilization. Check the VFX pass.", tc(0, 0, 18, 20), "VFX"],
+		["Twig paint-out wobbles", "The paint-out of the twig in front of the duck wobbles after the stabilization. Check the VFX pass.", tc(0, 0, 18, 20), "VFX"],
 	]);
 	await markers(alex, trailerV3, [
-		["Room tone", "Add room tone under the cut, it goes completely silent here.", tc(0, 0, 24, 4), "Sound"],
+		["Room tone", "Add city atmo under the street shot, it goes completely silent here.", tc(0, 0, 24, 4), "Sound"],
 	]);
 	// a few markers on the older version, so the version history looks used
 	await markers(sam, trailerV2, [["Pacing in the middle", "The middle section drags, can we lose a shot?", tc(0, 0, 15, 0), "Client"]]);

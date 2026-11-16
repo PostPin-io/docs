@@ -26,11 +26,10 @@ for the services), so it doesn't touch a running PostPin dev setup. `--keep` lea
 running afterwards. The plugin screenshots run the real plugin UI in Electron with a fake DaVinci
 Resolve / Pro Tools / Premiere Pro behind it (`screenshots/plugin/harness.ts`).
 
-The demo video is cut from the Pixabay nature clips pinned in `screenshots/clips.json`. The first
-run downloads them into `~/Library/Caches/postpin-docs/pixabay` and needs a free
-[Pixabay API key](https://pixabay.com/api/docs/) in `PIXABAY_API_KEY`. The clips are not committed,
-because the Pixabay license doesn't allow redistributing them on their own. Without key and cache
-the run falls back to generated test patterns.
+The demo video is rendered from the six photos in `screenshots/photos/` (listed with credit and
+license in `photos.json`): each becomes a 5-second shot with a slow zoom or pan. They are our own
+photos and committed, so every run renders the same video. If a photo is missing, the run falls
+back to generated test patterns.
 
 To keep the run short, the worker gets `screenshots/bin/ffmpeg` first in its `PATH`. It runs the
 real ffmpeg with x264's `ultrafast` preset, so transcoding takes seconds instead of minutes.
