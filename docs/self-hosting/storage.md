@@ -1,9 +1,9 @@
 ---
-title: Storage & Uploads
+title: Storage and uploads
 sidebar_position: 5
 ---
 
-# Storage & Uploads
+# Storage and uploads
 
 Browsers and the editor plugins upload and download media **directly from S3**, not through the
 PostPin app. The app only hands out short-lived presigned URLs. Your S3 storage therefore has to be

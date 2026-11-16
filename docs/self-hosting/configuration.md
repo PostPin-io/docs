@@ -17,6 +17,8 @@ These only configure `compose.yml` itself:
 | Variable          | Default  | Description                                                                                   |
 | ----------------- | -------- | --------------------------------------------------------------------------------------------- |
 | `POSTPIN_VERSION` | `latest` | Image tag to run, e.g. `1.4.2`. `latest` follows every release, including new major versions. |
+| `POSTPIN_APP_IMAGE` | `ghcr.io/postpin-io/postpin` | Image of the app, without the tag. Only change it to run your own build. |
+| `POSTPIN_WORKER_IMAGE` | `ghcr.io/postpin-io/postpin-worker` | Image of the worker, without the tag. Only change it to run your own build. |
 | `APP_PORT`        | `3000`   | Port on localhost the app listens on, for your reverse proxy.                                 |
 | `S3_PORT`         | `9000`   | Port on localhost the bundled rustfs listens on, for your reverse proxy.                      |
 
@@ -57,7 +59,7 @@ Only `http://` and `https://` URLs are accepted.
 
 ### Storage
 
-See [Storage & Uploads](./storage.md) for how the two endpoints work together.
+See [Storage and uploads](./storage.md) for how the two endpoints work together.
 
 | Variable              | Default                                     | Description                                                                                                                            |
 | --------------------- | ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
@@ -80,6 +82,21 @@ See [Storage limits](./storage.md#storage-limits) for how quotas are counted and
 | `STORAGE_CAPACITY`           | (empty)                           | Total storage shown in the admin storage chart. Takes precedence over `STORAGE_DISK_PATH`. Set it to your rustfs bucket quota.       |
 | `STORAGE_DISK_PATH`          | _set by compose.yml_ (`/storage`) | A path on the storage disk; the chart shows its size and free space. Leave both this and `STORAGE_CAPACITY` empty to hide the chart. |
 | `UPLOAD_MAX_FILE_SIZE`       | (empty, no limit)                 | Largest file one upload may have, e.g. `20 GB`, for the editor plugins and the web upload alike. Bigger uploads get HTTP 413.        |
+
+### Transcoding
+
+| Variable         | Default  | Description                                                                                                                                                                                                                                                                |
+| ---------------- | -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `TRANSCODE_MODE` | `plugin` | Who encodes the streaming versions of an upload. `plugin`: the editor plugins encode them on the editor's computer and upload them with the render; the worker checks them and only encodes when a plugin can't. This takes load off your server. `server`: the worker always encodes them. |
+
+The streaming versions are 1080p, 720p and 480p, plus 2160p for uploads in 4K. Web uploads are
+always encoded by the worker.
+
+### Screenings
+
+| Variable               | Default | Description                                                                                                                          |
+| ---------------------- | ------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `SCREENING_MAX_GUESTS` | `100`   | Highest guest limit a presenter can set for a [screening](../guide/screening.md), from `1` to `500`. The dialog preselects 30, or this value if it is lower. |
 
 ### Queue
 

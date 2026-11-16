@@ -21,7 +21,7 @@ const TAGS = [
 	[/\/timelines/, "Timelines"],
 	[/\/categories/, "Categories"],
 	[/^\/v1\/projects/, "Projects"],
-	[/^\/v1\/(openapi\.json|docs)$/, "Meta"],
+	[/^\/v1\/(openapi\.json|docs|config)$/, "Meta"],
 ];
 const used = new Set();
 for (const [p, ops] of Object.entries(spec.paths)) {

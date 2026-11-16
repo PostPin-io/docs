@@ -9,11 +9,16 @@ The plugin is a UXP panel for Adobe Premiere Pro. It docks into Premiere like an
 has the same window as the [Resolve plugin](./resolve.md). In a narrow panel the parts are stacked:
 PostPin on top, the buttons in the middle, Premiere at the bottom.
 
-![The PostPin panel in Premiere Pro](/img/screenshots/plugins/premiere-main.png)
+{/* a docked panel is tall and narrow: shown at its real width instead of the full column */}
+<img
+  src="/img/screenshots/plugins/premiere-main.png"
+  alt="The PostPin panel in Premiere Pro"
+  width="340"
+/>
 
 ## Requirements
 
-- Premiere Pro 26.0 or newer.
+- Premiere Pro 26.2 or newer.
 - macOS or Windows. The plugin is one file for both.
 
 ## Install
@@ -38,10 +43,15 @@ pnpm install
 pnpm --filter @postpin-io/premiere-plugin build
 ```
 
+`build` also compiles the native addon that runs ffmpeg for the
+[local encoding](./index.md#render-and-upload). It runs on macOS and needs Rust with the targets
+`aarch64-apple-darwin` and `x86_64-apple-darwin`. On Windows,
+`packages/plugin-premiere/native/build-win.ps1` builds the addon.
+
 To run it, load `packages/plugin-premiere/dist/manifest.json` in Adobe's UXP Developer Tool.
 `pnpm --filter @postpin-io/premiere-plugin dev` rebuilds on every change.
-`pnpm --filter @postpin-io/premiere-plugin dist` packages the build as
-`release/PostPin-Premiere-<version>.ccx`.
+`pnpm --filter @postpin-io/premiere-plugin dist` downloads the bundled ffmpeg for macOS and
+Windows and packages the build as `release/PostPin-Premiere-<version>.ccx`.
 
 </details>
 

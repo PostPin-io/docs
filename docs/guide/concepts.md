@@ -40,9 +40,13 @@ export, so a timeline's exports are its version history. Older exports keep thei
 Exports in PostPin are always uploads. PostPin does not export review notes to files.
 To get notes into your editor, pull them with the [plugin](../plugins/index.md#syncing-markers).
 
-When an upload arrives, PostPin processes it in the background. It creates streaming versions in
-1080p, 720p and 480p, a thumbnail, preview images for scrubbing and one image per shot. The player
-starts with the original file and switches to streaming once the streaming versions are ready.
+When an upload arrives, PostPin processes it in the background. It creates a thumbnail, preview
+images for scrubbing, one image per shot and streaming versions in 1080p, 720p and 480p, plus 2160p
+for uploads in 4K. An upload doesn't get streaming versions larger than itself. By default,
+the [plugins](../plugins/index.md#render-and-upload) encode the streaming versions on your computer
+while the render uploads. The server checks them, and encodes them itself if a plugin can't or if
+it is [set up](../self-hosting/configuration.md#transcoding) to. The player starts with the original file and switches to streaming once the
+streaming versions are ready.
 
 PostPin also saves a snapshot of the editor's timeline with every export: tracks, clips with their
 colours, frame rate and start timecode. The review screen uses it to draw the timeline under the
@@ -59,5 +63,7 @@ absolute timeline frames, so a marker at `01:00:10:00` lands at `01:00:10:00` in
 ## Categories
 
 Categories belong to a project and give each marker a colour, for example "Edit", "Color", "Sound"
-or "Client". The plugins use the colour for the marker in your editor. Every project has a "Guest"
-category for the markers of [share link](./sharing.md#share-links) guests.
+or "Client Feedback". The plugins use the colour for the marker in your editor. New projects start
+with a set of common categories, and [presets](./review.md#category-presets) add more in one go.
+The markers of [share link](./sharing.md#share-links) guests go into a "Guest" category, those of
+a [screening](./screening.md) into a category named after its date.

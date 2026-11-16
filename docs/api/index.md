@@ -31,7 +31,7 @@ and password:
 ```sh
 curl -s -X POST https://postpin.example.com/api/auth/sign-in/email \
   -H 'Content-Type: application/json' \
-  -d '{"email": "you@example.com", "password": "…"}' \
+  -d '{"email": "you@example.com", "password": "YOUR_PASSWORD"}' \
   | jq -r .token
 ```
 
@@ -48,13 +48,13 @@ parts, not through the API.
    `POST /api/v1/projects/{projectId}/timelines/{timelineId}/exports` with
    `{"nleProjectId": null, "nleTimelineId": null}`. The two IDs link the export to a project and
    timeline in an editor. Pass `null` if there is none.
-2. **Start the upload:** `POST …/exports/{exportId}/init-upload` with `{"fileSize": <bytes>}`.
+2. **Start the upload:** `POST /api/v1/projects/{projectId}/timelines/{timelineId}/exports/{exportId}/init-upload` with `{"fileSize": <bytes>}`.
    Announce the exact size: PostPin checks it against `UPLOAD_MAX_FILE_SIZE` and the
    [storage quotas](../self-hosting/storage.md#storage-limits) right away and answers with 413 if
    it doesn't fit. The response has a `partSize` and one presigned URL per part.
 3. **Upload the parts:** `PUT` each part's bytes to its URL and keep the `ETag` header of each
    response. The URLs are valid for 24 hours.
-4. **Finish:** `POST …/exports/{exportId}/complete-upload` with the `uploadId`, the list of
+4. **Finish:** `POST /api/v1/projects/{projectId}/timelines/{timelineId}/exports/{exportId}/complete-upload` with the `uploadId`, the list of
    `{partNumber, etag}` and a `timelineSnapshot`. PostPin then starts processing the file. If the
    parts add up to more than the announced size, the call fails with 413 and you have to start
    over.
@@ -68,13 +68,26 @@ nothing else. Every clip needs a `color`, `null` if it has none. See the `Timeli
 
 :::
 
-`POST …/exports/{exportId}/abort-upload` cancels an upload that you won't finish.
+`POST /api/v1/projects/{projectId}/timelines/{timelineId}/exports/{exportId}/abort-upload` cancels an upload that you won't finish.
+
+The plugins also upload the streaming versions they encoded, through `proxies` in `init-upload` and
+`complete-upload`, or through
+`POST /api/v1/projects/{projectId}/timelines/{timelineId}/exports/{exportId}/init-proxy-uploads`
+while the render is still uploading. You can leave them out: the server then encodes the streaming
+versions itself. `complete-upload` answers with `transcodedBy`, `plugin` or `server`.
+
+## API version
+
+`GET /api/v1/config` returns the server's API version (`apiVersion`), its release
+(`serverRelease`) and the [transcoding mode](../self-hosting/configuration.md#transcoding). The
+plugins send their API version in the `X-PostPin-Api-Version` header, and the API answers with 426
+if it differs from the server's. Requests without the header aren't checked.
 
 ## Markers
 
-`GET …/exports/{exportId}/markers` returns the markers of an export with their replies.
+`GET /api/v1/projects/{projectId}/timelines/{timelineId}/exports/{exportId}/markers` returns the markers of an export with their replies.
 
-`PUT …/exports/{exportId}/markers` adds or updates up to 2000 markers at once. Each marker needs a
+`PUT /api/v1/projects/{projectId}/timelines/{timelineId}/exports/{exportId}/markers` adds or updates up to 2000 markers at once. Each marker needs a
 `name`, a `frame` and a `categoryId`. `duration` (in frames) makes it a range. New markers without
 one are point markers (`0`), existing ones keep theirs. To update existing markers, pass their PostPin `id`, or an
 `nleId` that you chose yourself. A marker with an `nleId` that PostPin already knows is updated,
@@ -84,8 +97,9 @@ Marker frames are absolute timeline frames. At 24 fps, a timeline that starts at
 begins at frame 86400.
 
 Categories come from `GET /api/v1/projects/{projectId}/categories`. `PUT` on the same path
-creates one from `{"name", "color"}`, with the colour as `#RRGGBB`. Every project starts with a
-"Guest" category for the markers of [share link](../guide/sharing.md#share-links) guests.
+creates one from `{"name", "color"}`, with the colour as `#RRGGBB`. The markers of
+[share link](../guide/sharing.md#share-links) guests go into a "Guest" category, which PostPin
+creates with the first share link of a project.
 
 ## What the API can't do yet
 

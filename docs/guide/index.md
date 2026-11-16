@@ -30,6 +30,10 @@ those notes back into your timeline as markers.
 Without a plugin, you can also [upload a video file in the browser](./projects.md#upload-from-the-browser).
 PostPin then estimates the cuts from the picture. The [REST API](../api/index.md) uploads too.
 
+PostPin is open source under the MIT license. The code of the app, the worker and the plugins is in
+the [PostPin repository](https://github.com/PostPin-io/postpin). You can use the hosted PostPin
+server or [run your own](../self-hosting/index.md).
+
 ## Where to go next
 
 - New to PostPin? Start with [Getting started](./getting-started.md).

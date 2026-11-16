@@ -96,6 +96,12 @@
   text-decoration: none;
 }
 
+/* a button to a docs page instead of a file, e.g. the server's installation guide */
+.linkButton {
+  justify-content: center;
+  font-weight: 600;
+}
+
 /* the visitor's platform */
 .mine {
   border-color: var(--ifm-color-primary);

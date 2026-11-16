@@ -1,0 +1,12 @@
+{
+	"comment": "The six shots of the demo render, in timeline order (see demo-video.ts). Landscape JPEGs, at least 1920x1080, ideally 3840 px wide; anything that isn't 16:9 is cropped to the middle. Only photos we may redistribute: our own, or CC0 / public domain. Fill in credit and license for each. motion: in, out, left, right, up or down; empty for the default order. When the pictures change, update the marker texts in seed.ts that describe them.",
+	"shotSeconds": 5,
+	"photos": [
+		{ "file": "01.jpg", "name": "", "credit": "", "license": "", "motion": "in" },
+		{ "file": "02.jpg", "name": "", "credit": "", "license": "", "motion": "right" },
+		{ "file": "03.jpg", "name": "", "credit": "", "license": "", "motion": "out" },
+		{ "file": "04.jpg", "name": "", "credit": "", "license": "", "motion": "left" },
+		{ "file": "05.jpg", "name": "", "credit": "", "license": "", "motion": "in" },
+		{ "file": "06.jpg", "name": "", "credit": "", "license": "", "motion": "down" }
+	]
+}

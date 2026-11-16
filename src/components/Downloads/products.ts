@@ -31,6 +31,11 @@ export interface Product {
   icon: {name: IconName} | {src: string};
   guide: string;
   downloads: Download[];
+  /**
+   * Instead of download buttons: one button to a docs page, for products that aren't installed
+   * from a file, like the server. `release` finds the release whose version the row shows.
+   */
+  link?: {label: string; to: string; release: RegExp};
 }
 
 export interface Group {
@@ -88,10 +93,9 @@ export const GROUPS: Group[] = [
         description: 'Docker Compose setup for running PostPin yourself',
         icon: {name: 'docker'},
         guide: '/self-hosting/installation',
-        downloads: [
-          {os: 'linux', arch: '', label: 'compose.yml', pattern: /^compose\.yml$/},
-          {os: 'linux', arch: '', label: 'env.example', pattern: /^env\.example$/},
-        ],
+        // the setup script downloads compose.yml and env.example itself
+        downloads: [],
+        link: {label: 'Installation guide', to: '/self-hosting/installation', release: /^compose\.yml$/},
       },
     ],
   },

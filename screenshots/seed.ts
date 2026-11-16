@@ -60,7 +60,8 @@ function snapshot(name: string) {
 function demoVideo(shift: number) {
 	if (shift === 0) return VIDEO;
 	const out = path.join(WORK, `demo-${shift}.mp4`);
-	if (!fs.existsSync(out)) {
+	// rebuilt when the demo render is newer, e.g. after the photos changed
+	if (!fs.existsSync(out) || fs.statSync(out).mtimeMs < fs.statSync(VIDEO).mtimeMs) {
 		const t = shift * SHOT_SECONDS;
 		execFileSync("ffmpeg", ["-v", "error", "-y", "-i", VIDEO, "-filter_complex",
 			`[0:v]trim=start=${t},setpts=PTS-STARTPTS[a];[0:v]trim=end=${t},setpts=PTS-STARTPTS[b];[a][b]concat=n=2:v=1:a=0[v]`,
@@ -85,8 +86,8 @@ async function uploadExport(s: Session, projectId: string, timelineId: string, t
 				parts.push({ partNumber: part.partNumber, etag: res.headers.get("etag")! });
 				break;
 			} catch (e) {
-				if (attempt === 3) throw e;
-				await sleep(1000);
+				if (attempt === 6) throw e;
+				await sleep(1000 * attempt);
 			}
 		}
 	}
@@ -152,10 +153,13 @@ export async function seed() {
 	for (const p of [harbor, aurora])
 		sql(`INSERT INTO member_grant (id, "memberId", "projectId", "createdById") VALUES (gen_random_uuid()::text, ${q(jordanMember)}, ${q(p)}, ${q(alex.userId)})`);
 
-	// categories
+	// categories: a new project starts with the PostPin preset (Edit, Color, Sound, VFX, …), so
+	// reuse those and only add what is missing
 	const cats: Record<string, string> = {};
+	const existing = (await api("GET", `/api/v1/projects/${harbor}/categories`, undefined, alex.token)).data as { id: string; name: string }[];
+	for (const c of existing) cats[c.name] = c.id;
 	for (const [name, color] of [["Edit", "#3d7fff"], ["Color", "#f5b92f"], ["Sound", "#31b86a"], ["VFX", "#8a63d2"], ["Client", "#e8559a"]])
-		cats[name] = (await api("PUT", `/api/v1/projects/${harbor}/categories`, { name, color }, alex.token)).data.id;
+		cats[name] ??= (await api("PUT", `/api/v1/projects/${harbor}/categories`, { name, color }, alex.token)).data.id;
 
 	const markers = (s: Session, exp: string, list: [string, string, number, string][]) =>
 		api("PUT", `/api/v1/projects/${harbor}/timelines/${trailer}/exports/${exp}/markers`,

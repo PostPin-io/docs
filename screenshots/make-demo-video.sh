@@ -1,5 +1,5 @@
 #!/bin/sh
-# Fallback demo render when the Pixabay clips aren't available (see demo-video.ts): six 5-second "shots" with hard cuts,
+# Fallback demo render until the six photos are in screenshots/photos (see demo-video.ts): six 5-second "shots" with hard cuts,
 # 1920x1080, 24 fps, with a quiet tone as audio. Needs ffmpeg with the lavfi sources.
 set -eu
 out="${1:-screenshots/.work/demo.mp4}"

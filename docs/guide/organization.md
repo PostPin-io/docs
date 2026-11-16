@@ -1,6 +1,6 @@
 ---
 title: Organization
-sidebar_position: 7
+sidebar_position: 8
 ---
 
 # Organization
@@ -42,6 +42,6 @@ timelines, exports, markers and videos of the organization and can't be undone.
 
 ## Several organizations
 
-You can create more organizations from the dashboard or your [profile](./account.md#organizations),
-and be invited to others. The account menu at the top right lists them under **Organizations**.
+You can create more organizations from your [profile](./account.md#organizations), and be invited
+to others. The dashboard only offers **Create organization** while you aren't a member of any. The account menu at the top right lists them under **Organizations**.
 Click one to switch to it.

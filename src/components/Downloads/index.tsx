@@ -83,7 +83,9 @@ function ProductRow({product, releases, platform}: {product: Product; releases: 
     .map((d) => ({d, found: find(releases, d.pattern)}))
     .filter((x): x is {d: Download; found: Found} => !!x.found);
   // all downloads of a product normally come from the same release
-  const release = downloads[0]?.found.release;
+  const release = product.link
+    ? find(releases, product.link.release)?.release
+    : downloads[0]?.found.release;
 
   return (
     <div className={styles.product}>
@@ -101,12 +103,21 @@ function ProductRow({product, releases, platform}: {product: Product; releases: 
             ) : (
               'Not released yet'
             )}
-            {' · '}
-            <Link to={product.guide}>Install guide</Link>
+            {!product.link && (
+              <>
+                {' · '}
+                <Link to={product.guide}>Install guide</Link>
+              </>
+            )}
           </div>
         </div>
       </div>
       <div className={styles.buttons}>
+        {product.link && (
+          <Link to={product.link.to} className={clsx(styles.button, styles.linkButton)}>
+            {product.link.label}
+          </Link>
+        )}
         {downloads.map(({d, found}) => (
           <a
             key={d.pattern.source}

@@ -1,7 +1,7 @@
 {
 	"repository": "https://github.com/PostPin-io/postpin",
 	"branch": "main",
-	"commit": "9b12849100caa67ed3eea828d17ef8971e5ce711",
-	"commitSubject": "fix(badge): translate guest",
-	"syncedAt": "2026-11-13"
+	"commit": "7c7f3a79619a19d21519af41ca43a1b5acf6cfe4",
+	"commitSubject": "chore(license): add MIT",
+	"syncedAt": "2026-11-16"
 }

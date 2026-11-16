@@ -89,6 +89,22 @@ The upload goes straight to your server's storage, in four parallel parts. Every
 new [export](../guide/concepts.md#exports) of the timeline, so earlier versions and their markers
 stay as they are.
 
+The upload starts as soon as the render is done. While it runs, the plugin encodes the streaming
+versions (2160p for 4K timelines, 1080p, 720p and 480p) on your computer, with the ffmpeg it
+brings along, and uploads them with the render. A separate bar shows the encoding progress. This
+takes load off the server, and the review is ready sooner. If encoding fails, or the server is
+[set up](../self-hosting/configuration.md#transcoding) to encode itself, the plugin leaves the
+streaming versions out and the server encodes them.
+
+## Plugin and server versions
+
+The plugin checks whether it fits the version of your PostPin server before it renders. If it
+doesn't, it shows **Plugin update required** (the plugin is older than the server) or **Server
+update required** (the plugin is newer). **Download plugin for PostPin …** opens the download of
+the plugin that matches your server. In PostPin Desktop, **Update to …** installs a matching
+version instead, followed by **Restart to update**. **Try again** checks again, **Log out** logs
+you out, for example to switch to another server.
+
 ## Syncing markers
 
 **← Pull comments** writes the markers of the selected export into your timeline:

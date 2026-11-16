@@ -1,6 +1,6 @@
 ---
 title: Your account
-sidebar_position: 8
+sidebar_position: 9
 ---
 
 # Your account
@@ -53,7 +53,8 @@ limit too. See [Storage limits](../self-hosting/storage.md#storage-limits).
 
 **Delete account…** deletes your account, your sessions and your memberships right away. Confirm
 with your password. Markers, replies and exports you created stay with their organization and show
-"Deleted User" as their author.
+"Deleted User" as their author. PostPin then sends an email to your address that confirms the
+deletion.
 
 If you are the last owner of an organization, the button is disabled. Make someone else owner, or
 delete the organization, first.

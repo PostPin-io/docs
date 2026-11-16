@@ -13,9 +13,9 @@ someone outside the team, like a client, send a [share link](#share-links). It n
 
 | Role         | Can                                                                                                                                                                      |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Reviewer** | Watch exports, add markers and replies, edit and delete their own markers, add categories.                                                                                |
-| **Member**   | Everything a reviewer can, plus create, rename and delete projects, timelines and exports, upload, edit anyone's markers and categories, invite people, and create share links and edit or delete their own. |
-| **Admin**    | Everything a member can, plus change roles, remove members, revoke anyone's invitations and access, and edit or delete anyone's share links.                             |
+| **Reviewer** | Watch exports, add markers and replies, edit and delete their own markers, add categories and edit or delete the ones they added.                                          |
+| **Member**   | Everything a reviewer can, plus create, rename and delete projects, timelines and exports, upload, edit and delete anyone's markers and categories, save category presets and delete their own, invite people and change or revoke their own invitations, create share links and edit or delete their own, and run [screenings](./screening.md). |
+| **Admin**    | Everything a member can, plus change roles, remove members, revoke anyone's invitations and access, edit or delete anyone's share links, and delete anyone's category presets. |
 | **Owner**    | Everything an admin can, plus rename and delete the organization.                                                                                                        |
 
 Admins and owners see every project in the organization. Members and reviewers only see the
@@ -38,6 +38,7 @@ Click the share icon next to the project's or timeline's name in the
 - **Add member…** gives an existing member of the organization access.
 - **Invite people outside the organization** sends an email invitation with a role. The person
   joins your organization with that role and gets access to this project or timeline only.
+  Pending invitations are listed below it with **Resend** and **Revoke**.
 - **Invite links** are links per role that anyone can use to join. Turn a link on to use it, click
   **Copy** to share it and **Reset** to invalidate the old link.
 
@@ -65,13 +66,16 @@ active links of the export.
 
 <Screenshot name="share-links" alt="The share links of an export" />
 
-Each link in the list shows its panels, the first line of its note and the time left. Its buttons:
+Each link in the list shows its panels, the first line of its note and the time left.
+[Screening](./screening.md) links also have a projector icon. Its buttons:
 
-- **Edit** (the gear) changes the panels and the note. The expiry keeps its time left unless you
+- **Edit** (the gear) changes the panels and the note. A click on the panels icon opens the same
+  form. The expiry keeps its time left unless you
   pick a new one, which then counts from now. Expired links stay in the list, greyed out, and
   editing them with a new expiry makes them work again.
-- **Details** shows the visits and guests, when it was last opened, the exact expiry, who created
-  it and the whole note.
+- **Details** shows the link itself, the visits and guests, when it was last opened, the exact
+  expiry, who created it, the whole note, and the category its guests' markers go into. Screening
+  links also show their guest limit.
 - **Copy link** copies the link, **QR code** shows it as a QR code you can download.
 - **Send by e-mail** sends the link to up to 20 addresses at once. Each recipient gets their own
   e-mail with the link, the note and the expiry date. Replies go to your address. You can send a
@@ -94,11 +98,17 @@ Then they get the review screen with the panels the link shows and the note over
 - Guests add markers with <kbd>M</kbd> or **Add marker at playhead** like the team, and edit,
   move and delete their own markers, ranges included. They only see their own markers, not the
   team's or other guests'.
-- Their markers go into the project's "Guest" category. They can't pick a category, reply to
-  markers or copy and paste markers.
-- The team sees guest markers on the export with the guest's name and a "Guest" badge.
+- Their markers go into the link's category. They can't pick a category, reply to markers or
+  copy and paste markers.
+- The team sees guest markers on the export with the guest's name as the author.
 - The browser remembers the guest, so opening the link again continues with the same name. A link
-  accepts at most 500 guests.
+  accepts at most 500 guests, a screening link only as many as its guest limit.
+
+The category of a share link is the project's "Guest" category. PostPin creates it with the first
+link if the project doesn't have one. It is a normal category, so the team can rename it, change
+its colour or delete it. A link keeps its category when the category is renamed. If it is deleted, or for new
+links after a rename, PostPin creates a new "Guest" category. Screening links have a
+[category of their own](./screening.md#start-a-screening).
 
 When a link has expired or was deleted, guests see "This link is no longer active".
 

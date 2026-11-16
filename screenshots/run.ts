@@ -8,8 +8,8 @@
 // 5. web screenshots (web.ts), plugin screenshots (plugin.ts), link preview image (social.ts)
 // 6. stops everything it started, unless --keep
 //
-// Needs Docker, pnpm, ffmpeg/ffprobe. Set PIXABAY_API_KEY for the nature clips in clips.json (only
-// needed until they are cached, see demo-video.ts). The checkout should be a detached worktree at the commit
+// Needs Docker, pnpm, ffmpeg/ffprobe. The demo video is rendered from the photos in
+// screenshots/photos (see demo-video.ts). The checkout should be a detached worktree at the commit
 // in source.json; its .env is overwritten.
 import { execFileSync, spawn, type ChildProcess } from "node:child_process";
 import fs from "node:fs";

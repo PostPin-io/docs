@@ -53,9 +53,10 @@ async function newPage(email?: string) {
 
 const shot = webShot;
 
-/** Screenshot of a dialog (daisyUI modal) plus some padding. */
-async function shotDialog(page: Page, name: string) {
-	const box = page.locator(".modal-box:visible").first();
+/** Screenshot of a dialog (daisyUI modal) plus some padding; `top` for one opened over another. */
+async function shotDialog(page: Page, name: string, which: "first" | "top" = "first") {
+	const boxes = page.locator(".modal-box:visible");
+	const box = which === "top" ? boxes.last() : boxes.first();
 	await box.waitFor();
 	await sleep(300);
 	const pad = 24;
@@ -161,8 +162,15 @@ const steps: Record<string, () => Promise<void>> = {
 		// the marker with the longest thread
 		const thread = await newPage("alex@example.com");
 		await thread.goto(reviewUrl());
-		await thread.getByText("Hold on the title a beat longer").first().click();
-		await thread.getByRole("button", { name: /Respond/ }).first().click();
+		// Respond is in the expanded card
+		await thread
+			.getByText("Hold on the title a beat longer")
+			.first()
+			.locator("xpath=ancestor::*[.//button[@aria-label='Expand marker']][1]")
+			.getByRole("button", { name: "Expand marker" })
+			.click();
+		// exactly "Respond": a looser match also hits a button that opens the edit pane
+		await thread.getByRole("button", { name: "Respond", exact: true }).click();
 		await thread.getByPlaceholder("Write a response…").fill("Looks great now, approved from our side.");
 		await sleep(800);
 		await shot(thread, "review-responses");
@@ -175,6 +183,67 @@ const steps: Record<string, () => Promise<void>> = {
 		await page.getByText("Grade doesn't match").first().click();
 		await page.getByRole("button", { name: /New category/i }).first().click();
 		await shotDialog(page, "categories");
+		// the presets, opened from the categories dialog
+		await page.locator(".modal-box:visible").getByRole("button", { name: "Presets" }).click();
+		await page.getByText("Category presets").waitFor();
+		await sleep(800);
+		await shotDialog(page, "category-presets", "top");
+		await page.close();
+	},
+
+	async markerImport() {
+		// the import of markers from an EDL or FCPXML, a dropdown under the player
+		const page = await newPage("alex@example.com");
+		await page.goto(reviewUrl());
+		await page.locator("video").first().waitFor();
+		// a <summary>, which has no button role
+		await page.locator('summary[aria-label="Import markers"]').click();
+		const panel = page.locator("details[open] .dropdown-content");
+		await panel.waitFor();
+		await sleep(500);
+		const pad = 24;
+		await shot(page, "marker-import", {
+			clip: async () => {
+				const b = (await panel.boundingBox())!;
+				return { x: b.x - pad, y: b.y - pad, width: b.width + 2 * pad, height: b.height + 2 * pad };
+			},
+		});
+		await page.close();
+	},
+
+	async screening() {
+		const page = await newPage("alex@example.com");
+		await page.goto(reviewUrl());
+		await page.locator("video").first().waitFor();
+		await sleep(3000); // the button waits until the video can stream
+		await openDialog(page, page.getByRole("button", { name: "Start a screening" }));
+		await page.getByText("How does a screening work?").click();
+		await sleep(500);
+		await shotDialog(page, "screening-start");
+
+		// Start opens the screening window, which shows the QR code until the video starts
+		const [screen] = await Promise.all([
+			page.context().waitForEvent("page"),
+			// "Continue screening" when a screening link of this export is still active
+			page.locator(".modal-box:visible").getByRole("button", { name: /^(Start|Continue screening)$/ }).click(),
+		]);
+		await screen.setViewportSize({ width: 1280, height: 720 });
+		await screen.getByAltText("QR code to join the review").waitFor();
+		await sleep(1500);
+		await shot(screen, "screening-slate");
+
+		// the export view becomes the remote control
+		await page.getByText("Screening is running").waitFor();
+		// without the success toast, which goes away after a few seconds
+		await page.locator(".toast").waitFor({ state: "detached", timeout: 15_000 }).catch(() => {});
+		await sleep(1000);
+		await shot(page, "screening-remote");
+
+		await page.getByRole("button", { name: "End screening" }).last().click();
+		await page.getByText("End the screening?").waitFor();
+		await page.getByText("Delete the link now").click();
+		await shotDialog(page, "screening-end");
+		await page.locator(".modal-box:visible").getByRole("button", { name: "End & delete link" }).click();
 		await page.close();
 	},
 

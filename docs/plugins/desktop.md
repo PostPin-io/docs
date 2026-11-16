@@ -44,8 +44,11 @@ Then start Pro Tools, open your session, start PostPin Desktop and
 
 ### Updates
 
-PostPin Desktop checks for a new version every time it starts. It downloads the update in the
-background, shows a notification, and installs it the next time you quit the app.
+After you log in, PostPin Desktop checks for a new version that fits your PostPin server. It
+downloads the update in the background and installs it the next time you quit the app.
+**Update …** at the top of the window restarts the app and installs it right away. A server that
+runs an older release keeps the Desktop version that matches it, see
+[Plugin and server versions](./index.md#plugin-and-server-versions).
 
 <details>
 <summary>Building the app from source</summary>

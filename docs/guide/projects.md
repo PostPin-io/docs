@@ -30,6 +30,8 @@ Admins and owners see all projects of the organization.
 
 Open a project to see its timelines. **Open latest** on a timeline card, or a click on its
 thumbnail, opens its newest export for review. Timelines without uploads show "No exports yet".
+**+** creates a new timeline. **Search timelines**, the **Table / Cards** toggle and **⋯ › Sort by**
+work like on the dashboard.
 
 <Screenshot name="project" alt="The timelines of a project" />
 
@@ -39,7 +41,8 @@ entries are there for members, admins and owners.
 
 ## Exports
 
-**All exports** lists every upload of a timeline, newest first.
+**All exports** lists every upload of a timeline, sorted by last update, the most recent first.
+**Search exports**, the **Table / Cards** toggle and **⋯ › Sort by** work like on the dashboard.
 
 <Screenshot name="exports" alt="The exports of a timeline, newest first" />
 
@@ -72,7 +75,7 @@ On a phone, the header shows only the current name, with a back arrow to the lev
 
 The plugins are the recommended way to upload, because they send the real timeline with its clips,
 names and timecode. Without a plugin, members, admins and owners can upload a video file from the
-export list: click the upload button next to **Your Exports**. Reviewers don't see it.
+export list: click the upload button (**Upload a video**) next to **Your Exports**. Reviewers don't see it.
 
 PostPin first recommends the plugins. Click **I want to upload manually** to go on, or
 **Download plugins** to get one.
@@ -87,10 +90,16 @@ PostPin first recommends the plugins. Click **I want to upload manually** to go 
    _estimated_; check them and change them if they're wrong. Phone videos often have a variable
    frame rate, which the dialog points out. MXF files can't be read in the browser, so their frame
    rate and timecode are filled in after the upload.
-3. **Detect cuts** splits the timeline into shots where the picture changes. Choose how
-   **Sensitive**, **Medium** or **Insensitive** it is. You can change this later on the
+3. Under **Import Timeline Data (optional)**, you can add the timeline from your editing software
+   as a CMX3600 EDL or an FCPXML file (also a `.fcpxmld` bundle). Drop it on the field or click to
+   choose one. The dialog shows what it found. Its clips become the cuts and tracks of the
+   timeline, so PostPin doesn't detect cuts, and its markers are added to the export, in one
+   category per colour. If the file's frame rate differs from the video's, the dialog says so and
+   the clips are placed by time. The **×** next to the file removes it.
+4. Without timeline data, **Detect cuts** splits the timeline into shots where the picture changes.
+   Choose how **Sensitive**, **Medium** or **Insensitive** it is. You can change this later on the
    [review screen](./review.md#estimated-cuts).
-4. Click **Upload**.
+5. Click **Upload**.
 
 The upload keeps running while you move around in PostPin. A progress card at the bottom right
 links back to the export list, and the browser asks before you close the tab. If the upload is

@@ -1,9 +1,9 @@
 ---
-title: Reverse Proxy & TLS
+title: Reverse proxy and TLS
 sidebar_position: 4
 ---
 
-# Reverse Proxy & TLS
+# Reverse proxy and TLS
 
 PostPin doesn't terminate TLS itself. `compose.yml` publishes two ports on localhost only, and your
 reverse proxy serves them under your two hostnames with HTTPS:

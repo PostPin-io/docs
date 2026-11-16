@@ -1,19 +1,31 @@
 ---
-title: Self-Hosting PostPin
+title: Self-hosting PostPin
 sidebar_position: 1
 sidebar_label: Overview
 slug: /self-hosting
 ---
 
-# Self-Hosting PostPin
+# Self-hosting PostPin
 
 ## Overview
 
-To run PostPin on your own server, you need Docker, a containerization platform that runs Linux containers. PostPin is distributed as a set of Docker images, and the easiest way to run them is with Docker Compose. PostPin ships as two images: the app (web interface and API) and a worker that processes uploaded media, e.g. transcoding videos and creating thumbnails. In addition, PostPin needs a Postgres database, a Redis queue and S3-compatible storage for media. The easiest way to get all of these is with the bundled `compose.yml` (in `deploy/` of the [PostPin repository](https://github.com/PostPin-io/postpin/tree/main/deploy), and attached to every [release](https://github.com/PostPin-io/postpin/releases)), which runs PostPin, Postgres, Redis and a small S3 server called rustfs.
+PostPin is open source under the MIT license, so you can run it on your own server. The code is in
+the [PostPin repository](https://github.com/PostPin-io/postpin).
+
+PostPin runs as two Docker images: the app (web interface and API) and a worker that processes
+uploaded media, for example transcoding videos and creating thumbnails. Both need a Postgres
+database, a Redis queue and S3-compatible storage for the media. The bundled `compose.yml` runs all
+of it with Docker Compose: PostPin, Postgres, Redis and a small S3 server called rustfs. It is in
+`deploy/` of the [repository](https://github.com/PostPin-io/postpin/tree/main/deploy) and attached
+to every [release](https://github.com/PostPin-io/postpin/releases).
 
 ## Requirements
 
-- a linux server with Docker and Docker Compose installed (any basic VPS will do, although transcoding videos is CPU-intensive and may be slow on small instances)
-- a domain name and TLS certificate (PostPin requires HTTPS for sign-in and media uploads). You need two hostnames pointing to the server: one for the app and one for media storage, e.g. `postpin.example.com` and `media.example.com`
-- a reverse proxy that terminates TLS, see [Reverse Proxy & TLS](./reverse-proxy.md)
-- a working SMTP server for sending email verification, password reset and invitation emails (PostPin will start without it, but users can't verify their address or reset their password)
+- a Linux server with Docker and Docker Compose. A small VPS works, but transcoding videos needs
+  CPU and may be slow on small instances.
+- a domain name and TLS certificates. PostPin needs HTTPS for sign-in and media uploads. You need
+  two hostnames pointing to the server, one for the app and one for media storage, e.g.
+  `postpin.example.com` and `media.example.com`.
+- a reverse proxy that terminates TLS, see [Reverse proxy and TLS](./reverse-proxy.md)
+- an SMTP server for email verification, password reset and invitation emails. PostPin starts
+  without it, but users can't verify their address or reset their password.
