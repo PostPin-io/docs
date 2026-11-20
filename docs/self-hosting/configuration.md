@@ -29,6 +29,7 @@ These only configure `compose.yml` itself:
 | `BETTER_AUTH_URL`    |         | Public URL of your instance, e.g. `https://postpin.example.com`. Used for sign-in, links in emails and the S3 CORS rule. `compose.yml` also passes it to the app as `ORIGIN`, which form submissions are checked against. |
 | `BETTER_AUTH_SECRET` |         | Secret for signing sessions, at least 32 characters. Generate one with `openssl rand -hex 32`. Changing it signs everyone out.                                                                                            |
 | `ADMIN_EMAILS`       | (empty) | Comma-separated emails that get system admin access (`/admin`). Only applies once the address is verified.                                                                                                                |
+| `LANDING_PAGE`       | `false` | `true` shows the PostPin landing page on `/` to visitors who aren't signed in. Off, `/` goes straight to the login.                                                                                                     |
 
 ### Legal links
 

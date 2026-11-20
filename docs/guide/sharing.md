@@ -27,9 +27,9 @@ organization always keeps at least one owner.
 
 ## Share a project or timeline
 
-Click the share icon next to the project's or timeline's name in the
-[header](./projects.md#navigation), or choose **Share project** or **Share timeline** in the
-**⋯** menu of its card. The dialog shows who has access and lets you add more people.
+Click the people icon (**Invite to project** or **Invite to timeline**) next to the project's or
+timeline's name in the [header](./projects.md#navigation), or choose the same entry in the **⋯**
+menu of its card. The dialog shows who has access and lets you add more people.
 
 <Screenshot name="share-project" alt="The share dialog of a project" />
 
@@ -59,14 +59,16 @@ first one is already open.
   guests can only watch.
 - **Note:** an optional text the guest sees over the video. It also goes into the e-mail when you
   send the link.
-- **Expiry:** 24 hours, 7 days (the default) or 30 days. Every link expires.
+- **Expiry:** 24 hours (**24h**), 7 days (**7d**, the default), 30 days (**30d**) or
+  **infinitely**: the link then works until it is deleted.
 
 Click the check mark to create the link. The link icon in the header then shows the number of
 active links of the export.
 
 <Screenshot name="share-links" alt="The share links of an export" />
 
-Each link in the list shows its panels, the first line of its note and the time left.
+Each link in the list shows its panels, the first line of its note and the time left, or ∞ for a
+link without expiry.
 [Screening](./screening.md) links also have a projector icon. Its buttons:
 
 - **Edit** (the gear) changes the panels and the note. A click on the panels icon opens the same
@@ -74,7 +76,7 @@ Each link in the list shows its panels, the first line of its note and the time 
   pick a new one, which then counts from now. Expired links stay in the list, greyed out, and
   editing them with a new expiry makes them work again.
 - **Details** shows the link itself, the visits and guests, when it was last opened, the exact
-  expiry, who created it, the whole note, and the category its guests' markers go into. Screening
+  expiry (or "Never expires"), who created it, the whole note, and the category its guests' markers go into. Screening
   links also show their guest limit.
 - **Copy link** copies the link, **QR code** shows it as a QR code you can download.
 - **Send by e-mail** sends the link to up to 20 addresses at once. Each recipient gets their own
@@ -99,7 +101,8 @@ Then they get the review screen with the panels the link shows and the note over
   move and delete their own markers, ranges included. They only see their own markers, not the
   team's or other guests'.
 - Their markers go into the link's category. They can't pick a category, reply to markers or
-  copy and paste markers.
+  copy and paste markers. If the team renames the category, changes its colour or merges it into
+  another, guests see it without a reload.
 - The team sees guest markers on the export with the guest's name as the author.
 - The browser remembers the guest, so opening the link again continues with the same name. A link
   accepts at most 500 guests, a screening link only as many as its guest limit.
@@ -110,7 +113,8 @@ its colour or delete it. A link keeps its category when the category is renamed.
 links after a rename, PostPin creates a new "Guest" category. Screening links have a
 [category of their own](./screening.md#start-a-screening).
 
-When a link has expired or was deleted, guests see "This link is no longer active".
+When a link expires or is deleted, guests who have it open see "This link is no longer active"
+right away, not only with their next click.
 
 ## Invite to the whole organization
 

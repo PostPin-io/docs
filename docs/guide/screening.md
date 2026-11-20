@@ -79,28 +79,42 @@ an hour, or if the link is no longer active. You can renew an expiring link in t
 [share links](./sharing.md#share-links).
 
 A reload of the export view keeps the screening running and reconnects to the window. If you leave
-the export view, PostPin asks whether to end the screening first.
+the export view, PostPin asks whether to end the screening first. If you start the same screening
+again in another tab or window, the guests follow that one, and the panel in the first tab says so:
+end it there.
 
 ## What guests see
 
-Guests scan the QR code or open the link, enter their name and get the export with the marker
-panel. On a guest's phone, the video starts muted, because the sound comes from the room, and in
-the lowest quality. Guests can unmute it.
+Guests scan the QR code or open the link, enter their name and get the marker panel. While the
+screening runs, they don't get the video on their phones: the picture and the sound come from the
+screen in the room. Instead, "Screening running" shows the timecode of the screen, whether it plays
+or is paused, and a progress bar. Their playhead follows the screen, so their markers land on the
+frame the room is watching.
 
-Guests add markers [like on any share link](./sharing.md#what-guests-see). Their markers go into the
-screening's category, and each guest only sees their own. Once the guest limit is reached, new
+- **Quick marker** sets a marker at the current frame without opening it, so guests can set the
+  next one right away.
+- **Marker with note** (or <kbd>M</kbd>) sets a marker and opens it to type a title and a
+  description.
+
+Guests edit their markers [like on any share link](./sharing.md#what-guests-see). Their markers go
+into the screening's category, and each guest only sees their own. Once the screening ends, the
+link works like a normal share link: guests get the video in every quality and move their own
+playhead, until you start the screening again. Once the guest limit is reached, new
 guests see "This screening is full". Guests who joined before can still open the link.
 
 ## End the screening
 
 Click **End screening** in the panel, or the projector button in the header, which is red while
-the screening runs. The **End the screening?** dialog says that the screening window closes and
-until when guests can still add markers.
+the screening runs. The **End the screening?** dialog says that the screening window closes, that guests get the video
+and move their own playhead, and until when they can still add markers.
 
 - Turn on **Delete the link now** to end the link as well. Guests can't join or add markers
   anymore. The button then says **End & delete link**. You only see this option if you may delete
   the link.
 - **End screening** closes the window and keeps the link active until it expires.
+
+If someone deletes the screening link in the [share links](./sharing.md#share-links) while the
+screening runs, the screening ends as well.
 - **Keep going** closes the dialog and keeps the screening running.
 
 <Screenshot name="screening-end" alt="Ending a screening and deleting its link" />

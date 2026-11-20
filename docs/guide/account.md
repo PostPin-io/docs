@@ -10,6 +10,12 @@ left).
 
 <Screenshot name="profile" alt="The profile page" />
 
+## Theme
+
+The account menu has a **Theme** row with three buttons: **System** follows the light or dark mode
+of your computer, **Light** and **Dark** keep PostPin in one of them. Your browser remembers the
+choice.
+
 ## Name
 
 Your display name appears on your markers and replies.
@@ -48,6 +54,12 @@ organizations together. If the server limits storage per user, the bar shows how
 limit is used. The table lists each organization you're a member of with **Your uploads** and
 **You can still upload**, which can be less than your own limit because the organization has a
 limit too. See [Storage limits](../self-hosting/storage.md#storage-limits).
+
+## Tutorial
+
+**Show tutorial again** starts the explanations of markers and sharing again, from the
+[tutorial](./getting-started.md#the-tutorial). Organizations, projects and exports you created stay
+as they are. The section is there for accounts that own an organization or aren't in one yet.
 
 ## Delete account
 

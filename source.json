@@ -1,7 +1,7 @@
 {
 	"repository": "https://github.com/PostPin-io/postpin",
 	"branch": "main",
-	"commit": "7c7f3a79619a19d21519af41ca43a1b5acf6cfe4",
-	"commitSubject": "chore(license): add MIT",
-	"syncedAt": "2026-11-16"
+	"commit": "edff61531d42d08d3db974fa10c2041f0769993b",
+	"commitSubject": "Merge pull request #105 from PostPin-io/feat/plugin-marker-sync-buttons",
+	"syncedAt": "2026-11-20"
 }

@@ -21,3 +21,9 @@ free port and point your reverse proxy there.
 The signature of the presigned URL doesn't match the request. Check that `S3_PUBLIC_ENDPOINT`
 matches the URL your proxy serves rustfs on exactly (scheme and hostname) and that your proxy
 forwards the original `Host` header.
+
+### Other reviewers' markers only show up after a reload
+
+The review page gets marker changes over an event stream at `/live/`. If your proxy buffers it or
+closes it after a minute, changes arrive late or not at all. See
+[Reverse proxy](./reverse-proxy.md) for the settings, including the nginx `location /live/` block.

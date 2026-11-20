@@ -35,7 +35,8 @@ async function newPage(email?: string) {
 			await page.getByLabel("Password").fill(PASSWORD);
 			await page.getByRole("button", { name: "Log in" }).click();
 			try {
-				await page.waitForURL(/\/dashboard/, { timeout: 10_000 });
+				// a new account goes to the onboarding tutorial on /welcome
+				await page.waitForURL(/\/(dashboard|welcome)/, { timeout: 10_000 });
 				break;
 			} catch (e) {
 				if (attempt === 3) throw e;
@@ -103,14 +104,14 @@ const steps: Record<string, () => Promise<void>> = {
 	},
 
 	async onboarding() {
-		// a brand-new account without an organization
+		// a brand-new account: the tutorial on /welcome starts with its first organization
 		const email = `new-${Date.now()}@example.com`;
 		await api("POST", "/api/auth/sign-up/email", { name: "Robin Novak", email, password: PASSWORD });
 		const page = await newPage(email);
-		await shot(page, "dashboard-no-organization");
-		await page.getByRole("button", { name: "Create organization" }).first().click();
-		await page.getByLabel("Organization Name").fill("Robin Novak Post");
-		await shotDialog(page, "new-organization");
+		await page.waitForURL(/\/welcome/);
+		await page.getByLabel("Organization name").fill("Robin Novak Post");
+		await sleep(500);
+		await shot(page, "welcome");
 		await page.close();
 	},
 
@@ -251,7 +252,7 @@ const steps: Record<string, () => Promise<void>> = {
 		const page = await newPage("alex@example.com");
 		const s = ids();
 		await page.goto(`${BASE}/projects/${s.harbor}`);
-		await openDialog(page, page.getByRole("button", { name: /Share/ }).first());
+		await openDialog(page, page.getByRole("button", { name: "Invite to project" }).first());
 		await shotDialog(page, "share-project");
 		await page.close();
 	},

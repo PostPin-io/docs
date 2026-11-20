@@ -27,7 +27,8 @@ two hostnames pointing to it (one for the app, one for media storage) and, ideal
      this. PostPin runs without email, but nobody can verify their address or reset a password.
 
    It generates the secrets, writes everything to `.env` and asks whether to start PostPin. It
-   never overwrites an existing `.env`.
+   never overwrites an existing `.env`. To see what it would write first, run
+   `bash install.sh --dry-run`: it asks the same questions, prints the `.env` and starts nothing.
 
 2. Set up your [reverse proxy](./reverse-proxy.md) for both hostnames. The script prints which
    hostname goes to which port.

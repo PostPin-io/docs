@@ -139,7 +139,21 @@ for (const [host, slug] of Object.entries(SLUGS)) {
 
 	if (slug === "resolve") {
 		await win.getByRole("button", { name: "Render to disk settings" }).click();
-		await shot("render-to-disk");
+		// turned on, with a preset and a folder, so the whole form shows
+		const toggle = win.getByText("Additionally render to disk");
+		await toggle.click();
+		await win.getByLabel("Folder").fill("/Volumes/Deliveries/Harbor Lights");
+		await sleep(600);
+		// the form lies below the main grid: crop to the form's bottom instead
+		const bottom = await win.locator("fieldset", { has: toggle }).evaluate((el) => el.getBoundingClientRect().bottom);
+		const size = win.viewportSize() ?? (await win.evaluate(() => ({ width: innerWidth, height: innerHeight })));
+		await win.screenshot({
+			path: path.join(outDir, `${slug}-render-to-disk.png`),
+			clip: { x: 0, y: 0, width: size.width, height: Math.min(size.height, bottom + 48) },
+		});
+		console.log(`  plugins/${slug}-render-to-disk.png`);
+		// off again: the render below shows the plain upload
+		await toggle.click();
 		await win.getByRole("button", { name: "Render to disk settings" }).click();
 	}
 

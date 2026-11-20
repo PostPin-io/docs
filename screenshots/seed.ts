@@ -192,6 +192,14 @@ export async function seed() {
 	reply("Grade doesn't match", alex, "Sent to color, they'll fix it in the next pass.", 45);
 	reply("Logo too small", priya, "Agreed. We'll scale it up and check it on a phone.", 30);
 
+	// a pointer: a box around the heron, shown on the picture while its marker is selected
+	sql(`INSERT INTO marker_pointer (id, "markerId", kind, x, y, width, height, color, "updatedAt")
+		SELECT gen_random_uuid()::text, id, 'RECT', 0.26, 0.3, 0.26, 0.34, '#CE272D', now()
+		FROM marker WHERE name = 'Grade doesn''t match' AND "exportId" = ${q(trailerV3)}`);
+
+	// the seeded accounts know PostPin: no onboarding tutorial on their pages
+	sql(`UPDATE "user" SET "tutorialCompletedAt" = now()`);
+
 	fs.writeFileSync(
 		path.join(WORK, "seed.json"),
 		JSON.stringify({ org, harbor, aurora, salt, trailer, teaser, trailerV1, trailerV2, trailerV3, cats }, null, 2),

@@ -6,8 +6,7 @@ sidebar_position: 8
 # Organization
 
 Open **Settings** from the account menu at the top right (on a phone, the **☰** menu). The
-organization settings have two tabs, **General** and **Members**. Members and reviewers only see
-**Members**.
+organization settings have two tabs, **General** and **Members**.
 
 ## Members
 
@@ -28,9 +27,11 @@ projects or timelines from the [share dialog](./sharing.md#share-a-project-or-ti
 
 ## General
 
-The **General** tab is for admins and owners.
-
 <Screenshot name="organization-settings" alt="The organization settings" />
+
+**About** links **About PostPin**, a page on what PostPin does and its plugins, and the
+**Documentation**. Members and reviewers only see this section; the others are for admins
+and owners.
 
 Owners can rename the organization here.
 
@@ -43,5 +44,6 @@ timelines, exports, markers and videos of the organization and can't be undone.
 ## Several organizations
 
 You can create more organizations from your [profile](./account.md#organizations), and be invited
-to others. The dashboard only offers **Create organization** while you aren't a member of any. The account menu at the top right lists them under **Organizations**.
+to others. The dashboard only offers **Create organization** while you aren't a member of any and
+skipped the [tutorial](./getting-started.md#the-tutorial). The account menu at the top right lists them under **Organizations**.
 Click one to switch to it.

@@ -10,6 +10,12 @@ the divider between them to resize the panes. PostPin remembers the layout in yo
 
 <Screenshot name="review" alt="The review screen" />
 
+Changes from other reviewers, and from your own other tabs, appear without a reload: new, moved and
+deleted markers, replies and category changes.
+
+Members, admins and owners can drop a video file on the review screen to upload it as a new export
+of the same timeline. See [Upload from the browser](./projects.md#upload-from-the-browser).
+
 ## Player
 
 The bar under the video has, from left to right:
@@ -55,8 +61,8 @@ blue (video) or green (audio). Click a clip to jump to its first frame. Hover ov
 a preview image, and drag on it to scrub. The **Zoom** slider zooms the timeline, and so does
 scrolling with <kbd>⌘</kbd>/<kbd>Ctrl</kbd> held.
 
-Markers appear on the ruler as diamonds in their category colour. Drag a marker to move it to
-another frame.
+Markers appear on the ruler as diamonds in their category colour. Click one to jump to it and
+select it in the marker list. Drag a marker to move it to another frame.
 
 Above the marker list, a thin strip shows the colours of the whole video from start to end. Phones
 don't show it, and [share link](./sharing.md#share-links) guests only see it if the link shows the
@@ -89,7 +95,9 @@ available.
 
 If the upload came with an EDL or FCPXML, the timeline comes from that file instead. The button
 then shows a document icon, and its window, **Import Timeline or Markers**, says how many clips and
-tracks the timeline has.
+tracks the timeline has. If it was the wrong file, members, admins and owners can go back to
+estimated cuts there: pick a sensitivity under **Or detect the cuts from the video** and confirm
+with **Replace**. Markers imported from the file stay.
 
 ### Importing an EDL or FCPXML
 
@@ -120,14 +128,35 @@ Press <kbd>M</kbd> or click **Add marker at playhead** (◇+) to add a marker at
 With an in and an out point set, it becomes a [range](#ranges) and the in and out points are
 cleared. It gets the category you used last, and the edit pane opens.
 
-<Screenshot name="review-marker" alt="Editing a marker" />
+<Screenshot name="review-marker" alt="Editing a marker, with a box pointer on the picture" />
 
 In the edit pane (**Edit Marker**) you set the **Title**, the **Description** and the category.
 Changes save as you type. <kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>Enter</kbd> closes the pane. The
 button next to the title field ("When creating a new marker, you can immediately start typing the
 title") puts the cursor into the title of every new marker, so you can type right after pressing
 <kbd>M</kbd>. Your browser remembers the setting. The bin (**Delete marker**) deletes the marker
-right away. Markers you may not edit open as **View Marker**, read-only.
+right away. Markers you may not edit open as **View Marker**, read-only. In a narrow marker panel,
+the category shrinks to its colour dot.
+
+### Pointers
+
+A pointer is an arrow or a box on the picture that shows what a marker is about, for example the
+shot's background or a logo in the corner. A marker has up to 20 pointers.
+
+1. Open the marker and pause the video on a frame of the marker.
+2. Click the pointer button in the edit pane (**Add a pointer on the picture (P)**) or press
+   <kbd>P</kbd>. A hint over the video says what to do.
+3. Click on the picture to place an arrow there, or drag to draw a box. Hold <kbd>Shift</kbd> to
+   draw several in a row. <kbd>Esc</kbd> stops drawing.
+
+PostPin shows the pointers of the selected markers while the playhead is on the marker's frame, or
+inside its range. Drag a pointer to move it, and the corners of a box to resize it. Click a pointer
+to select it; <kbd>Delete</kbd> or <kbd>Backspace</kbd> deletes it.
+
+The number next to the pointer button opens the list of the marker's pointers, numbered as "Arrow 1",
+"Box 1" and so on. Click one to show it on the picture, pick one of six colours, or delete it with
+the bin. Who may edit a marker may edit its pointers; everyone else only sees them. Pointers stay
+in PostPin; the plugins don't sync them.
 
 ### The marker list
 
@@ -162,10 +191,12 @@ search or a category filter is active, a button next to it clears all filters. T
 | ----------------------------------- | --------------------------------------------------------- |
 | Select a marker                     | Click                                                     |
 | Select a range                      | <kbd>Shift</kbd> + click                                  |
-| Add or remove one from the selection | <kbd>⌘</kbd> + click                                      |
-| Select all / clear selection        | <kbd>⌘</kbd> + <kbd>A</kbd> / <kbd>Esc</kbd>              |
-| Delete selected markers             | <kbd>⌘</kbd> + <kbd>Backspace</kbd> or <kbd>Delete</kbd>  |
-| Copy, cut, paste                    | <kbd>⌘</kbd> + <kbd>C</kbd> / <kbd>X</kbd> / <kbd>V</kbd> |
+| Add or remove one from the selection | <kbd>⌘</kbd>/<kbd>Ctrl</kbd> + click                      |
+| Select all / clear selection        | <kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>A</kbd> / <kbd>Esc</kbd> |
+| Delete selected markers             | <kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>Backspace</kbd> or <kbd>Delete</kbd> |
+| Copy, cut, paste                    | <kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>C</kbd> / <kbd>X</kbd> / <kbd>V</kbd> |
+
+<kbd>⌘</kbd> on a Mac, <kbd>Ctrl</kbd> on Windows and Linux.
 
 Pasted markers land at the current frame, keeping their distance to each other. Copy and paste also
 works between exports, for example to carry open notes over to the next version. Cut markers are
@@ -247,6 +278,7 @@ These work anywhere on the review screen, except while you type in a field.
 | --------------------------------------------------- | ------------------------------------------ |
 | <kbd>Space</kbd>                                    | Play / pause                               |
 | <kbd>M</kbd>                                        | New marker at the current frame            |
+| <kbd>P</kbd>                                        | Draw a [pointer](#pointers) for the open marker |
 | <kbd>←</kbd> / <kbd>→</kbd>                         | Previous / next marker                     |
 | <kbd>⌘</kbd> + <kbd>←</kbd> / <kbd>→</kbd>          | One frame back / forward                   |
 | <kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>←</kbd> / <kbd>→</kbd> | One second back / forward        |

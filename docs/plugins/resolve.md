@@ -83,7 +83,7 @@ frame rate, with audio, and uploads it to PostPin. The plugin also sends a snaps
 timeline: tracks, clips with their clip colour, and their source media. PostPin uses it to draw the timeline on the
 [review screen](../guide/review.md#timeline).
 
-Markers sync with **Push markers →** and **← Pull comments**, see
+Markers sync with the two buttons in the **Markers** box, see
 [Syncing markers](./index.md#syncing-markers). Pulled markers use Resolve's 16 marker colours.
 PostPin stores its marker ID in the marker's custom data, so the link survives when you edit the
 marker's name or note. Every Resolve marker has a duration of at least one frame: a marker with a
@@ -92,14 +92,22 @@ therefore comes back from Resolve as a point marker.
 
 ### Render to disk
 
-The gear button next to **Render & Upload →** opens the render to disk settings: a toggle, a
-Resolve render preset, a folder and a file name.
+Besides the upload, the plugin can render a second file with one of your Resolve render presets
+into a folder, for example a master for delivery. The gear button next to **Render & Upload →**
+opens the settings:
+
+- **Additionally render to disk** turns it on.
+- **Render preset** is one of the render presets of the open Resolve project. Format, codec and
+  the other render settings come from the preset.
+- **Folder** is where the file goes. **Browse…** picks one.
+- **File name** is optional. Leave it empty to keep the name from the preset.
 
 ![The render to disk settings](/img/screenshots/plugins/resolve-render-to-disk.png)
 
-:::note
+With the toggle on, **Render & Upload →** first renders the upload, then starts the disk render
+while the upload runs. A **To disk** bar shows its progress. Once the upload is done, the plugin
+opens the export in your browser and waits for the disk render, then shows the file's path. If the
+disk render fails, the export is uploaded anyway and the plugin shows the error as a warning.
 
-In this version the plugin saves these settings but doesn't use them yet. The render for the
-upload always goes to a temporary folder.
-
-:::
+**Render & Upload →** stays disabled until a preset and a folder are chosen. The plugin saves
+these settings for the next time.

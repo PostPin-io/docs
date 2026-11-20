@@ -58,8 +58,8 @@ point in the direction the data goes, towards PostPin or back into your editor.
 
 - **The host card** shows the timeline and project that are open in your editor.
 - **Upload to** is the PostPin project and timeline that **Render & Upload →** uploads to.
-- **Markers with** is the export that **Push markers →** and **← Pull comments** sync with. By
-  default it's the latest export of the linked timeline.
+- **Exchange markers with** is the export the two marker buttons sync with. By default it's the
+  latest export of the linked timeline.
 
 The globe buttons open the corresponding page in your browser.
 
@@ -67,9 +67,16 @@ If the plugin can't reach your editor, for example because it isn't running yet,
 says **Not connected** with the reason and tries again every few seconds. **Retry now** tries
 right away. The buttons stay disabled until the editor answers.
 
+When a button is disabled, a note below it says why, for example **Choose a destination
+timeline.** or **This timeline has no export yet. Render & Upload one first.**
+
+If the plugin can't reach the PostPin server, because it's down, you're offline or the server URL
+is wrong, it says **Can't reach the PostPin server at …** with **Retry** and **Logout**. Log out
+to pick another server.
+
 ### Linking a timeline
 
-The first time you upload a timeline, choose where it goes. Click **Choose export** under
+The first time you upload a timeline, choose where it goes. Click **Choose timeline** under
 **Upload to** and pick a project and timeline, or create new ones with **+**.
 
 ![Choosing the PostPin timeline to upload to](/img/screenshots/plugins/resolve-choose-destination.png)
@@ -107,7 +114,13 @@ you out, for example to switch to another server.
 
 ## Syncing markers
 
-**← Pull comments** writes the markers of the selected export into your timeline:
+The **Markers** box has two buttons. Each shows your editor's logo, an arrow and the PostPin logo;
+the arrow points the way the markers go. Hover over a button to see what it does, for example
+**Sync markers from DaVinci Resolve to PostPin**. While a sync runs, markers move along the
+button in that direction.
+
+The button with the arrow pointing to your editor (**Sync markers from PostPin to …**) writes the
+markers of the selected export into your timeline:
 
 - The marker lands on the same frame as in PostPin. A [range](../guide/review.md#ranges) keeps its
   length.
@@ -118,8 +131,8 @@ you out, for example to switch to another server.
 - Pulling again updates the markers PostPin created before instead of adding them twice.
 - Replies stay in PostPin.
 
-**Push markers →** sends the markers of your timeline to the selected export, ranges with their
-length. A marker whose note
+The button with the arrow pointing to PostPin (**Sync markers from … to PostPin**) sends the
+markers of your timeline to the selected export, ranges with their length. A marker whose note
 starts with `#Category` goes into that category. Markers without one go into a category named
 after their colour, for example "Resolve Blue". PostPin creates missing categories. Pushing again
 updates the markers in PostPin.
