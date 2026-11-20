@@ -1,6 +1,6 @@
 ---
 title: Storage and uploads
-sidebar_position: 5
+sidebar_position: 6
 ---
 
 # Storage and uploads

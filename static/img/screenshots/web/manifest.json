@@ -35,6 +35,10 @@
 		"url": "/auth/login",
 		"page": true
 	},
+	"manage-access": {
+		"url": "/dashboard",
+		"page": false
+	},
 	"marker-import": {
 		"url": "/projects/cmwp1aedg0000sp9wfvtf8b6t/timelines/cmwp1aee6000xsp9w5y4i5efi/exports/cmwp1ajmv0019sp9wffu55xqk",
 		"page": false
@@ -56,51 +60,51 @@
 		"page": true
 	},
 	"review": {
-		"url": "/projects/cmwp1aedg0000sp9wfvtf8b6t/timelines/cmwp1aee6000xsp9w5y4i5efi/exports/cmwp1ajmv0019sp9wffu55xqk",
+		"url": "/projects/cmwp8h2tb0000pk9wsm2j4w0i/timelines/cmwp8h2u8000xpk9wrijyjy50/exports/cmwp8h80e0019pk9w4c0vad54",
 		"page": true
 	},
 	"review-marker": {
-		"url": "/projects/cmwp1aedg0000sp9wfvtf8b6t/timelines/cmwp1aee6000xsp9w5y4i5efi/exports/cmwp1ajmv0019sp9wffu55xqk",
+		"url": "/projects/cmwp8h2tb0000pk9wsm2j4w0i/timelines/cmwp8h2u8000xpk9wrijyjy50/exports/cmwp8h80e0019pk9w4c0vad54",
 		"page": true
 	},
 	"review-responses": {
-		"url": "/projects/cmwp1aedg0000sp9wfvtf8b6t/timelines/cmwp1aee6000xsp9w5y4i5efi/exports/cmwp1ajmv0019sp9wffu55xqk",
+		"url": "/projects/cmwp8h2tb0000pk9wsm2j4w0i/timelines/cmwp8h2u8000xpk9wrijyjy50/exports/cmwp8h80e0019pk9w4c0vad54",
 		"page": true
 	},
 	"screening-end": {
-		"url": "/projects/cmwp1aedg0000sp9wfvtf8b6t/timelines/cmwp1aee6000xsp9w5y4i5efi/exports/cmwp1ajmv0019sp9wffu55xqk",
+		"url": "/projects/cmwp8h2tb0000pk9wsm2j4w0i/timelines/cmwp8h2u8000xpk9wrijyjy50/exports/cmwp8h80e0019pk9w4c0vad54",
 		"page": false
 	},
 	"screening-remote": {
-		"url": "/projects/cmwp1aedg0000sp9wfvtf8b6t/timelines/cmwp1aee6000xsp9w5y4i5efi/exports/cmwp1ajmv0019sp9wffu55xqk",
+		"url": "/projects/cmwp8h2tb0000pk9wsm2j4w0i/timelines/cmwp8h2u8000xpk9wrijyjy50/exports/cmwp8h80e0019pk9w4c0vad54",
 		"page": true
 	},
 	"screening-slate": {
-		"url": "/projects/cmwp1aedg0000sp9wfvtf8b6t/timelines/cmwp1aee6000xsp9w5y4i5efi/exports/cmwp1ajmv0019sp9wffu55xqk/screening?session=a93c4e69-9b3e-4ee5-a6be-3ab434987a98",
+		"url": "/projects/cmwp8h2tb0000pk9wsm2j4w0i/timelines/cmwp8h2u8000xpk9wrijyjy50/exports/cmwp8h80e0019pk9w4c0vad54/screening?session=83272f69-d60f-4aba-b427-ae9efd99fd63",
 		"page": true
 	},
 	"screening-start": {
-		"url": "/projects/cmwp1aedg0000sp9wfvtf8b6t/timelines/cmwp1aee6000xsp9w5y4i5efi/exports/cmwp1ajmv0019sp9wffu55xqk",
+		"url": "/projects/cmwp8h2tb0000pk9wsm2j4w0i/timelines/cmwp8h2u8000xpk9wrijyjy50/exports/cmwp8h80e0019pk9w4c0vad54",
 		"page": false
 	},
 	"share-join": {
-		"url": "/s/4vTx8X1Ht0P46Lv2XLaALdtXg7q5D3sZ4vUkkhplDYk",
+		"url": "/s/FoFukkO1IW02Bwxjaix-6peoPQ0df-aVoHV3m92XPug",
 		"page": true
 	},
 	"share-link-new": {
-		"url": "/projects/cmwp1aedg0000sp9wfvtf8b6t/timelines/cmwp1aee6000xsp9w5y4i5efi/exports/cmwp1ajmv0019sp9wffu55xqk",
+		"url": "/projects/cmwp8h2tb0000pk9wsm2j4w0i/timelines/cmwp8h2u8000xpk9wrijyjy50/exports/cmwp8h80e0019pk9w4c0vad54",
 		"page": false
 	},
 	"share-links": {
-		"url": "/projects/cmwp1aedg0000sp9wfvtf8b6t/timelines/cmwp1aee6000xsp9w5y4i5efi/exports/cmwp1ajmv0019sp9wffu55xqk",
+		"url": "/projects/cmwp8h2tb0000pk9wsm2j4w0i/timelines/cmwp8h2u8000xpk9wrijyjy50/exports/cmwp8h80e0019pk9w4c0vad54",
 		"page": false
 	},
 	"share-project": {
-		"url": "/projects/cmwp1aedg0000sp9wfvtf8b6t",
+		"url": "/projects/cmwp8h2tb0000pk9wsm2j4w0i",
 		"page": false
 	},
 	"share-view": {
-		"url": "/s/4vTx8X1Ht0P46Lv2XLaALdtXg7q5D3sZ4vUkkhplDYk",
+		"url": "/s/FoFukkO1IW02Bwxjaix-6peoPQ0df-aVoHV3m92XPug",
 		"page": true
 	},
 	"signup": {

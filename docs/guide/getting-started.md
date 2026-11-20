@@ -12,8 +12,10 @@ markers) belongs to an organization.
 
 Open your PostPin server in the browser and click **Create an account** on the login page. Enter
 your first and last name, your email address and a password, then click **Sign Up**. You are signed
-in right away. If the server's operator has set up terms of service, a data processing agreement or
-a privacy policy, the sign-up page links them, and the footer links the imprint and privacy policy.
+in right away. If the server offers it, you can also sign up with **Continue with Google**, **Sign
+in with Microsoft**, GitHub, Apple or your company's single sign-on instead. If the server's
+operator has set up terms of service, a data processing agreement or a privacy policy, the sign-up
+page links them, and the footer links the imprint and privacy policy.
 
 <Screenshot name="signup" alt="The sign-up page" />
 
@@ -28,6 +30,15 @@ without it. Only the [system admin area](../self-hosting/admin.md) of a self-hos
 a verified address.
 
 :::
+
+## Log in
+
+<Screenshot name="login" alt="The login page" />
+
+Log in with your email and password, with a provider button, or with **Sign in with a passkey** if
+you have [added a passkey](./account.md#passkeys). If you turned on
+[two-factor authentication](./account.md#two-factor-authentication), PostPin asks for the code from
+your authenticator app next.
 
 ## The tutorial
 

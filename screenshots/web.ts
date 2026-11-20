@@ -253,7 +253,41 @@ const steps: Record<string, () => Promise<void>> = {
 		const s = ids();
 		await page.goto(`${BASE}/projects/${s.harbor}`);
 		await openDialog(page, page.getByRole("button", { name: "Invite to project" }).first());
+		// the e-mail tab with an address typed in; the team members tab is empty, as everyone in
+		// the demo organization already has access to Harbor Lights
+		const dialog = page.locator(".modal-box:visible");
+		await dialog.getByRole("tab", { name: "Via E-Mail" }).click();
+		await dialog.getByLabel("E-mail address").fill("colorist@example.com");
 		await shotDialog(page, "share-project");
+
+		// a pending invitation and an invite link for "Manage access". On a retry both exist already.
+		await dialog.getByRole("button", { name: "Send invite" }).click();
+		await dialog.locator("p.text-success, p.text-error").waitFor();
+		await dialog.getByRole("tab", { name: "Via Link" }).click();
+		const create = dialog.getByRole("button", { name: "Create link" });
+		const linkField = dialog.getByLabel("Invite link");
+		await create.or(linkField).first().waitFor();
+		if (await create.isVisible()) await create.click();
+		await linkField.waitFor();
+		await page.keyboard.press("Escape");
+
+		// "Manage access" is in the project's ⋯ menu on the dashboard
+		await page.goto(`${BASE}/dashboard`);
+		await page.waitForLoadState("networkidle");
+		for (let attempt = 1; ; attempt++) {
+			await page.locator(`button[popovertarget="project-menu-${s.harbor}"]`).first().click();
+			await page.locator(`#project-menu-${s.harbor}`).getByRole("button", { name: "Manage access" }).click();
+			try {
+				await page.getByText("colorist@example.com").waitFor({ timeout: 10_000 });
+				break;
+			} catch (e) {
+				// a reload of the fresh dev server closes the dialog again
+				if (attempt === 3) throw e;
+				await page.waitForLoadState("networkidle");
+			}
+		}
+		await sleep(500);
+		await shotDialog(page, "manage-access");
 		await page.close();
 	},
 
@@ -337,6 +371,8 @@ const steps: Record<string, () => Promise<void>> = {
 };
 
 const only = process.argv.slice(2);
+const unknown = only.filter((name) => !(name in steps));
+if (unknown.length) throw new Error(`unknown web steps: ${unknown.join(", ")} (known: ${Object.keys(steps).join(", ")})`);
 for (const [name, step] of Object.entries(steps)) {
 	if (only.length && !only.includes(name)) continue;
 	console.log(`web: ${name}`);

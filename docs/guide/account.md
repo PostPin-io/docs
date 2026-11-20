@@ -36,6 +36,53 @@ other session at the same time.
 Forgot your password? Click **Forgot password?** on the login page and enter your email. You'll
 get a link to choose a new password.
 
+An account you created with Google, Microsoft or another provider has no password. The section
+then says how you log in instead.
+
+## Sign-in & security
+
+### Passkeys
+
+A passkey lets you log in with your fingerprint, face or device PIN instead of a password. Click
+**Add passkey** and follow your browser or password manager. Each passkey is listed with the date
+it was added, and "synced" if your password manager syncs it between your devices. **Rename** gives
+it a name you recognize, **Remove** deletes it.
+
+On the login page, click **Sign in with a passkey**. Browsers that support it also offer your
+passkey right in the email field.
+
+### Two-factor authentication
+
+With two-factor authentication, PostPin asks for a 6-digit code from an authenticator app
+(1Password, Google Authenticator, Authy, …) after you log in with your password. It is only there
+for accounts with a password; passkeys and providers have their own protection.
+
+1. Click **Turn on** and confirm with your password.
+2. Scan the QR code with your authenticator app. **Can't scan it? Enter the key by hand** shows
+   the key as text.
+3. Enter the code the app shows and click **Turn on**.
+4. PostPin shows your backup codes. Each one works once, if you lose your authenticator app.
+   **Copy** or **Download** them and keep them somewhere safe: you won't see them again. Then
+   click **Done**.
+
+At the next login, enter the code from the app. Tick **Trust this device for 30 days** to skip the
+code on this browser for a while. Without your phone, click **Lost your device? Use a backup
+code**.
+
+**New backup codes** replaces all your backup codes with new ones, **Turn off** turns two-factor
+authentication off again. Both ask for your password.
+
+### Connected accounts
+
+If the server offers sign-in with Google, Microsoft, GitHub, Apple or its own single sign-on, they
+are listed here. **Connect** links a provider to your account, so you can log in with it instead
+of your password. The provider's account needs the same email address as your PostPin account.
+**Disconnect** removes it again. You can't disconnect the only way you have left to log in.
+
+Logging in with a provider for the first time connects it on its own if your PostPin email is
+verified and the provider reports the same address as verified. If not, the login page says that an
+account with this email already exists: log in with your password and connect the provider here.
+
 ## Active sessions
 
 This lists every browser and plugin that is signed in to your account, with its IP address and when
@@ -64,7 +111,8 @@ as they are. The section is there for accounts that own an organization or aren'
 ## Delete account
 
 **Delete account…** deletes your account, your sessions and your memberships right away. Confirm
-with your password. Markers, replies and exports you created stay with their organization and show
+with your password. An account without a password confirms by logging in again: click **Log in
+again**, then delete the account within 10 minutes. Markers, replies and exports you created stay with their organization and show
 "Deleted User" as their author. PostPin then sends an email to your address that confirms the
 deletion.
 

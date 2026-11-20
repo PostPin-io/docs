@@ -51,7 +51,13 @@ lives in `source.json`. Never document features that only exist on feature branc
    - `.github/workflows/release.yml`: release assets and download links
 3. Update every page affected by the diff. Check UI labels against the source; the docs quote them.
 4. Create a detached worktree of the main repo at `$NEW` and run
-   `pnpm screenshots <path-to-worktree>`. It needs Docker; the demo video is rendered from the
+   `pnpm screenshots <path-to-worktree> --only <steps>`, with only the steps whose screens the
+   diff touches. Steps are the keys of `steps` in `screenshots/web.ts` (each lists the shots it
+   takes), plus `plugins` (`packages/plugin-*`, `packages/desktop`, `routes/auth/device`) and
+   `social` (runs with `review` anyway). Shared parts like the header or `layout.css` affect every
+   step that shoots a page using them; when in doubt, include the step. Without `plugins` the run
+   also skips building the Resolve plugin, which saves the most time. Leave out `--only` to redo
+   everything. It needs Docker; the demo video is rendered from the
    committed photos in `screenshots/photos/`. If the diff changes the worker's ffmpeg calls, check
    that `screenshots/bin/ffmpeg` still applies. Afterwards, look at every changed PNG
    (`git status static/img/screenshots`) to check that it still shows what the text says.

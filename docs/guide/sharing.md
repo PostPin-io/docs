@@ -29,28 +29,51 @@ organization always keeps at least one owner.
 
 Click the people icon (**Invite to project** or **Invite to timeline**) next to the project's or
 timeline's name in the [header](./projects.md#navigation), or choose the same entry in the **⋯**
-menu of its card. The dialog shows who has access and lets you add more people.
+menu of its card. The invite dialog has three tabs. The **i** next to each tab's description says
+what happens next.
 
-<Screenshot name="share-project" alt="The share dialog of a project" />
+<Screenshot name="share-project" alt="The invite dialog of a project, on the Via E-Mail tab" />
 
-- **Has access** lists everyone with access. Access to a project includes all its timelines,
-  shown as "via project". Admins and owners always have access and aren't listed.
-- **Add member…** gives an existing member of the organization access.
-- **Invite people outside the organization** sends an email invitation with a role. The person
-  joins your organization with that role and gets access to this project or timeline only.
-  Pending invitations are listed below it with **Resend** and **Revoke**.
-- **Invite links** are links per role that anyone can use to join. Turn a link on to use it, click
-  **Copy** to share it and **Reset** to invalidate the old link.
+- **Team Members** gives people who are already in the organization access. Click **Add** next to
+  a name. No email is sent, and their role in the organization stays the same.
+- **Via E-Mail** sends an email invitation with a role. The person joins your organization with
+  that role and only sees this project or timeline. Enter the address, pick the role and click
+  **Send invite**.
+- **Via Link** has an invite link per role that anyone can use to join. Pick the role, click
+  **Create link** the first time, then **Copy** to share it. The link doesn't expire and works for
+  any number of people, so only send it to people you trust. People who are already in the
+  organization keep their role and get access to this project or timeline.
+
+Invitations to a project or timeline offer the roles **Reviewer** (the default) and **Member**.
+Admins see the whole organization anyway; invite them on the
+[Members](./organization.md#members) page. Access to a project includes all its timelines.
+
+### Manage access
+
+**Manage access** in the **⋯** menu of a project or timeline card shows who can get into it right
+now. It is there for members, admins and owners.
+
+<Screenshot name="manage-access" alt="Manage access of a project" />
+
+- **People with access** lists everyone who was given access. **Remove** takes it back. People
+  with access to the project show up on its timelines as "via project". Admins and owners always
+  have access and aren't listed.
+- **Pending invitations** lists the email invitations nobody has accepted yet, with **Resend** and
+  **Revoke**.
+- **Invite links** lists the links that are turned on, with **Copy**, **Reset** (the old link stops
+  working) and **Turn off**. People who joined with a link keep their access.
+- **Invite people** opens the invite dialog.
 
 ## Share links
 
 A share link lets anyone watch one export and leave markers, without an account. Members, admins
 and owners can create them.
 
-Open the export and click **Share links** (the link icon) next to its name in the
+Open the export and click **Share links** (the share arrow) at the right end of the
 [header](./projects.md#navigation). The export's **⋯** menu in the export list and **Share links
-of latest export** in the timeline's menu open the same dialog. It lists the export's share links. Click **+** (**New link**) to create one. If the export has no links yet, the form for the
-first one is already open.
+of latest export** in the timeline's menu open the same dialog. It lists the export's share links.
+Click **+** (**New link**) to create one. If the export has no links yet, the form for the first
+one is already open.
 
 <Screenshot name="share-link-new" alt="Creating a share link" />
 
@@ -62,7 +85,7 @@ first one is already open.
 - **Expiry:** 24 hours (**24h**), 7 days (**7d**, the default), 30 days (**30d**) or
   **infinitely**: the link then works until it is deleted.
 
-Click the check mark to create the link. The link icon in the header then shows the number of
+Click the check mark to create the link. The share button in the header then shows the number of
 active links of the export.
 
 <Screenshot name="share-links" alt="The share links of an export" />

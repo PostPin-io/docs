@@ -1,5 +1,10 @@
 // Regenerates every screenshot from a PostPin checkout:
-//   node screenshots/run.ts <postpin-checkout> [--keep] [--skip-prepare]
+//   node screenshots/run.ts <postpin-checkout> [--only <steps>] [--keep] [--skip-prepare]
+//
+// --only takes a comma-separated list of steps: the web steps in web.ts (login, review, sharing, …),
+// `plugins` (plugin.ts) and `social` (social.ts). Without it, every step runs. The other screenshots
+// stay as they are. `social` also runs with `review`, as it is rendered from the review shot.
+// Without `plugins`, the checkout's Resolve plugin isn't built either, which saves the most time.
 //
 // 1. starts throwaway Postgres/Redis/rustfs/maildev (screenshots/compose.yml, own ports)
 // 2. prepares the checkout: env, install, prisma client, API spec, Resolve plugin build
@@ -19,12 +24,24 @@ import { seed } from "./seed.ts";
 import { buildDemoVideo } from "./demo-video.ts";
 
 const args = process.argv.slice(2);
-const src = path.resolve(args.find((a) => !a.startsWith("--")) ?? "");
+const src = path.resolve(args.find((a, i) => !a.startsWith("--") && args[i - 1] !== "--only") ?? "");
 if (!fs.existsSync(path.join(src, "packages/postpin"))) {
-	console.error("usage: node screenshots/run.ts <postpin-checkout> [--keep] [--skip-prepare]");
+	console.error("usage: node screenshots/run.ts <postpin-checkout> [--only <steps>] [--keep] [--skip-prepare]");
 	process.exit(1);
 }
 const keep = args.includes("--keep");
+const onlyArg = args.indexOf("--only");
+const only = onlyArg >= 0 ? args[onlyArg + 1].split(",").filter(Boolean) : null;
+const webSteps = only?.filter((s) => s !== "plugins" && s !== "social") ?? [];
+const runWeb = !only || webSteps.length > 0;
+const runPlugins = !only || only.includes("plugins");
+const knownWebSteps = [...fs.readFileSync(path.join(DOCS_ROOT, "screenshots/web.ts"), "utf8").matchAll(/^\tasync (\w+)\(\)/gm)].map((m) => m[1]);
+const unknown = webSteps.filter((s) => !knownWebSteps.includes(s));
+if (unknown.length) {
+	console.error(`unknown steps: ${unknown.join(", ")}; known: ${[...knownWebSteps, "plugins", "social"].join(", ")}`);
+	process.exit(1);
+}
+const runSocial = !only || only.includes("social") || only.includes("review");
 const run = (cmd: string, argv: string[], cwd = src) => execFileSync(cmd, argv, { cwd, stdio: "inherit" });
 fs.mkdirSync(WORK, { recursive: true });
 
@@ -41,8 +58,10 @@ if (!args.includes("--skip-prepare")) {
 	run("pnpm", ["--filter", "@postpin-io/shared", "run", "db:generate"]);
 	run("pnpm", ["--filter", "@postpin-io/postpin", "run", "generate:api"]);
 	run("pnpm", ["--filter", "@postpin-io/postpin", "run", "build:api-client"]);
-	run("pnpm", ["--filter", "@postpin-io/resolve-plugin", "run", "build"]);
-	ensureElectron(path.join(src, "packages/plugin-resolve/node_modules/electron"));
+	if (runPlugins) {
+		run("pnpm", ["--filter", "@postpin-io/resolve-plugin", "run", "build"]);
+		ensureElectron(path.join(src, "packages/plugin-resolve/node_modules/electron"));
+	}
 }
 
 const started: ChildProcess[] = [];
@@ -73,9 +92,9 @@ try {
 	await seed();
 
 	console.log("== screenshots");
-	run("node", [path.join(DOCS_ROOT, "screenshots/web.ts")], DOCS_ROOT);
-	run("node", [path.join(DOCS_ROOT, "screenshots/plugin.ts"), src], DOCS_ROOT);
-	run("node", [path.join(DOCS_ROOT, "screenshots/social.ts")], DOCS_ROOT);
+	if (runWeb) run("node", [path.join(DOCS_ROOT, "screenshots/web.ts"), ...webSteps], DOCS_ROOT);
+	if (runPlugins) run("node", [path.join(DOCS_ROOT, "screenshots/plugin.ts"), src], DOCS_ROOT);
+	if (runSocial) run("node", [path.join(DOCS_ROOT, "screenshots/social.ts")], DOCS_ROOT);
 } finally {
 	if (!keep) {
 		console.log("== teardown");

@@ -120,3 +120,26 @@ the app still starts, but users can't verify their address or reset their passwo
 | `SMTP_USER`      |             | SMTP user name.                                         |
 | `SMTP_PASSWORD`  |             | SMTP password.                                          |
 | `SMTP_MAIL_FROM` | `SMTP_USER` | Sender address, e.g. `"PostPin <noreply@example.com>"`. |
+
+### Sign-in
+
+Each provider appears as a button on the login and sign-up page, and under **Connected accounts**
+in the profile, once both its client ID and secret are set. See [Sign-in methods](./sign-in.md)
+for the redirect URIs to register.
+
+| Variable                  | Default          | Description                                                                                       |
+| ------------------------- | ---------------- | ------------------------------------------------------------------------------------------------- |
+| `DISABLE_PASSWORD_LOGIN`  | `false`          | `true` hides email and password on login and sign-up; users sign in with SSO or a passkey only.   |
+| `GOOGLE_CLIENT_ID`        | (empty)          | Google OAuth client.                                                                              |
+| `GOOGLE_CLIENT_SECRET`    | (empty)          |                                                                                                   |
+| `MICROSOFT_CLIENT_ID`     | (empty)          | Microsoft Entra ID app registration.                                                              |
+| `MICROSOFT_CLIENT_SECRET` | (empty)          |                                                                                                   |
+| `MICROSOFT_TENANT_ID`     | `common`         | Your tenant ID, to allow only your organization's accounts.                                       |
+| `GITHUB_CLIENT_ID`        | (empty)          | GitHub OAuth app.                                                                                 |
+| `GITHUB_CLIENT_SECRET`    | (empty)          |                                                                                                   |
+| `APPLE_CLIENT_ID`         | (empty)          | Services ID of "Sign in with Apple".                                                              |
+| `APPLE_CLIENT_SECRET`     | (empty)          | A signed JWT, valid for 6 months at most. See [Apple](./sign-in.md#apple).                        |
+| `OIDC_DISCOVERY_URL`      | (empty)          | Your identity provider's `…/.well-known/openid-configuration` (Keycloak, Authentik, Entra ID, …). |
+| `OIDC_CLIENT_ID`          | (empty)          |                                                                                                   |
+| `OIDC_CLIENT_SECRET`      | (empty)          |                                                                                                   |
+| `OIDC_NAME`               | `Single sign-on` | Label of the button, e.g. `Acme SSO`.                                                             |

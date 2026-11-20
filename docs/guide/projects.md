@@ -21,7 +21,8 @@ latest export, and when the project was created and last updated.
   the order.
 
 A click on a project's thumbnail, its name or **Open** opens it. The **⋯** menu of a project card
-has **Open project**, **Invite to project**, **Rename project** and **Delete project**. Deleting a
+has **Open project**, **Invite to project**, **Manage access**, **Rename project** and **Delete
+project**. Deleting a
 project deletes all its timelines, exports and markers.
 
 Reviewers and members only see the projects they were [given access to](./sharing.md#share-a-project-or-timeline).
@@ -37,8 +38,9 @@ timelines**, the **Table / Cards** toggle and **⋯ › Sort by** work like on t
 <Screenshot name="project" alt="The timelines of a project" />
 
 The **⋯** menu of a timeline has **Open timeline**, **Open latest export**, **Invite to timeline**,
-**Share links of latest export**, **Rename timeline** and **Delete timeline**. **Invite to
-timeline** and **Share links of latest export** are there for members, admins and owners.
+[**Manage access**](./sharing.md#manage-access), **Share links of latest export**, **Rename
+timeline** and **Delete timeline**. **Invite to timeline**, **Manage access** and **Share links of
+latest export** are there for members, admins and owners.
 
 ## Exports
 
@@ -66,10 +68,10 @@ Inside a project, the header shows where you are: project › timeline › expor
 its page. The arrow in front of a name opens a list of the other projects, timelines or exports at
 that level, so you can switch, for example, to another version of the same timeline.
 
-The icons next to the names share what they stand for: **Invite to project** and **Invite to
-timeline** open the [invite dialog](./sharing.md#share-a-project-or-timeline), and **Share links**
-next to the export opens its [share links](./sharing.md#share-links), with the number of active
-links.
+The people icons next to the project's and the timeline's name (**Invite to project**, **Invite to
+timeline**) open the [invite dialog](./sharing.md#share-a-project-or-timeline). On an export, the
+share arrow at the right end of the header opens its [share links](./sharing.md#share-links), with
+the number of active links.
 
 On a phone, the header shows only the current name, with a back arrow to the level above.
 

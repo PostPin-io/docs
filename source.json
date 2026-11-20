@@ -1,7 +1,7 @@
 {
 	"repository": "https://github.com/PostPin-io/postpin",
 	"branch": "main",
-	"commit": "edff61531d42d08d3db974fa10c2041f0769993b",
-	"commitSubject": "Merge pull request #105 from PostPin-io/feat/plugin-marker-sync-buttons",
+	"commit": "395ed281d64fee8641f5a43332a286acde8cecf8",
+	"commitSubject": "Merge pull request #109 from PostPin-io/feat/invitation-modal",
 	"syncedAt": "2026-11-20"
 }
