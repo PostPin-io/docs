@@ -2,11 +2,11 @@ import type {ReactNode} from 'react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 
 // The full address never appears in the built HTML, only after hydration
-const USER = 'kontakt';
-const DOMAIN = 'rueger.events';
+const USER = 'info';
+const DOMAIN = 'postpin.io';
 
 /**
- * The contact address. The static HTML shows "kontakt(ät)rueger.events" as plain text, so
+ * The contact address. The static HTML shows "info(ät)postpin.io" as plain text, so
  * scrapers that don't run JavaScript find no address; in the browser it becomes a mailto link.
  *
  *   <Email />
