@@ -35,8 +35,7 @@ async function newPage(email?: string) {
 			await page.getByLabel("Password").fill(PASSWORD);
 			await page.getByRole("button", { name: "Log in" }).click();
 			try {
-				// a new account goes to the onboarding tutorial on /welcome
-				await page.waitForURL(/\/(dashboard|welcome)/, { timeout: 10_000 });
+				await page.waitForURL(/\/dashboard/, { timeout: 10_000 });
 				break;
 			} catch (e) {
 				if (attempt === 3) throw e;
@@ -104,15 +103,30 @@ const steps: Record<string, () => Promise<void>> = {
 	},
 
 	async onboarding() {
-		// a brand-new account: the tutorial on /welcome starts with its first organization
+		// a brand-new account: the "Your first upload" tutorial starts on the dashboard
 		const email = `new-${Date.now()}@example.com`;
 		await api("POST", "/api/auth/sign-up/email", { name: "Robin Novak", email, password: PASSWORD });
 		const page = await newPage(email);
-		await page.waitForURL(/\/welcome/);
-		await page.getByLabel("Organization name").fill("Robin Novak Post");
+		await page.getByRole("button", { name: "Let's go" }).click();
+		await page.getByRole("textbox").first().fill("Robin Novak Post");
 		await sleep(500);
-		await shot(page, "welcome");
+		await shot(page, "first-upload");
 		await page.close();
+	},
+
+	async guides() {
+		// the PostPin Guides page; the seed marked the automatic guides as done, the others are new
+		const page = await newPage("alex@example.com");
+		await page.goto(`${BASE}/guides`);
+		await sleep(500);
+		await shot(page, "guides", { fullPage: true });
+		await page.close();
+		// a reviewer sees the guides for members (plugin, share links) locked
+		const reviewer = await newPage("sam@example.com");
+		await reviewer.goto(`${BASE}/guides`);
+		await sleep(500);
+		await shot(reviewer, "guides-reviewer", { fullPage: true });
+		await reviewer.close();
 	},
 
 	async dashboard() {

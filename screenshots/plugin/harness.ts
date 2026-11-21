@@ -70,12 +70,18 @@ const bridge: NleBridge = {
 		projectId: "nle-project-harbor",
 		projectName: info.project,
 		thumbnailDataUrl: info.thumbnail ? fs.readFileSync(env("HARNESS_THUMB"), "utf8") : undefined,
+		startFrame: 86400,
 	}),
 	getMarkers: async () => markers,
+	// writes like a real NLE: updates the markers it has by nleId, adds the others
 	setMarkers: async (list) => {
-		const ids = list.map((m, i) => m.nleId ?? String(100 + i));
-		markers = list.map((m, i) => ({ ...m, nleId: ids[i] }));
-		return ids;
+		const ids = list.map((m, i) => m.nleId ?? String(100 + markers.length + i));
+		const written = list.map((m, i) => ({ ...m, nleId: ids[i] }));
+		markers = [...markers.filter((m) => !ids.includes(m.nleId!)), ...written];
+		return ids.map((nleId) => ({ nleId }));
+	},
+	removeMarkers: async (nleIds) => {
+		markers = markers.filter((m) => !nleIds.includes(m.nleId!));
 	},
 	clearMarkers: async () => {
 		markers = [];

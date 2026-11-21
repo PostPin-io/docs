@@ -44,6 +44,6 @@ timelines, exports, markers and videos of the organization and can't be undone.
 ## Several organizations
 
 You can create more organizations from your [profile](./account.md#organizations), and be invited
-to others. The dashboard only offers **Create organization** while you aren't a member of any and
-skipped the [tutorial](./getting-started.md#the-tutorial). The account menu at the top right lists them under **Organizations**.
+to others. The dashboard offers **Create organization** while you aren't a member of any and the
+[Your first upload](./getting-started.md#your-first-upload) tutorial isn't running. The account menu at the top right lists them under **Organizations**.
 Click one to switch to it.

@@ -89,7 +89,7 @@ try {
 	console.log("== seed");
 	resetDatabase(src);
 	await buildDemoVideo();
-	await seed();
+	await seed(src);
 
 	console.log("== screenshots");
 	if (runWeb) run("node", [path.join(DOCS_ROOT, "screenshots/web.ts"), ...webSteps], DOCS_ROOT);

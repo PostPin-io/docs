@@ -40,28 +40,35 @@ you have [added a passkey](./account.md#passkeys). If you turned on
 [two-factor authentication](./account.md#two-factor-authentication), PostPin asks for the code from
 your authenticator app next.
 
-## The tutorial
+## Your first upload
 
-After signing up, PostPin starts a short tutorial on the **Welcome to PostPin** page. Its steps
-build what you need for your first review:
+After signing up, PostPin opens the dashboard and starts the **Your first upload** tutorial. It
+covers the whole window and builds what you need for your first review:
 
-1. **Create your organization**: your company or team. You become its owner.
-2. **Create your first project**: one production, for example a film or a commercial.
-3. **Add a timeline**: the sequence you are editing. Every version you upload of it becomes an
+1. **Welcome to PostPin**: click **Let's go**.
+2. **Create your organization**: your company or team. You become its owner.
+3. **Create your first project**: one production, for example a film or a commercial.
+4. **Add a timeline**: the sequence you are editing. Every version you upload of it becomes an
    export.
-4. **Upload your first export**: get the plugin for your editing software, upload from it, and
-   wait until the export is ready. **Upload a video file manually** uploads in the browser instead.
+5. **Upload your first export**: **Choose a video** opens the upload dialog. PostPin reads the
+   file's frame rate and start timecode.
 
-<Screenshot name="welcome" alt="The first step of the tutorial: creating the organization" />
+<Screenshot name="first-upload" alt="The Your first upload tutorial at the step that creates the organization" />
 
-On the first export, a few cards explain markers, [pointers](./review.md#pointers) and the
-[marker sync](../plugins/index.md#syncing-markers) of the plugins. **Share Guide** next to the names
-at the top explains share links and invite links.
+Each form suggests a name, so **Continue** alone is enough. While the export uploads and
+processes, **Open your export** takes you to it. It plays as soon as it's ready.
 
-**Skip tutorial** ends it at any step. While it isn't finished, the dashboard shows a card to
-continue it. Your [profile](./account.md#tutorial) can show it again.
+On the export, the **Your first review** tutorial (not on a phone) shows how to leave a marker, give it a category
+and reply to it. After that, the **PostPin Guides** tour shows where all
+[guides](./guides.md) are.
 
-People you invite to your organization don't get the tutorial.
+**Skip tutorial** ends it at any step. A reload goes on where you were. To start it again, use the
+[PostPin Guides](./guides.md) page in the account menu. Without the tutorial, the dashboard offers
+**Create organization** while you aren't a member of any.
+
+If you are already in an organization, for example because you were invited as a member, the
+tutorial leaves out the organization step. Invited reviewers can't create projects, so they don't
+get it.
 
 ## Organizations
 

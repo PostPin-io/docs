@@ -13,8 +13,8 @@ someone outside the team, like a client, send a [share link](#share-links). It n
 
 | Role         | Can                                                                                                                                                                      |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Reviewer** | Watch exports, add markers and replies, edit and delete their own markers, add categories and edit or delete the ones they added.                                          |
-| **Member**   | Everything a reviewer can, plus create, rename and delete projects, timelines and exports, upload, edit and delete anyone's markers and categories, save category presets and delete their own, invite people and change or revoke their own invitations, create share links and edit or delete their own, and run [screenings](./screening.md). |
+| **Reviewer** | Watch exports, add markers and replies, edit and delete their own markers, add categories and edit or delete the ones they added. Can't use the [plugins](../plugins/index.md).                                        |
+| **Member**   | Everything a reviewer can, plus use the plugins, create, rename and delete projects, timelines and exports, upload, edit and delete anyone's markers and categories, save category presets and delete their own, invite people and change or revoke their own invitations, create share links and edit or delete their own, and run [screenings](./screening.md). |
 | **Admin**    | Everything a member can, plus change roles, remove members, revoke anyone's invitations and access, edit or delete anyone's share links, and delete anyone's category presets. |
 | **Owner**    | Everything an admin can, plus rename and delete the organization.                                                                                                        |
 

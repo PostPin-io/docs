@@ -25,8 +25,10 @@ cookie or as a bearer token:
 Authorization: Bearer <session token>
 ```
 
-A token acts as the user it belongs to, with all their permissions. To get one, sign in with email
-and password:
+A token acts as the user it belongs to, with all their permissions. The API is the plugins' API,
+so like the plugins it needs the **Member** role or higher in the organization. For a reviewer it
+answers with 403 and a `PluginRoleError` that says so; `GET /api/v1/projects` does the same if the
+user is a reviewer in every organization. To get a token, sign in with email and password:
 
 ```sh
 curl -s -X POST https://postpin.example.com/api/auth/sign-in/email \
@@ -47,7 +49,8 @@ parts, not through the API.
 1. **Create an export** in a timeline:
    `POST /api/v1/projects/{projectId}/timelines/{timelineId}/exports` with
    `{"nleProjectId": null, "nleTimelineId": null}`. The two IDs link the export to a project and
-   timeline in an editor. Pass `null` if there is none.
+   timeline in an editor. Pass `null` if there is none. An optional `name` (at most 100
+   characters) names the export; without it, the server names it.
 2. **Start the upload:** `POST /api/v1/projects/{projectId}/timelines/{timelineId}/exports/{exportId}/init-upload` with `{"fileSize": <bytes>}`.
    Announce the exact size: PostPin checks it against `UPLOAD_MAX_FILE_SIZE` and the
    [storage quotas](../self-hosting/storage.md#storage-limits) right away and answers with 413 if
@@ -94,7 +97,19 @@ one are point markers (`0`), existing ones keep theirs. To update existing marke
 not added again.
 
 Marker frames are absolute timeline frames. At 24 fps, a timeline that starts at `01:00:00:00`
-begins at frame 86400.
+begins at frame 86400. An export uploaded in the browser can start at another timecode than the
+timeline in your NLE: `GET …/markers/origin` says where its frames start and whether it came from
+the browser.
+
+Markers deleted in PostPin are remembered:
+`GET /api/v1/projects/{projectId}/timelines/{timelineId}/exports/{exportId}/markers/deleted` lists
+them, so a sync doesn't bring them back.
+
+The plugins sync through `POST …/markers/sync` and `POST …/markers/links`, and back up the markers
+before every change as marker sets
+(`/api/v1/projects/{projectId}/timelines/{timelineId}/marker-sets`), which their history restores.
+These endpoints follow the plugins' sync and are listed in the [reference](#reference), but you
+won't need them for a simple import: use `PUT …/markers`.
 
 Categories come from `GET /api/v1/projects/{projectId}/categories`. `PUT` on the same path
 creates one from `{"name", "color"}`, with the colour as `#RRGGBB`. The markers of
@@ -103,7 +118,8 @@ creates with the first share link of a project.
 
 ## What the API can't do yet
 
-The API has no endpoints for replies, renaming or deleting, members or invitations. Those only
+The API has no endpoints for replies, renaming or deleting (except markers through the plugins'
+sync), members or invitations. Those only
 exist in the web app.
 
 ## Reference

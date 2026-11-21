@@ -97,19 +97,35 @@ async function uploadExport(s: Session, projectId: string, timelineId: string, t
 	return exp.id as string;
 }
 
-export async function seed() {
+/**
+ * Ids of the PostPin Guides that start on their own (`trigger: "automatic"` in the checkout's
+ * src/lib/guides.ts). The demo users have done them, so no tutorial or tour covers a screenshot.
+ */
+function automaticGuides(src: string): string[] {
+	const file = fs.readFileSync(path.join(src, "packages/postpin/src/lib/guides.ts"), "utf8");
+	const ids = [...file.matchAll(/id: "([\w-]+)",\s*type: "\w+",\s*trigger: "automatic"/g)].map((m) => m[1]);
+	if (ids.length === 0) throw new Error("no automatic guides found in guides.ts, update seed.ts");
+	return ids;
+}
+
+export async function seed(src: string) {
 	const alex = await signUp("Alex Morgan", "alex@example.com");
 	const priya = await signUp("Priya Shah", "priya@example.com");
 	const jordan = await signUp("Jordan Lee", "jordan@example.com");
 	const sam = await signUp("Sam Rivera", "sam@example.com");
 	sql(`UPDATE "user" SET "emailVerified" = true WHERE email = 'alex@example.com'`);
+	const guides = automaticGuides(src);
+	for (const s of [alex, priya, jordan, sam])
+		for (const guide of guides)
+			sql(`INSERT INTO guide_progress (id, "updatedAt", "userId", "guideId", status) VALUES (gen_random_uuid()::text, now(), ${q(s.userId)}, ${q(guide)}, 'COMPLETED')`);
 
 	const { data: org } = await api("POST", "/api/auth/organization/create", { name: "Northlight Studio", slug: "northlight-studio" }, alex.token);
 	const addMember = (s: Session, role: string) =>
 		sql(`INSERT INTO member (id, "organizationId", "userId", role, "createdAt") VALUES (gen_random_uuid()::text, ${q(org.id)}, ${q(s.userId)}, '${role}', now() - interval '20 days') RETURNING id`);
 	addMember(priya, "ADMIN");
 	const jordanMember = addMember(jordan, "MEMBER");
-	const samMember = addMember(sam, "REVIEWER");
+	// Member for now: the marker API below refuses reviewers, sam becomes a reviewer after it
+	const samMember = addMember(sam, "MEMBER");
 	for (const s of [priya, jordan, sam]) sql(`UPDATE session SET "activeOrganizationId" = ${q(org.id)} WHERE "userId" = ${q(s.userId)}`);
 
 	const project = async (name: string) => (await api("POST", "/api/v1/projects", { name, organizationId: org.id }, alex.token)).data.id as string;
@@ -181,6 +197,7 @@ export async function seed() {
 	]);
 	// a few markers on the older version, so the version history looks used
 	await markers(sam, trailerV2, [["Pacing in the middle", "The middle section drags, can we lose a shot?", tc(0, 0, 15, 0), "Client"]]);
+	sql(`UPDATE member SET role = 'REVIEWER' WHERE "userId" = ${q(sam.userId)}`);
 
 	// replies (no REST endpoint for responses)
 	const reply = (markerName: string, s: Session, content: string, minutesAgo: number) =>
@@ -196,9 +213,6 @@ export async function seed() {
 	sql(`INSERT INTO marker_pointer (id, "markerId", kind, x, y, width, height, color, "updatedAt")
 		SELECT gen_random_uuid()::text, id, 'RECT', 0.26, 0.3, 0.26, 0.34, '#CE272D', now()
 		FROM marker WHERE name = 'Grade doesn''t match' AND "exportId" = ${q(trailerV3)}`);
-
-	// the seeded accounts know PostPin: no onboarding tutorial on their pages
-	sql(`UPDATE "user" SET "tutorialCompletedAt" = now()`);
 
 	fs.writeFileSync(
 		path.join(WORK, "seed.json"),

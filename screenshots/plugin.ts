@@ -137,24 +137,60 @@ for (const [host, slug] of Object.entries(SLUGS)) {
 	await shot("choose-destination", true);
 	await win.getByRole("button", { name: "Cancel" }).click();
 
+	/** The plugin's open dialog plus some padding */
+	const shotDialog = async (name: string) => {
+		const box = (await win.locator(".modal-box:visible").last().boundingBox())!;
+		const pad = 24;
+		await win.screenshot({
+			path: path.join(outDir, `${slug}-${name}.png`),
+			clip: { x: Math.max(0, box.x - pad), y: Math.max(0, box.y - pad), width: box.width + 2 * pad, height: box.height + 2 * pad },
+		});
+		console.log(`  plugins/${slug}-${name}.png`);
+	};
+
 	if (slug === "resolve") {
+		// the render to disk dialog, turned on with a preset and a folder, so the whole form shows
 		await win.getByRole("button", { name: "Render to disk settings" }).click();
-		// turned on, with a preset and a folder, so the whole form shows
 		const toggle = win.getByText("Additionally render to disk");
 		await toggle.click();
 		await win.getByLabel("Folder").fill("/Volumes/Deliveries/Harbor Lights");
 		await sleep(600);
-		// the form lies below the main grid: crop to the form's bottom instead
-		const bottom = await win.locator("fieldset", { has: toggle }).evaluate((el) => el.getBoundingClientRect().bottom);
-		const size = win.viewportSize() ?? (await win.evaluate(() => ({ width: innerWidth, height: innerHeight })));
-		await win.screenshot({
-			path: path.join(outDir, `${slug}-render-to-disk.png`),
-			clip: { x: 0, y: 0, width: size.width, height: Math.min(size.height, bottom + 48) },
-		});
-		console.log(`  plugins/${slug}-render-to-disk.png`);
+		await shotDialog("render-to-disk");
 		// off again: the render below shows the plain upload
 		await toggle.click();
-		await win.getByRole("button", { name: "Render to disk settings" }).click();
+		await win.getByRole("button", { name: "Done" }).click();
+
+		// the preview of a sync to PostPin: the fake NLE's two markers are new there (without
+		// deletions it has no "Add & update" / "Match" switch). Applied, and then a sync back,
+		// so the marker history has entries. The web shots are taken by now.
+		const applyPreview = async (heading: string | RegExp, name?: string) => {
+			try {
+				await win.locator(".modal-box:visible").getByText(heading).waitFor({ timeout: 15_000 });
+			} catch {
+				// a sync without changes goes through without a preview
+				if (name) console.log(`  no sync preview showed up, skipped plugins/${slug}-${name}.png`);
+				return;
+			}
+			await sleep(600);
+			if (name) await shotDialog(name);
+			await win.locator(".modal-box:visible").getByRole("button", { name: /^Apply/ }).click();
+		};
+		await win.getByRole("button", { name: /^Sync markers from .* to PostPin$/ }).click();
+		await applyPreview("To PostPin", "sync-preview");
+		await win.getByRole("button", { name: /^Sync markers from .* to PostPin$/ }).and(win.locator(":enabled")).waitFor({ timeout: 30_000 });
+		await win.getByRole("button", { name: /^Sync markers from PostPin to / }).click();
+		await applyPreview(/^To (?!PostPin)/);
+		const history = win.getByRole("button", { name: "History" });
+		await history.and(win.locator(":enabled")).waitFor({ timeout: 30_000 });
+		await history.click();
+		try {
+			await win.locator(".modal-box:visible li").first().waitFor({ timeout: 15_000 });
+			await sleep(600);
+			await shotDialog("marker-history");
+		} catch {
+			console.log("  the marker history stayed empty, skipped plugins/resolve-marker-history.png");
+		}
+		await win.keyboard.press("Escape");
 	}
 
 	// the fake render takes a minute; the export is only created after it, so closing the

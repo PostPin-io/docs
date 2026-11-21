@@ -102,11 +102,10 @@ limit is used. The table lists each organization you're a member of with **Your 
 **You can still upload**, which can be less than your own limit because the organization has a
 limit too. See [Storage limits](../self-hosting/storage.md#storage-limits).
 
-## Tutorial
+## Guides
 
-**Show tutorial again** starts the explanations of markers and sharing again, from the
-[tutorial](./getting-started.md#the-tutorial). Organizations, projects and exports you created stay
-as they are. The section is there for accounts that own an organization or aren't in one yet.
+Tutorials and tours are on the **PostPin Guides** page in the account menu, where you can also
+switch them off. See [PostPin Guides](./guides.md).
 
 ## Delete account
 

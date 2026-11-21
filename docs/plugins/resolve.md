@@ -90,11 +90,19 @@ marker's name or note. Every Resolve marker has a duration of at least one frame
 duration of 1 is a point marker in PostPin, longer ones are ranges. A one-frame range in PostPin
 therefore comes back from Resolve as a point marker.
 
+Resolve takes only one marker per frame, while PostPin can have several on the same frame, for
+example from different reviewers. A pulled marker whose frame is taken goes on the next free frame,
+up to 10 frames later. As long as you don't move it, the plugin reports it at its original frame, so
+the next sync to PostPin doesn't move it there. Resolve also needs a name for every marker: an
+untitled marker gets a placeholder like `M3` and stays untitled in PostPin. Markers that still
+can't be placed, or that would lie before the start of the Resolve timeline, are listed with the
+reason after the sync.
+
 ### Render to disk
 
 Besides the upload, the plugin can render a second file with one of your Resolve render presets
 into a folder, for example a master for delivery. The gear button next to **Render & Upload →**
-opens the settings:
+opens the **Render to disk** dialog:
 
 - **Additionally render to disk** turns it on.
 - **Render preset** is one of the render presets of the open Resolve project. Format, codec and
@@ -104,10 +112,13 @@ opens the settings:
 
 ![The render to disk settings](/img/screenshots/plugins/resolve-render-to-disk.png)
 
+**Done** closes the dialog. The plugin saves the settings when you close it. While render to disk
+is on, the gear button stays highlighted.
+
 With the toggle on, **Render & Upload →** first renders the upload, then starts the disk render
 while the upload runs. A **To disk** bar shows its progress. Once the upload is done, the plugin
 opens the export in your browser and waits for the disk render, then shows the file's path. If the
 disk render fails, the export is uploaded anyway and the plugin shows the error as a warning.
 
-**Render & Upload →** stays disabled until a preset and a folder are chosen. The plugin saves
-these settings for the next time.
+**Render & Upload →** stays disabled until a preset and a folder are chosen. The note below it
+and the dialog say what's missing, for example **Choose a folder for the disk render.**

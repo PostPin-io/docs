@@ -77,7 +77,9 @@ of dialogue. On the ruler, a range is a bar with a light tint across the tracks.
   <kbd>M</kbd> to create a range from in to out. <kbd>C</kbd> or <kbd>Shift</kbd> + <kbd>X</kbd>
   clears the points.
 - Hold <kbd>⌥</kbd>/<kbd>Alt</kbd> and drag a marker on the ruler to pull out a range.
-- Drag a range to move it, or drag its ends to change its start or end.
+- Drag a range to move it, or drag its ends to change its start or end. With
+  <kbd>⌥</kbd>/<kbd>Alt</kbd> held, dragging the diamond at a range's start or end on the ruler
+  changes that end instead of moving the range.
 - The ↔ button (**Make it a range**) in the marker's edit pane turns a marker into a one-second
   range, and back into a point marker.
 

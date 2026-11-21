@@ -1,7 +1,7 @@
 {
 	"repository": "https://github.com/PostPin-io/postpin",
 	"branch": "main",
-	"commit": "395ed281d64fee8641f5a43332a286acde8cecf8",
-	"commitSubject": "Merge pull request #109 from PostPin-io/feat/invitation-modal",
-	"syncedAt": "2026-11-20"
+	"commit": "b84bd1d30438396d89d235e0faa453ad7e0f0cda",
+	"commitSubject": "Merge pull request #113 from PostPin-io/release/v0.6.0",
+	"syncedAt": "2026-11-21"
 }
