@@ -39,8 +39,8 @@ that host name invalidates every passkey.
 
 ## SSO-only instances
 
-With `DISABLE_PASSWORD_LOGIN=true`, the login and sign-up pages show only the providers and
-**Sign in with a passkey**. Existing users with a password sign in through a provider with the same
+With `DISABLE_PASSWORD_LOGIN=true`, the login page shows only the providers and
+**Sign in with a passkey**, the sign-up page only the providers. Existing users with a password sign in through a provider with the same
 verified email, or with a passkey they added before.
 
 ## Apple

@@ -22,7 +22,8 @@ Your display name appears on your markers and replies.
 
 ## Email
 
-The badge shows whether your address is verified. **Send verification email** sends a new link.
+The badge shows whether your address is verified. **Send verification email** sends a new link,
+which works for one hour.
 
 To change your address, enter it under **New email address** and click **Change**. If your current
 address is verified, PostPin sends a confirmation link to the new address first. Otherwise the
@@ -33,8 +34,8 @@ change happens right away.
 Enter your current password and the new one twice. Tick **Sign out other devices** to end every
 other session at the same time.
 
-Forgot your password? Click **Forgot password?** on the login page and enter your email. You'll
-get a link to choose a new password.
+Forgot your password? Click **Forgot password?** next to the password field on the login page and
+enter your email. You'll get a link to choose a new password, which works for one hour.
 
 An account you created with Google, Microsoft or another provider has no password. The section
 then says how you log in instead.

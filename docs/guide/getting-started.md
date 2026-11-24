@@ -11,7 +11,7 @@ markers) belongs to an organization.
 ## Create an account
 
 Open your PostPin server in the browser and click **Create an account** on the login page. Enter
-your first and last name, your email address and a password, then click **Sign Up**. You are signed
+your first and last name, your email address and a password, then click **Sign up**. You are signed
 in right away. If the server offers it, you can also sign up with **Continue with Google**, **Sign
 in with Microsoft**, GitHub, Apple or your company's single sign-on instead. If the server's
 operator has set up terms of service, a data processing agreement or a privacy policy, the sign-up
@@ -63,11 +63,13 @@ and reply to it. After that, the **PostPin Guides** tour shows where all
 [guides](./guides.md) are.
 
 **Skip tutorial** ends it at any step. A reload goes on where you were. To start it again, use the
-[PostPin Guides](./guides.md) page in the account menu. Without the tutorial, the dashboard offers
-**Create organization** while you aren't a member of any.
+[PostPin Guides](./guides.md) page in the account menu. While you aren't a member of any
+organization, the dashboard shows a welcome card. Its **Get started** button starts the tutorial
+again, also when guides are switched off. Once you completed or skipped the tutorial, the card
+offers **Create organization** instead.
 
 If you are already in an organization, for example because you were invited as a member, the
-tutorial leaves out the organization step. Invited reviewers can't create projects, so they don't
+tutorial leaves out the organization step, also in its step bar. Invited reviewers can't create projects, so they don't
 get it.
 
 ## Organizations

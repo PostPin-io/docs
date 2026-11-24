@@ -266,42 +266,34 @@ const steps: Record<string, () => Promise<void>> = {
 		const page = await newPage("alex@example.com");
 		const s = ids();
 		await page.goto(`${BASE}/projects/${s.harbor}`);
-		await openDialog(page, page.getByRole("button", { name: "Invite to project" }).first());
-		// the e-mail tab with an address typed in; the team members tab is empty, as everyone in
-		// the demo organization already has access to Harbor Lights
+		// one "Invitations" dialog with tabs, opened from the people icon next to the project's name
+		await openDialog(page, page.getByRole("button", { name: "Invitations for this project" }).first());
 		const dialog = page.locator(".modal-box:visible");
-		await dialog.getByRole("tab", { name: "Via E-Mail" }).click();
-		await dialog.getByLabel("E-mail address").fill("colorist@example.com");
+		// "Add people" with an address typed in: everyone in the demo organization already has
+		// access to Harbor Lights, so it offers the e-mail invitation
+		await dialog.getByLabel("Name or e-mail address").fill("colorist@example.com");
+		const send = dialog.getByRole("button", { name: "Send", exact: true });
+		await send.waitFor();
 		await shotDialog(page, "share-project");
 
-		// a pending invitation and an invite link for "Manage access". On a retry both exist already.
-		await dialog.getByRole("button", { name: "Send invite" }).click();
+		// a pending invitation for the Access tab. On a retry it exists already, which shows an error.
+		await send.click();
 		await dialog.locator("p.text-success, p.text-error").waitFor();
-		await dialog.getByRole("tab", { name: "Via Link" }).click();
-		const create = dialog.getByRole("button", { name: "Create link" });
-		const linkField = dialog.getByLabel("Invite link");
-		await create.or(linkField).first().waitFor();
-		if (await create.isVisible()) await create.click();
-		await linkField.waitFor();
-		await page.keyboard.press("Escape");
 
-		// "Manage access" is in the project's ⋯ menu on the dashboard
-		await page.goto(`${BASE}/dashboard`);
-		await page.waitForLoadState("networkidle");
-		for (let attempt = 1; ; attempt++) {
-			await page.locator(`button[popovertarget="project-menu-${s.harbor}"]`).first().click();
-			await page.locator(`#project-menu-${s.harbor}`).getByRole("button", { name: "Manage access" }).click();
-			try {
-				await page.getByText("colorist@example.com").waitFor({ timeout: 10_000 });
-				break;
-			} catch (e) {
-				// a reload of the fresh dev server closes the dialog again
-				if (attempt === 3) throw e;
-				await page.waitForLoadState("networkidle");
-			}
-		}
+		// the reviewer invite link turned on
+		await dialog.getByRole("tab", { name: "Invite links" }).click();
+		const turnOn = dialog.getByRole("button", { name: "Turn on the Reviewer invite link" });
+		const linkField = dialog.getByLabel("Reviewer invite link URL");
+		await turnOn.or(linkField).first().waitFor();
+		if (await turnOn.isVisible()) await turnOn.click();
+		await linkField.waitFor();
 		await sleep(500);
-		await shotDialog(page, "manage-access");
+		await shotDialog(page, "invite-links");
+
+		await dialog.getByRole("tab", { name: "Access" }).click();
+		await dialog.getByText("colorist@example.com").waitFor();
+		await sleep(500);
+		await shotDialog(page, "share-access");
 		await page.close();
 	},
 
@@ -361,7 +353,12 @@ const steps: Record<string, () => Promise<void>> = {
 			await page.getByRole("button", { name: "Invite", exact: true }).click();
 		}
 		await page.getByText("client@example.com").waitFor();
-		await page.locator("tr", { hasText: "Reviewer" }).locator("input.toggle").last().check();
+		// the reviewer invite link turned on; on a retry it is on already
+		const turnOn = page.getByRole("button", { name: "Turn on the Reviewer invite link" });
+		const linkField = page.getByLabel("Reviewer invite link URL");
+		await turnOn.or(linkField).first().waitFor();
+		if (await turnOn.isVisible()) await turnOn.click();
+		await linkField.waitFor();
 		await sleep(1000);
 		await shot(page, "members", { fullPage: true });
 		await page.goto(`${BASE}/organizations/northlight-studio/settings`);

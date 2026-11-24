@@ -27,42 +27,60 @@ organization always keeps at least one owner.
 
 ## Share a project or timeline
 
-Click the people icon (**Invite to project** or **Invite to timeline**) next to the project's or
-timeline's name in the [header](./projects.md#navigation), or choose the same entry in the **⋯**
-menu of its card. The invite dialog has three tabs. The **i** next to each tab's description says
-what happens next.
-
-<Screenshot name="share-project" alt="The invite dialog of a project, on the Via E-Mail tab" />
-
-- **Team Members** gives people who are already in the organization access. Click **Add** next to
-  a name. No email is sent, and their role in the organization stays the same.
-- **Via E-Mail** sends an email invitation with a role. The person joins your organization with
-  that role and only sees this project or timeline. Enter the address, pick the role and click
-  **Send invite**.
-- **Via Link** has an invite link per role that anyone can use to join. Pick the role, click
-  **Create link** the first time, then **Copy** to share it. The link doesn't expire and works for
-  any number of people, so only send it to people you trust. People who are already in the
-  organization keep their role and get access to this project or timeline.
+Click the people icon (**Invitations for this project** or **Invitations for this timeline**) next
+to the project's or timeline's name in the [header](./projects.md#navigation), or choose
+**Invitations** in the **⋯** menu of its card. Members, admins and owners can open it. The
+**Invitations** dialog names the project or timeline and has three tabs: **Add people**, **Invite
+links** and **Access**.
 
 Invitations to a project or timeline offer the roles **Reviewer** (the default) and **Member**.
-Admins see the whole organization anyway; invite them on the
-[Members](./organization.md#members) page. Access to a project includes all its timelines.
+Admins see the whole organization anyway; invite them
+[to the whole organization](#invite-to-the-whole-organization). Access to a project includes all
+its timelines.
 
-### Manage access
+### Add people
 
-**Manage access** in the **⋯** menu of a project or timeline card shows who can get into it right
-now. It is there for members, admins and owners.
+<Screenshot name="share-project" alt="The Invitations dialog of a project on the Add people tab, offering to invite colorist@example.com as Reviewer" />
 
-<Screenshot name="manage-access" alt="Manage access of a project" />
+**Add people** lists the members of the organization who don't have access yet. Type a name or an
+e-mail address in the field to filter the list.
 
-- **People with access** lists everyone who was given access. **Remove** takes it back. People
-  with access to the project show up on its timelines as "via project". Admins and owners always
-  have access and aren't listed.
-- **Pending invitations** lists the email invitations nobody has accepted yet, with **Resend** and
-  **Revoke**.
-- **Invite links** lists the links that are turned on, with **Copy**, **Reset** (the old link stops
-  working) and **Turn off**. People who joined with a link keep their access.
-- **Invite people** opens the invite dialog.
+- **Add** next to a name gives that person access. No e-mail is sent, and their role in the
+  organization stays the same.
+- For someone who isn't in the organization yet, type their e-mail address. The dialog offers
+  **Invite … as** with a role: pick it and click **Send**. They get an e-mail invitation, join
+  the organization with that role and only see this project or timeline.
+
+### Invite links
+
+<Screenshot name="invite-links" alt="The Invite links tab of the Invitations dialog, with the Reviewer link turned on" />
+
+**Invite links** has one link per role that anyone can use to join. **Turn on** creates the link,
+**Copy** copies it. The link doesn't expire and works for any number of people, so only send it
+to people you trust. People who are already in the organization keep their role and get access to
+this project or timeline.
+
+- **New link** replaces the link. Confirm with **Replace**; the old link stops working.
+- **Turn off** ends the link for good. **Turn on** later gives a new link, so a link you turned
+  off never works again.
+
+Anyone who may invite can turn a link on. Only the person who turned it on, an admin or an owner
+can replace it or turn it off; everyone else sees who created it. People who joined with a link
+keep their access when it changes.
+
+### Access
+
+<Screenshot name="share-access" alt="The Access tab of the Invitations dialog, with the people who have access and a pending invitation" />
+
+**Access** shows who can get into the project or timeline right now.
+
+- The list shows everyone who was given access, with their role. **Remove** takes it back. Members
+  can remove the access they gave, admins and owners anyone's. People with access to the project
+  show up on its timelines as "via project". Admins and owners always have access and aren't
+  listed.
+- **Invited** lists the e-mail invitations nobody has accepted yet, with **Resend** and
+  **Revoke**. It only shows while there are any.
+- **Manage all members** opens the [Members](./organization.md#members) page.
 
 ## Share links
 
@@ -142,7 +160,11 @@ right away, not only with their next click.
 ## Invite to the whole organization
 
 Admins and owners invite people to the whole organization on the
-[Members](./organization.md#members) page.
+[Members](./organization.md#members) page, or with the people icon (**Invitations for this
+organization**) next to the organization's name at the top left of the header (not on a phone).
+It opens the same **Invitations** dialog for the whole organization: **Add people** takes only an
+e-mail address and offers the roles **Reviewer**, **Member** and **Admin**, **Invite links** has a
+link for each of these roles, and **Access** lists the pending invitations.
 
 ## Accept an invitation
 
@@ -153,5 +175,5 @@ An email invitation links to a page that says which organization invited you and
   different account, PostPin offers **Sign in with a different account**.
 - Click **Accept invitation** to join, or **Decline**.
 
-Email invitations are valid for 48 hours. An invite link stays valid until someone resets or turns
-it off. Opening one shows the role you'll get and a **Join organization** button.
+Email invitations are valid for 48 hours. An invite link stays valid until someone replaces it
+with **New link** or turns it off. Opening one shows the role you'll get and a **Join organization** button.

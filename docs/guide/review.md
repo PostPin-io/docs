@@ -38,7 +38,19 @@ The bar under the video has, from left to right:
 
 Pausing the video sets the speed back to 1×.
 
-**Show Shot Grid** replaces the video with one thumbnail per shot. Click a shot to jump to it.
+**Show Shot Grid** replaces the video with one thumbnail per shot, with the name of its clip and
+its timecode. Click a shot to jump to it. The slider in the corner sets how many shots fit in a
+row. For timelines from a plugin or an imported EDL or FCPXML, the switch next to it chooses what
+counts as a shot:
+
+- **Every cut** (the default): a shot starts at every cut on any video track, also under an
+  adjustment layer or a title that runs over the whole timeline. The shot is named after the clip
+  the cut brings in.
+- **Top clip**: one shot per clip on top. A cut under a clip that covers it doesn't start a new
+  shot, so a timeline under an adjustment layer is one shot.
+
+Uploads with [estimated cuts](#estimated-cuts) have one shot per cut, without the switch. Your
+browser remembers the choice.
 
 When the timeline is hidden, by you or in a share link without it, markers appear on the scrub
 bar instead.
@@ -186,6 +198,22 @@ search or a category filter is active, a button next to it clears all filters. T
 - **Filter for Category** shows only markers of the chosen categories.
 - **Sort by** sorts by **Timecode** (the default), **Updated at**, **Created at** or **User**.
 - **Expand All / Collapse All** expands or collapses every card.
+- **Export…** saves the markers as a file, see [Exporting markers](#exporting-markers).
+
+### Exporting markers
+
+**Export…** in the **⋯** menu of the marker list opens **Export markers**:
+
+- **Format**: **PDF**, **Excel** or **CSV**. Each marker is a row with timecode in, out and
+  duration (for ranges), category, title, description and author.
+- **Thumbnails**: **Frame with its pointers** adds a picture of each marker's frame, with its
+  [pointers](#pointers) drawn on it, in **Small**, **Medium** or **Large**. CSV has no pictures.
+  For a PDF, the size sets how many markers fit on a page.
+- **Markers**: **All, by timecode**, **As in the panel** (with its search, filters and sorting),
+  or **Only selected** when markers are selected.
+
+**Export** grabs the frames from the video in your browser and downloads the file. Your browser
+remembers the choices for the next export.
 
 ### Selecting, copying and deleting markers
 
@@ -274,29 +302,29 @@ or deleted.
 
 ## Keyboard shortcuts
 
-These work anywhere on the review screen, except while you type in a field.
+These work anywhere on the review screen, except while you type in a field. <kbd>?</kbd>, or
+**Keyboard shortcuts** in the account menu, shows the list in PostPin. Where the table says
+<kbd>⌘</kbd>, use <kbd>Ctrl</kbd> on Windows and Linux.
 
 | Key                                                 | Action                                     |
 | --------------------------------------------------- | ------------------------------------------ |
 | <kbd>Space</kbd>                                    | Play / pause                               |
-| <kbd>M</kbd>                                        | New marker at the current frame            |
-| <kbd>P</kbd>                                        | Draw a [pointer](#pointers) for the open marker |
-| <kbd>←</kbd> / <kbd>→</kbd>                         | Previous / next marker                     |
-| <kbd>⌘</kbd> + <kbd>←</kbd> / <kbd>→</kbd>          | One frame back / forward                   |
-| <kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>←</kbd> / <kbd>→</kbd> | One second back / forward        |
-| <kbd>↑</kbd> / <kbd>↓</kbd>                         | Previous / next cut                        |
-| <kbd>I</kbd> / <kbd>O</kbd>                         | Set in / out point                         |
-| <kbd>C</kbd> or <kbd>Shift</kbd> + <kbd>X</kbd>     | Clear in and out point                     |
-| <kbd>Home</kbd> / <kbd>End</kbd>                    | Start / end                                |
 | <kbd>+</kbd> / <kbd>-</kbd>                         | Faster / slower                            |
 | <kbd>F</kbd>                                        | Fullscreen                                 |
+| <kbd>←</kbd> / <kbd>→</kbd>                         | Previous / next marker                     |
+| <kbd>↑</kbd> / <kbd>↓</kbd>                         | Previous / next cut                        |
+| <kbd>⌘</kbd> + <kbd>←</kbd> / <kbd>→</kbd>          | One frame back / forward                   |
+| <kbd>⌘</kbd> + <kbd>Shift</kbd> + <kbd>←</kbd> / <kbd>→</kbd> | One second back / forward        |
+| <kbd>Home</kbd> / <kbd>End</kbd>                    | Start / end                                |
+| <kbd>M</kbd>                                        | New marker at the current frame            |
+| <kbd>I</kbd> / <kbd>O</kbd>                         | Set in / out point for the next marker     |
+| <kbd>C</kbd> or <kbd>Shift</kbd> + <kbd>X</kbd>     | Clear in and out point                     |
+| <kbd>P</kbd>                                        | Draw a [pointer](#pointers) for the open marker |
+| <kbd>⌘</kbd> + scroll                               | Zoom the timeline                          |
+| <kbd>?</kbd>                                        | Show the list of shortcuts                 |
 
-:::note
-
-The hint under the timeline says "←/→ frame", but the arrow keys on their own jump between
-markers. Hold <kbd>⌘</kbd> to step frames.
-
-:::
+For selecting, copying and deleting markers, see
+[Selecting, copying and deleting markers](#selecting-copying-and-deleting-markers).
 
 ## On a phone
 

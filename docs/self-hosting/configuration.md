@@ -109,8 +109,10 @@ always encoded by the worker.
 
 ### Email
 
-PostPin sends email verification, password reset and invitation mails. Without a working SMTP server
-the app still starts, but users can't verify their address or reset their password.
+PostPin sends email verification, password reset, invitation and share-link mails, and a short
+notice when an account is deleted. Without a working SMTP server the app still starts, but users
+can't verify their address or reset their password. **send test** on the
+[admin page](./admin.md) checks the setup.
 
 | Variable         | Default     | Description                                             |
 | ---------------- | ----------- | ------------------------------------------------------- |
@@ -120,6 +122,11 @@ the app still starts, but users can't verify their address or reset their passwo
 | `SMTP_USER`      |             | SMTP user name.                                         |
 | `SMTP_PASSWORD`  |             | SMTP password.                                          |
 | `SMTP_MAIL_FROM` | `SMTP_USER` | Sender address, e.g. `"PostPin <noreply@example.com>"`. |
+
+Every mail has an HTML and a plain-text part and carries the logo as an inline attachment, so it
+needs no public image URL. Whether mails land in the inbox depends mostly on the sender domain: use
+a `SMTP_MAIL_FROM` address on a domain your SMTP server may send for, and set up SPF, DKIM and
+DMARC for it.
 
 ### Sign-in
 

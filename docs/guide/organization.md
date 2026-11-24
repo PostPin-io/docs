@@ -17,13 +17,17 @@ organization settings have two tabs, **General** and **Members**.
 - Change a member's role with the role selector, if your own role allows it.
 - **Access** shows which projects and timelines a member or reviewer can see, and removes access.
 - **Remove** removes someone from the organization. They lose access to everything in it.
-- **Invite by E-Mail** sends an invitation to the whole organization. Pending invitations are listed
-  with **Resend** and **Revoke**.
-- **Invite links** has one join link per role. Anyone with an enabled link can join with that
-  role. **Reset** a link to invalidate the old one.
+- **Invite by E-Mail** sends an invitation to the whole organization: enter the address, pick the
+  role and click **Invite**. Pending invitations are listed with **Resend** and **Revoke**.
+- **Invite links** has one join link per role. Anyone with a link joins with its role. They work
+  like the [invite links of a project](./sharing.md#invite-links): **Turn on**, **Copy**, **New
+  link** to replace a link, **Turn off** to end it for good.
 
-Only admins and owners can invite to the whole organization. Members invite people to single
-projects or timelines from the [share dialog](./sharing.md#share-a-project-or-timeline).
+Only admins and owners can invite to the whole organization. They can also do it with the people
+icon next to the organization's name in the header (not on a phone), see
+[Invite to the whole organization](./sharing.md#invite-to-the-whole-organization). Members invite
+people to single projects or timelines from the
+[Invitations dialog](./sharing.md#share-a-project-or-timeline).
 
 ## General
 
@@ -44,6 +48,7 @@ timelines, exports, markers and videos of the organization and can't be undone.
 ## Several organizations
 
 You can create more organizations from your [profile](./account.md#organizations), and be invited
-to others. The dashboard offers **Create organization** while you aren't a member of any and the
-[Your first upload](./getting-started.md#your-first-upload) tutorial isn't running. The account menu at the top right lists them under **Organizations**.
+to others. While you aren't a member of any, the dashboard offers **Create organization** once the
+[Your first upload](./getting-started.md#your-first-upload) tutorial is completed or skipped;
+before that, its **Get started** button starts the tutorial, which creates the organization. The account menu at the top right lists them under **Organizations**.
 Click one to switch to it.

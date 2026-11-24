@@ -45,9 +45,9 @@ Guides you start from this page run even while guides are switched off.
 | --- | --- | --- | --- |
 | **Your first upload** | Create your organization, a project and a timeline, and upload your first export. | On the dashboard, on its own for new accounts. See [Your first upload](./getting-started.md#your-first-upload). | Member |
 | **Your first review** | Leave a marker on a frame, give it a category, jump between markers and reply to one. | On its own on the first export you open. From this page, on the latest export you may leave markers on. | Reviewer |
-| **Installing the Resolve plugin** | Install the PostPin plugin in DaVinci Resolve Studio on macOS or Windows and sign it in. | From this page. | Reviewer |
-| **Installing the Premiere Pro plugin** | Install the PostPin panel in Premiere Pro on macOS or Windows and sign it in. | From this page. | Reviewer |
-| **Installing PostPin Desktop** | Install PostPin Desktop for Pro Tools on macOS or Windows, connect it and sign it in. | From this page. | Reviewer |
+| **Installing the Resolve plugin** | Install the PostPin plugin in DaVinci Resolve Studio on macOS or Windows and sign it in. | From [the plugin question](#the-plugin-question) on an export list, or from this page. | Member |
+| **Installing the Premiere Pro plugin** | Install the PostPin panel in Premiere Pro on macOS or Windows and sign it in. | From [the plugin question](#the-plugin-question) on an export list, or from this page. | Member |
+| **Installing PostPin Desktop** | Install PostPin Desktop for Pro Tools on macOS or Windows, connect it and sign it in. | From [the plugin question](#the-plugin-question) on an export list, or from this page. | Member |
 | **Using the plugin** | The plugin's panel: where exports go, and markers from PostPin into your program and back. | On its own on the dashboard once a plugin is signed in and an export has markers, or right after an install tutorial. | Member |
 
 The install tutorials pick your operating system and let you switch to the other one. They notice
@@ -59,6 +59,18 @@ you use and waits for you to bring the markers over and send one back. See
 tutorial** goes back. A tutorial you leave without skipping, for example by reloading the page,
 goes on where you were.
 
+### The plugin question
+
+The first time you open the export list of a timeline, PostPin asks **Install a PostPin plugin?**
+(not on a phone). **Yes** asks **Which program do you work in?**: **DaVinci Resolve**, **Premiere
+Pro** or **Pro Tools** starts its install tutorial right there. **No, thanks** asks once more:
+**Skip** skips all three install tutorials, and the question doesn't come back. You can still start
+each of them from this page.
+
+PostPin only asks while guides are switched on, and only members, admins and owners who don't
+have a plugin signed in yet and haven't started, completed or skipped an install tutorial. If you
+leave the page without answering, it asks again next time.
+
 ## Tours
 
 | Tour | What it covers | Where it starts | Lowest role |
@@ -66,6 +78,8 @@ goes on where you were.
 | **PostPin Guides** | How guides work: the guide buttons, this page, and switching guides off. | On its own after **Your first upload**, or right away for accounts that can't do that tutorial. | Reviewer |
 | **Finding your way** | From the dashboard through projects and timelines to an export, and back with the breadcrumbs. | Guide button next to the PostPin logo in the header, once there is an export. | Reviewer |
 | **Share links** | Share an export with people who don't have an account. | Guide button next to the share button of an export. | Member |
+| **Inviting your team** | Invite people into your organization by e-mail or with an invite link. | Guide button next to **Invite by E-Mail** on the [Members](./organization.md#members) page. From this page, on the Members page of your active organization. | Admin |
+| **Project access** | Give people access to just one project or timeline: by name, e-mail or link. | Guide button next to the title of the [Invitations dialog](./sharing.md#share-a-project-or-timeline) of a project or timeline. From this page, on the newest project you may invite to. | Member |
 | **Marker ranges** | Move a marker on the timeline, stretch it into a range and set start and end to the frame. | Guide button in the timeline toolbar of an export. | Reviewer |
 
 A tour step either has a **Next** button, says **Try it, then click Next.**, or says **Your turn**:

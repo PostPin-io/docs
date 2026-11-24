@@ -28,5 +28,5 @@ to every [release](https://github.com/PostPin-io/postpin/releases).
   two hostnames pointing to the server, one for the app and one for media storage, e.g.
   `postpin.example.com` and `media.example.com`.
 - a reverse proxy that terminates TLS, see [Reverse proxy and TLS](./reverse-proxy.md)
-- an SMTP server for email verification, password reset and invitation emails. PostPin starts
+- an SMTP server for email verification, password reset, invitation and share-link emails. PostPin starts
   without it, but users can't verify their address or reset their password.

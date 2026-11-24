@@ -1,7 +1,7 @@
 {
 	"repository": "https://github.com/PostPin-io/postpin",
 	"branch": "main",
-	"commit": "b84bd1d30438396d89d235e0faa453ad7e0f0cda",
-	"commitSubject": "Merge pull request #113 from PostPin-io/release/v0.6.0",
-	"syncedAt": "2026-11-21"
+	"commit": "b0cf12c852c4289f1ef33078bde53d41bf93ed99",
+	"commitSubject": "Merge pull request #121 from PostPin-io/fix/timeline-daisy-theme",
+	"syncedAt": "2026-11-24"
 }
