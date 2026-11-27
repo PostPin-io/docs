@@ -1,0 +1,91 @@
+.page {
+  max-width: 48rem;
+  margin: 0 auto;
+  padding: 4rem 1rem 5rem;
+}
+
+.page h1 {
+  font-size: clamp(2.25rem, 6vw, 3rem);
+  letter-spacing: -0.02em;
+}
+
+.team {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1rem, 4vw, 2rem);
+  margin-top: 2.5rem;
+}
+
+.person {
+  display: block;
+  color: inherit;
+  transition:
+    opacity 300ms,
+    filter 300ms;
+}
+.person:hover {
+  color: inherit;
+  text-decoration: none;
+}
+/* hovering one of us dims the other */
+.team:has(.person:hover) .person:not(:hover) {
+  opacity: 0.6;
+  filter: brightness(0.5);
+}
+
+.photo {
+  overflow: hidden;
+  border-radius: 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 300ms;
+}
+.person:hover .photo {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2);
+}
+.photo img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  transition: transform 500ms ease-out;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .person:hover .photo img {
+    transform: scale(1.05);
+  }
+}
+
+.name {
+  display: inline-block;
+  margin-top: 0.75rem;
+  font-weight: 600;
+}
+.person:hover .name {
+  text-decoration: underline;
+}
+
+.text {
+  margin-top: 3rem;
+  font-size: 1.125rem;
+  text-wrap: pretty;
+}
+
+.thanks {
+  margin-top: 4rem;
+  padding: 2.5rem clamp(1rem, 4vw, 2.5rem);
+  border-radius: 1rem;
+  /* see-through, so the markers show behind it */
+  background: color-mix(in srgb, var(--ifm-color-emphasis-100) 70%, transparent);
+}
+.thanks ul {
+  list-style: none;
+  padding: 0;
+}
+.professors {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  font-weight: 600;
+}
+.supporters {
+  font-size: 1.125rem;
+  font-weight: 500;
+}

@@ -132,6 +132,7 @@ const config: Config = {
         {
           title: 'Project',
           items: [
+            {label: 'About us', to: '/about'},
             {label: 'GitHub', href: 'https://github.com/PostPin-io/postpin'},
             {label: 'Releases', href: 'https://github.com/PostPin-io/postpin/releases'},
             {label: 'Issues', href: 'https://github.com/PostPin-io/postpin/issues'},
