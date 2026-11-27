@@ -47,7 +47,7 @@ Guides you start from this page run even while guides are switched off.
 | **Your first review** | Leave a marker on a frame, give it a category, jump between markers and reply to one. | On its own on the first export you open. From this page, on the latest export you may leave markers on. | Reviewer |
 | **Installing the Resolve plugin** | Install the PostPin plugin in DaVinci Resolve Studio on macOS or Windows and sign it in. | From [the plugin question](#the-plugin-question) on an export list, or from this page. | Member |
 | **Installing the Premiere Pro plugin** | Install the PostPin panel in Premiere Pro on macOS or Windows and sign it in. | From [the plugin question](#the-plugin-question) on an export list, or from this page. | Member |
-| **Installing PostPin Desktop** | Install PostPin Desktop for Pro Tools on macOS or Windows, connect it and sign it in. | From [the plugin question](#the-plugin-question) on an export list, or from this page. | Member |
+| **Installing PostPin Desktop** | Install PostPin Desktop for Pro Tools or FilmCraft on macOS or Windows, connect it and sign it in. | From [the plugin question](#the-plugin-question) on an export list, or from this page. | Member |
 | **Using the plugin** | The plugin's panel: where exports go, and markers from PostPin into your program and back. | On its own on the dashboard once a plugin is signed in and an export has markers, or right after an install tutorial. | Member |
 
 The install tutorials pick your operating system and let you switch to the other one. They notice
@@ -63,8 +63,9 @@ goes on where you were.
 
 The first time you open the export list of a timeline, PostPin asks **Install a PostPin plugin?**
 (not on a phone). **Yes** asks **Which program do you work in?**: **DaVinci Resolve**, **Premiere
-Pro** or **Pro Tools** starts its install tutorial right there. **No, thanks** asks once more:
-**Skip** skips all three install tutorials, and the question doesn't come back. You can still start
+Pro**, **Pro Tools** or **FilmCraft** starts its install tutorial right there. Pro Tools and
+FilmCraft share the PostPin Desktop tutorial, which has a switch between the two. **No, thanks**
+asks once more: **Skip** skips all install tutorials, and the question doesn't come back. You can still start
 each of them from this page.
 
 PostPin only asks while guides are switched on, and only members, admins and owners who don't

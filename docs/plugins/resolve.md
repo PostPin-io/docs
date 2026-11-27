@@ -12,7 +12,9 @@ Resolve.
 
 ## Requirements
 
-- DaVinci Resolve Studio. Resolve loads workflow integration plugins only in the Studio version.
+- DaVinci Resolve Studio 20.1 or newer. Resolve loads workflow integration plugins only in the
+  Studio version. An older Resolve shows "The plugin needs DaVinci Resolve 20.1 or newer" with the
+  version it found. Before 21.1.2 the host card shows no preview image.
 - macOS on Apple silicon or Intel, or Windows on x64 or ARM64.
 
 ## Install on macOS

@@ -14,7 +14,7 @@ someone outside the team, like a client, send a [share link](#share-links). It n
 | Role         | Can                                                                                                                                                                      |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | **Reviewer** | Watch exports, add markers and replies, edit and delete their own markers, add categories and edit or delete the ones they added. Can't use the [plugins](../plugins/index.md).                                        |
-| **Member**   | Everything a reviewer can, plus use the plugins, create, rename and delete projects, timelines and exports, upload, edit and delete anyone's markers and categories, save category presets and delete their own, invite people and change or revoke their own invitations, create share links and edit or delete their own, and run [screenings](./screening.md). |
+| **Member**   | Everything a reviewer can, plus use the plugins, create, rename and delete projects, timelines and exports, upload, edit and delete anyone's markers and categories, add categories from presets, save category presets and delete their own, invite people and change or revoke their own invitations, create share links and edit or delete their own, and run [screenings](./screening.md). |
 | **Admin**    | Everything a member can, plus change roles, remove members, revoke anyone's invitations and access, edit or delete anyone's share links, and delete anyone's category presets. |
 | **Owner**    | Everything an admin can, plus rename and delete the organization.                                                                                                        |
 
@@ -141,9 +141,10 @@ Then they get the review screen with the panels the link shows and the note over
 - Guests add markers with <kbd>M</kbd> or **Add marker at playhead** like the team, and edit,
   move and delete their own markers, ranges included. They only see their own markers, not the
   team's or other guests'.
-- Their markers go into the link's category. They can't pick a category, reply to markers or
-  copy and paste markers. If the team renames the category, changes its colour or merges it into
-  another, guests see it without a reload.
+- Their markers go into the link's category. They can't pick a category or reply to markers.
+  They can copy, cut and paste their markers within the link's export, and undo and redo their
+  changes. If the team renames the category, changes its colour or merges it into another, guests
+  see it without a reload.
 - The team sees guest markers on the export with the guest's name as the author.
 - The browser remembers the guest, so opening the link again continues with the same name. A link
   accepts at most 500 guests, a screening link only as many as its guest limit.

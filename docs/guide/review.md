@@ -40,7 +40,12 @@ Pausing the video sets the speed back to 1×.
 
 **Show Shot Grid** replaces the video with one thumbnail per shot, with the name of its clip and
 its timecode. Click a shot to jump to it. The slider in the corner sets how many shots fit in a
-row. For timelines from a plugin or an imported EDL or FCPXML, the switch next to it chooses what
+row; with few of them, the tiles get large and sharp. **Search shots** shows only the shots whose
+name matches.
+
+Below the grid, a colour strip of the whole video frames the shots in view. Drag the frame to
+scroll, click beside it to jump there, and drag its edges to show more or fewer shots per row.
+The shots a search finds stand out in the strip. For timelines from a plugin or an imported EDL or FCPXML, the switch next to it chooses what
 counts as a shot:
 
 - **Every cut** (the default): a shot starts at every cut on any video track, also under an
@@ -225,12 +230,36 @@ remembers the choices for the next export.
 | Select all / clear selection        | <kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>A</kbd> / <kbd>Esc</kbd> |
 | Delete selected markers             | <kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>Backspace</kbd> or <kbd>Delete</kbd> |
 | Copy, cut, paste                    | <kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>C</kbd> / <kbd>X</kbd> / <kbd>V</kbd> |
+| Undo a marker change                | <kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>Z</kbd>                |
+| Redo a marker change                | <kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>Z</kbd>, or <kbd>Ctrl</kbd> + <kbd>Y</kbd> on Windows and Linux |
 
 <kbd>⌘</kbd> on a Mac, <kbd>Ctrl</kbd> on Windows and Linux.
 
 Pasted markers land at the current frame, keeping their distance to each other. Copy and paste also
-works between exports, for example to carry open notes over to the next version. Cut markers are
-shown faded until you paste them; <kbd>Esc</kbd> cancels the cut.
+works between exports and browser windows, for example to carry open notes over to the next
+version: PostPin keeps what you copied, not your browser. Cut markers are shown faded until you
+paste them; <kbd>Esc</kbd> cancels the cut.
+
+With two or more markers selected, the edit pane changes them together, for example
+**3 markers selected** (team only, not on share links):
+
+- **Category** puts them all into one category. The button next to it creates a new one.
+- **Move** shifts them all: the arrows by a frame or a second, or type a number of frames (`-12`)
+  or a timecode (`+00:00:01:00`) and press <kbd>Enter</kbd>.
+- The bin deletes them, **✕** clears the selection.
+
+Markers you may not change stay as they are; the pane says how many. It also says how many of the
+selected markers the list's filters hide.
+
+### Undo and redo
+
+<kbd>⌘</kbd>/<kbd>Ctrl</kbd> + <kbd>Z</kbd> undoes your last change to markers: adding, editing,
+moving, deleting, pasting, and changes to several markers at once. A message at the bottom says
+what was undone, with a link when it happened on another export. Redo brings it back.
+
+PostPin keeps your last 100 changes for 30 days, across exports and browser windows. Each person
+undoes only their own changes. If someone else changed the same markers since, PostPin asks before
+undoing yours.
 
 ## Replies
 
@@ -270,8 +299,9 @@ To manage categories, open a marker and click **New category** next to the categ
   ones.
 - **Presets** opens the [category presets](#category-presets).
 
-Everyone in the team can add categories, also from a preset. Reviewers can edit and delete the
-categories they added; members, admins and owners can edit and delete all of them.
+Everyone in the team can add categories. Reviewers can edit and delete the categories they added;
+members, admins and owners can edit and delete all of them, and add categories from a
+[preset](#category-presets). Reviewers don't see **Presets**.
 
 ### Category presets
 
@@ -323,8 +353,9 @@ These work anywhere on the review screen, except while you type in a field. <kbd
 | <kbd>⌘</kbd> + scroll                               | Zoom the timeline                          |
 | <kbd>?</kbd>                                        | Show the list of shortcuts                 |
 
-For selecting, copying and deleting markers, see
-[Selecting, copying and deleting markers](#selecting-copying-and-deleting-markers).
+For selecting, copying, deleting, undoing and redoing marker changes, see
+[Selecting, copying and deleting markers](#selecting-copying-and-deleting-markers) and
+[Undo and redo](#undo-and-redo).
 
 ## On a phone
 

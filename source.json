@@ -1,7 +1,7 @@
 {
 	"repository": "https://github.com/PostPin-io/postpin",
 	"branch": "main",
-	"commit": "b0cf12c852c4289f1ef33078bde53d41bf93ed99",
-	"commitSubject": "Merge pull request #121 from PostPin-io/fix/timeline-daisy-theme",
-	"syncedAt": "2026-11-24"
+	"commit": "e4f185f561460ac706aba0776b089e2cd922d63a",
+	"commitSubject": "Merge pull request #135 from PostPin-io/feat/desktop-reaper",
+	"syncedAt": "2026-11-27"
 }
