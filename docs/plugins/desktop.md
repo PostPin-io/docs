@@ -8,8 +8,8 @@ sidebar_position: 4
 
 PostPin Desktop is a standalone app that talks to Pro Tools through its scripting interface (PTSL).
 It has the same window as the [Resolve plugin](./resolve.md), plus a **Program** menu on the host
-card for the program the app works with: Pro Tools or [FilmCraft](./filmcraft.md). The app remembers the
-choice, and you can't switch while it renders or syncs markers.
+card for the program the app works with: Pro Tools, [FilmCraft](./filmcraft.md) or
+[REAPER](./reaper.md). The app remembers the choice, and you can't switch while it renders or syncs markers.
 
 ![PostPin Desktop connected to Pro Tools](/img/screenshots/plugins/desktop-main.png)
 

@@ -9,7 +9,7 @@ lives in `source.json`. Never document features that only exist on feature branc
 ## Layout
 
 - `docs/guide/`: web app user guide
-- `docs/plugins/`: DaVinci Resolve plugin, Premiere Pro plugin and PostPin Desktop (Pro Tools)
+- `docs/plugins/`: DaVinci Resolve plugin, Premiere Pro plugin and PostPin Desktop (Pro Tools, FilmCraft, REAPER)
 - `docs/self-hosting/`: self-hosting guide. The main repo has no docs of its own any more; this
   site is the only home of user-facing documentation.
 - `docs/api/index.md`: hand-written API intro. `docs/api/reference/` is generated from

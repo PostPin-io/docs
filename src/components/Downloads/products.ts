@@ -84,12 +84,13 @@ export const GROUPS: Group[] = [
       {
         id: 'desktop',
         name: 'PostPin Desktop',
-        description: 'Standalone app for Avid Pro Tools and FilmCraft',
+        description: 'Standalone app for Avid Pro Tools, FilmCraft and REAPER',
         icon: {src: '/img/hosts/pro-tools.png'},
         guide: '/plugins/desktop',
         hosts: [
           {name: 'Pro Tools', icon: '/img/hosts/pro-tools.png', guide: '/plugins/desktop'},
           {name: 'FilmCraft', icon: '/img/hosts/filmcraft.png', guide: '/plugins/filmcraft'},
+          {name: 'REAPER', icon: '/img/hosts/reaper.png', guide: '/plugins/reaper'},
         ],
         downloads: [
           {os: 'mac', arch: 'Universal', pattern: /^PostPin-Desktop-.+-universal\.dmg$/},

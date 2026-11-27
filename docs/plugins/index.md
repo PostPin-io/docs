@@ -7,8 +7,8 @@ slug: /plugins
 # Plugins
 
 The plugins connect [DaVinci Resolve](./resolve.md), [Premiere Pro](./premiere.md),
-[Pro Tools](./desktop.md) and [FilmCraft](./filmcraft.md) to PostPin. They render the current
-timeline, upload it as a new export, and sync markers in both directions.
+[Pro Tools](./desktop.md), [FilmCraft](./filmcraft.md) and [REAPER](./reaper.md) to PostPin. They
+render the current timeline, upload it as a new export, and sync markers in both directions.
 
 Get them from the [Downloads](../downloads.md) page. All of them share the same window and work
 the same way. The sections below apply to all of them.

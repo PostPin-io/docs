@@ -17,7 +17,7 @@ those notes back into your timeline as markers.
 
 1. **Upload from your editor.** The [DaVinci Resolve plugin](../plugins/resolve.md), the
    [Premiere Pro plugin](../plugins/premiere.md) and [PostPin Desktop](../plugins/desktop.md) (for
-   Pro Tools and [FilmCraft](../plugins/filmcraft.md)) render the current timeline and upload it to PostPin in one click. Each upload becomes a new [export](./concepts.md#exports) of that
+   Pro Tools, [FilmCraft](../plugins/filmcraft.md) and [REAPER](../plugins/reaper.md)) render the current timeline and upload it to PostPin in one click. Each upload becomes a new [export](./concepts.md#exports) of that
    timeline.
 2. **Review in the browser.** Reviewers open the export, play it, and press <kbd>M</kbd> to drop a
    marker on the current frame, or mark a range from an in to an out point. Markers have a title, a

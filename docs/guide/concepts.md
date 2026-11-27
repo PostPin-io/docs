@@ -27,8 +27,8 @@ link a PostPin project to a project in your editor.
 
 ## Timelines
 
-A timeline in PostPin stands for one timeline (Resolve), sequence (Premiere Pro, FilmCraft) or session
-(Pro Tools) in your editor. Once
+A timeline in PostPin stands for one timeline (Resolve), sequence (Premiere Pro, FilmCraft), session
+(Pro Tools) or project (REAPER) in your editor. Once
 linked, the plugin preselects the right PostPin timeline whenever you open that timeline in your
 editor.
 
