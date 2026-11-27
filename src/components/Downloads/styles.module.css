@@ -46,6 +46,13 @@
   border-radius: 9px;
 }
 
+.hostIcons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
 .mono {
   padding: 7px;
   background: var(--ifm-color-emphasis-200);

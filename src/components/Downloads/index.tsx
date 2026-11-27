@@ -1,9 +1,9 @@
 import {useEffect, useState, type ReactNode} from 'react';
 import Link from '@docusaurus/Link';
-import useBaseUrl from '@docusaurus/useBaseUrl';
+import useBaseUrl, {useBaseUrlUtils} from '@docusaurus/useBaseUrl';
 import clsx from 'clsx';
 import {Icon} from './icons';
-import {GROUPS, OS_ICON, OS_LABEL, type Download, type Os, type Product} from './products';
+import {GROUPS, OS_ICON, OS_LABEL, type Download, type Host, type Os, type Product} from './products';
 import styles from './styles.module.css';
 
 const REPO = 'PostPin-io/postpin';
@@ -78,10 +78,39 @@ function ProductIcon({product}: {product: Product}) {
   return <Icon name={product.icon.name} className={clsx(styles.productIcon, styles.mono)} />;
 }
 
+/** The app icons of an app like PostPin Desktop's hosts, one below the other */
+function HostIcons({hosts}: {hosts: Host[]}) {
+  const {withBaseUrl} = useBaseUrlUtils();
+  return (
+    <div className={styles.hostIcons}>
+      {hosts.map((host) => (
+        <img key={host.name} src={withBaseUrl(host.icon)} alt="" className={styles.productIcon} />
+      ))}
+    </div>
+  );
+}
+
+/** "Install guide: Pro Tools · FilmCraft" */
+function HostGuides({hosts}: {hosts: Host[]}) {
+  return (
+    <>
+      Install guide:{' '}
+      {hosts.map((host, i) => (
+        <span key={host.name}>
+          {i > 0 && ' · '}
+          <Link to={host.guide}>{host.name}</Link>
+        </span>
+      ))}
+    </>
+  );
+}
+
 function ProductRow({product, releases, platform}: {product: Product; releases: Release[]; platform: Platform}) {
   const downloads = product.downloads
     .map((d) => ({d, found: find(releases, d.pattern)}))
-    .filter((x): x is {d: Download; found: Found} => !!x.found);
+    .filter((x): x is {d: Download; found: Found} => !!x.found)
+    // the visitor's platform, highlighted, goes last: next to the edge, like a primary button
+    .sort((a, b) => Number(isMine(a.d, platform)) - Number(isMine(b.d, platform)));
   // all downloads of a product normally come from the same release
   const release = product.link
     ? find(releases, product.link.release)?.release
@@ -90,7 +119,7 @@ function ProductRow({product, releases, platform}: {product: Product; releases: 
   return (
     <div className={styles.product}>
       <div className={styles.info}>
-        <ProductIcon product={product} />
+        {product.hosts ? <HostIcons hosts={product.hosts} /> : <ProductIcon product={product} />}
         <div>
           <div className={styles.name}>{product.name}</div>
           <div className={styles.description}>{product.description}</div>
@@ -103,7 +132,13 @@ function ProductRow({product, releases, platform}: {product: Product; releases: 
             ) : (
               'Not released yet'
             )}
-            {!product.link && (
+            {product.hosts && (
+              <>
+                {' · '}
+                <HostGuides hosts={product.hosts} />
+              </>
+            )}
+            {!product.link && !product.hosts && (
               <>
                 {' · '}
                 <Link to={product.guide}>Install guide</Link>

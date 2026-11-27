@@ -6,14 +6,9 @@ slug: /plugins
 
 # Plugins
 
-The plugins connect your editing software to PostPin. They render the current timeline, upload it
-as a new export, and sync markers in both directions.
-
-| Editing software       | Plugin                          | Platform |
-| ---------------------- | ------------------------------- | -------- |
-| DaVinci Resolve Studio | [Resolve plugin](./resolve.md)  | macOS, Windows |
-| Avid Pro Tools         | [PostPin Desktop](./desktop.md) | macOS, Windows |
-| Adobe Premiere Pro     | [Premiere plugin](./premiere.md) | macOS, Windows |
+The plugins connect [DaVinci Resolve](./resolve.md), [Premiere Pro](./premiere.md),
+[Pro Tools](./desktop.md) and [FilmCraft](./filmcraft.md) to PostPin. They render the current
+timeline, upload it as a new export, and sync markers in both directions.
 
 Get them from the [Downloads](../downloads.md) page. All of them share the same window and work
 the same way. The sections below apply to all of them.

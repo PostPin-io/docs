@@ -1,6 +1,6 @@
 ---
 title: Premiere Pro
-sidebar_position: 4
+sidebar_position: 3
 ---
 
 # Premiere Pro plugin

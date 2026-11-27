@@ -29,6 +29,11 @@ export interface Product {
   description: string;
   /** a monochrome icon in currentColor, or an image in static/ (host app icons) */
   icon: {name: IconName} | {src: string};
+  /**
+   * For an app that works with several hosts (PostPin Desktop): their app icons, one below the
+   * other, instead of `icon`, and an install guide each instead of `guide`
+   */
+  hosts?: Host[];
   guide: string;
   downloads: Download[];
   /**
@@ -36,6 +41,12 @@ export interface Product {
    * from a file, like the server. `release` finds the release whose version the row shows.
    */
   link?: {label: string; to: string; release: RegExp};
+}
+
+export interface Host {
+  name: string;
+  icon: string;
+  guide: string;
 }
 
 export interface Group {
@@ -60,18 +71,6 @@ export const GROUPS: Group[] = [
         ],
       },
       {
-        id: 'desktop',
-        name: 'PostPin Desktop',
-        description: 'Standalone app for Avid Pro Tools',
-        icon: {src: '/img/hosts/pro-tools.png'},
-        guide: '/plugins/desktop',
-        downloads: [
-          {os: 'mac', arch: 'Universal', pattern: /^PostPin-Desktop-.+-universal\.dmg$/},
-          {os: 'windows', arch: 'x64', cpu: 'x64', pattern: /^PostPin-Desktop-.+-x64\.exe$/},
-          {os: 'windows', arch: 'ARM64', cpu: 'arm64', pattern: /^PostPin-Desktop-.+-arm64\.exe$/},
-        ],
-      },
-      {
         id: 'premiere',
         name: 'PostPin for Premiere Pro',
         description: 'Panel for Adobe Premiere Pro',
@@ -80,6 +79,22 @@ export const GROUPS: Group[] = [
         downloads: [
           // a UXP plugin: one .ccx for every platform Premiere runs on
           {os: ['mac', 'windows'], arch: '', pattern: /^PostPin-Premiere-.+\.ccx$/},
+        ],
+      },
+      {
+        id: 'desktop',
+        name: 'PostPin Desktop',
+        description: 'Standalone app for Avid Pro Tools and FilmCraft',
+        icon: {src: '/img/hosts/pro-tools.png'},
+        guide: '/plugins/desktop',
+        hosts: [
+          {name: 'Pro Tools', icon: '/img/hosts/pro-tools.png', guide: '/plugins/desktop'},
+          {name: 'FilmCraft', icon: '/img/hosts/filmcraft.png', guide: '/plugins/filmcraft'},
+        ],
+        downloads: [
+          {os: 'mac', arch: 'Universal', pattern: /^PostPin-Desktop-.+-universal\.dmg$/},
+          {os: 'windows', arch: 'x64', cpu: 'x64', pattern: /^PostPin-Desktop-.+-x64\.exe$/},
+          {os: 'windows', arch: 'ARM64', cpu: 'arm64', pattern: /^PostPin-Desktop-.+-arm64\.exe$/},
         ],
       },
     ],
